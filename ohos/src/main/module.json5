@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "beizi_sdk",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
