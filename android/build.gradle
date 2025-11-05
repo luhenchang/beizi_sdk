@@ -2,14 +2,14 @@ group = "com.beizi.beizi_sdk"
 version = "1.0-SNAPSHOT"
 
 buildscript {
-    ext.kotlin_version = "1.7.10"
+    ext.kotlin_version = "2.1.0"
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.3.0")
+        classpath("com.android.tools.build:gradle:8.10.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
@@ -29,15 +29,15 @@ android {
         namespace = "com.beizi.beizi_sdk"
     }
 
-    compileSdk = 34
+    compileSdk = 36
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11
     }
 
     sourceSets {
@@ -45,13 +45,18 @@ android {
         test.java.srcDirs += "src/test/kotlin"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
     }
 
     dependencies {
+        compileOnly fileTree(dir: 'libs', include: '*.aar')
         testImplementation("org.jetbrains.kotlin:kotlin-test")
-        testImplementation("org.mockito:mockito-core:5.0.0")
+        testImplementation("org.mockito:mockito-core:5.19.0")
     }
 
     testOptions {

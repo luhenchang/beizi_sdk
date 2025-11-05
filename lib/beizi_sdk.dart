@@ -1,8 +1,4 @@
-
-import 'beizi_sdk_platform_interface.dart';
-
+import 'package:flutter/services.dart';
 class BeiziSdk {
-  Future<String?> getPlatformVersion() {
-    return BeiziSdkPlatform.instance.getPlatformVersion();
-  }
+  static const MethodChannel channel = MethodChannel('beizi_sdk');
 }

@@ -1,63 +1,146 @@
+import 'package:beizi_sdk/beizi_sdk_export.dart';
+import 'package:beizi_sdk_example/widgets/blurred_background.dart';
+import 'package:beizi_sdk_example/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
 import 'package:flutter/services.dart';
-import 'package:beizi_sdk/beizi_sdk.dart';
+import 'data/init_data.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _beiziSdkPlugin = BeiziSdk();
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _beiziSdkPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
-      ),
+      initialRoute: 'SplashPage',
+      routes: {
+        'SplashPage':(context)=>const SplashPage(title: '开屏页面'),
+        // 'SplashShowPage':(context)=>const SplashShowPage(title: '开屏页面'),
+        // 'SplashWidgetPage':(context)=>const SplashWidgetPage(title: '开屏页面'),
+        // 'InterstitialShowPage':(context)=> const InterstitialShowPage(title: '插屏页面'),
+        // 'InterstitialPage':(context)=> const InterstitialPage(title: '插屏页面'),
+        // 'NativePage':(context)=> const NativePage(title: '原生页面'),
+        // 'NativeUnifiedPage':(context)=> const NativeUnifiedPage(title: '原生自渲染页面')
+      },
     );
+  }
+}
+
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  InitStatus initStatus = InitStatus.normal;
+  @override
+  void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Stack(
+      alignment: AlignmentDirectional.center,
+      children: [
+        const BlurredBackground(),
+        Column(children: [
+          const SizedBox(height: 100,width: 0),
+          ButtonWidget(
+              buttonText: getInitResult(initStatus),
+              backgroundColor: getInitColor(initStatus),
+              callBack: () {
+                BeiZis.init("12379", BeiziCustomController());
+                }
+          ),
+          const SizedBox(height: 20,width: 0),
+          ButtonWidget(
+              buttonText: '开屏show案例页面',
+              callBack: () {
+                // 使用命名路由跳转
+                Navigator.pushNamed(context, 'SplashShowPage');
+              }
+          ),
+          const SizedBox(height: 20,width: 0),
+          ButtonWidget(
+              buttonText: '开屏组件案例页面',
+              callBack: () {
+                // 使用命名路由跳转
+                Navigator.pushNamed(context, 'SplashWidgetPage');
+              }
+          ),
+          const SizedBox(height: 20,width: 0),
+          ButtonWidget(
+              buttonText: '插屏show案例页面',
+              callBack: () {
+                // 使用命名路由跳转
+                Navigator.pushNamed(context, 'InterstitialShowPage');
+              }
+          ),
+          const SizedBox(height: 20,width: 0),
+          ButtonWidget(
+              buttonText: '插屏组件案例页面',
+              callBack: () {
+                // 使用命名路由跳转
+                Navigator.pushNamed(context, 'InterstitialPage');
+              }
+          ),
+          const SizedBox(height: 20,width: 0),
+          ButtonWidget(
+              buttonText: '点击跳转原生页面',
+              callBack: () {
+                // 使用命名路由跳转
+                Navigator.pushNamed(context, 'NativePage');
+              }
+          ),
+          const SizedBox(height: 20,width: 0),
+          ButtonWidget(
+              buttonText: '点击跳转自渲染页面',
+              callBack: () {
+                // 使用命名路由跳转
+                Navigator.pushNamed(context, 'NativeUnifiedPage');
+              }
+          )
+        ],),
+      ],
+    ));
+  }
+
+  String getInitResult(InitStatus status) {
+    switch (status) {
+      case InitStatus.normal:
+        return '点击初始化SDK';
+      case InitStatus.initialing:
+        return '初始化中';
+      case InitStatus.alreadyInit:
+        return '已初始化';
+      case InitStatus.success:
+        return '初始化成功';
+      case InitStatus.failed:
+        return '初始化失败';
+    }
+  }
+
+  Color? getInitColor(InitStatus initStatus) {
+    switch (initStatus) {
+      case InitStatus.normal:
+        return Colors.blue;
+      case InitStatus.initialing:
+        return Colors.grey;
+      case InitStatus.alreadyInit:
+        return Colors.green;
+      case InitStatus.success:
+        return Colors.green;
+      case InitStatus.failed:
+        return Colors.red;
+    }
   }
 }
