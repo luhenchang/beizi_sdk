@@ -1,33 +1,33 @@
 package com.beizi.beizi_sdk
 
-import com.beizi.beizi_sdk.manager.BeiziEventManager
-import com.beizi.beizi_sdk.manager.BeiziPlatformViewManager
+import com.beizi.beizi_sdk.manager.BeiZiEventManager
+import com.beizi.beizi_sdk.manager.BeiZiPlatformViewManager
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
 /** AmpsSdkPlugin */
 class BeiziSdkPlugin :
-  FlutterPlugin, ActivityAware {
-  override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    BeiziEventManager.getInstance().init(flutterPluginBinding.binaryMessenger)
-    BeiziPlatformViewManager.getInstance().init(flutterPluginBinding)
-  }
+    FlutterPlugin, ActivityAware {
+    override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+        BeiZiEventManager.getInstance().init(flutterPluginBinding.binaryMessenger)
+        BeiZiPlatformViewManager.getInstance().init(flutterPluginBinding)
+    }
 
-  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-  }
+    override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+    }
 
-  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    BeiziEventManager.getInstance().setContext(binding.activity)
-  }
+    override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+        BeiZiEventManager.getInstance().setContext(binding.activity)
+    }
 
-  override fun onDetachedFromActivityForConfigChanges() {
-  }
+    override fun onDetachedFromActivityForConfigChanges() {
+    }
 
-  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-  }
+    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+    }
 
-  override fun onDetachedFromActivity() {
-    BeiziEventManager.getInstance().release()
-  }
+    override fun onDetachedFromActivity() {
+        BeiZiEventManager.getInstance().release()
+    }
 }

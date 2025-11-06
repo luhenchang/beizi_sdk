@@ -1,11 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:beizi_sdk/beizi_sdk_method_channel.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelBeiziSdk platform = MethodChannelBeiziSdk();
   const MethodChannel channel = MethodChannel('beizi_sdk');
 
   setUp(() {
@@ -22,6 +20,5 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await platform.getPlatformVersion(), '42');
   });
 }

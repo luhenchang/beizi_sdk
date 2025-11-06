@@ -1,4 +1,4 @@
-import '../common.dart';
+import 'beizi_init_data.dart';
 
 /// Represents geographic location information, equivalent to the Android BeiZiLocation class.
 class BeiziLocation {

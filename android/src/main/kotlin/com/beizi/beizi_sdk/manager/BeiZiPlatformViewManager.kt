@@ -1,14 +1,14 @@
 package com.beizi.beizi_sdk.manager // 根据你的项目结构调整包名
 import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding
 
-class BeiziPlatformViewManager private constructor() {
+class BeiZiPlatformViewManager private constructor() {
     companion object {
         @Volatile
-        private var sInstance: BeiziPlatformViewManager? = null
+        private var sInstance: BeiZiPlatformViewManager? = null
 
-        fun getInstance(): BeiziPlatformViewManager {
+        fun getInstance(): BeiZiPlatformViewManager {
             return sInstance ?: synchronized(this) {
-                sInstance ?: BeiziPlatformViewManager().also { sInstance = it }
+                sInstance ?: BeiZiPlatformViewManager().also { sInstance = it }
             }
         }
     }

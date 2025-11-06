@@ -3,6 +3,7 @@ package com.beizi.beizi_sdk.utils
 import com.beizi.ad.model.BeiZiLocation
 import com.beizi.beizi_sdk.data.BeiziInitKeys
 import com.beizi.fusion.BeiZiCustomController
+import kotlin.collections.getOrDefault
 
 /**
  * 一个单例工具对象，用于从Map创建BeiZiCustomController的实现。
@@ -15,6 +16,10 @@ object BeiZiCustomControllerUtil {
      * @param map 从Flutter端传递过来的配置Map。使用不可变的Map更安全。
      * @return BeiZiCustomController的一个匿名实现，其行为由传入的map决定。
      */
+    // 兼容低版本的 getOrDefault 替代方法
+    fun <K, V> Map<out K, V>.getOrDefault(key: K, defaultValue: V): V {
+        return if (this.containsKey(key)) this[key]!! else defaultValue
+    }
     fun createControllerFromMap(map: Map<*, *>): BeiZiCustomController {
         return object : BeiZiCustomController() {
             override fun isCanUseLocation(): Boolean =

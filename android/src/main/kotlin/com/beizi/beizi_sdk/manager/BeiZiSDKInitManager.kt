@@ -1,32 +1,34 @@
 package com.beizi.beizi_sdk.manager
 
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.beizi.beizi_sdk.data.BeiZiSdkMethodNames
 import com.beizi.beizi_sdk.data.BeiziInitKeys
 import com.beizi.fusion.BeiZis
-import com.beizi.beizi_sdk.data.AMPSAdSdkMethodNames
 import com.beizi.beizi_sdk.utils.BeiZiCustomControllerUtil
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel.Result
 
-class BeiziSDKInitManager private constructor() {
+class BeiZiSDKInitManager private constructor() {
 
     companion object {
         @Volatile
-        private var instance: BeiziSDKInitManager? = null
+        private var instance: BeiZiSDKInitManager? = null
 
-        fun getInstance(): BeiziSDKInitManager {
+        fun getInstance(): BeiZiSDKInitManager {
             return instance ?: synchronized(this) {
-                instance ?: BeiziSDKInitManager().also { instance = it }
+                instance ?: BeiZiSDKInitManager().also { instance = it }
             }
         }
     }
 
 
     fun handleMethodCall(call: MethodCall, result: Result) {
-        if (call.method != AMPSAdSdkMethodNames.INIT) {
+        if (call.method != BeiZiSdkMethodNames.INIT) {
             result.notImplemented()
             return
         }
-        val context = BeiziEventManager.getInstance().getContext()
+        val context = BeiZiEventManager.getInstance().getContext()
         val flutterParams = call.arguments as? Map<*, *>
         if (context == null || flutterParams == null) {
             result.error("INITIALIZATION_FAILED", "Context or arguments are missing.", null)

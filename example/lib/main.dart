@@ -1,4 +1,5 @@
 import 'package:beizi_sdk/beizi_sdk_export.dart';
+import 'package:beizi_sdk_example/splash_show_page.dart';
 import 'package:beizi_sdk_example/widgets/blurred_background.dart';
 import 'package:beizi_sdk_example/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: 'SplashPage',
       routes: {
-        'SplashPage':(context)=>const SplashPage(title: '开屏页面'),
-        // 'SplashShowPage':(context)=>const SplashShowPage(title: '开屏页面'),
+        'SplashPage': (context) => const SplashPage(title: '开屏页面'),
+        'SplashShowPage':(context)=>const SplashShowPage(title: '开屏页面'),
         // 'SplashWidgetPage':(context)=>const SplashWidgetPage(title: '开屏页面'),
         // 'InterstitialShowPage':(context)=> const InterstitialShowPage(title: '插屏页面'),
         // 'InterstitialPage':(context)=> const InterstitialPage(title: '插屏页面'),
@@ -40,6 +41,7 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   InitStatus initStatus = InitStatus.normal;
+
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
@@ -48,68 +50,70 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Stack(
+    return Scaffold(
+        body: Stack(
       alignment: AlignmentDirectional.center,
       children: [
         const BlurredBackground(),
-        Column(children: [
-          const SizedBox(height: 100,width: 0),
-          ButtonWidget(
-              buttonText: getInitResult(initStatus),
-              backgroundColor: getInitColor(initStatus),
-              callBack: () {
-                BeiZis.init("12379", BeiziCustomController());
-                }
-          ),
-          const SizedBox(height: 20,width: 0),
-          ButtonWidget(
-              buttonText: '开屏show案例页面',
-              callBack: () {
-                // 使用命名路由跳转
-                Navigator.pushNamed(context, 'SplashShowPage');
-              }
-          ),
-          const SizedBox(height: 20,width: 0),
-          ButtonWidget(
-              buttonText: '开屏组件案例页面',
-              callBack: () {
-                // 使用命名路由跳转
-                Navigator.pushNamed(context, 'SplashWidgetPage');
-              }
-          ),
-          const SizedBox(height: 20,width: 0),
-          ButtonWidget(
-              buttonText: '插屏show案例页面',
-              callBack: () {
-                // 使用命名路由跳转
-                Navigator.pushNamed(context, 'InterstitialShowPage');
-              }
-          ),
-          const SizedBox(height: 20,width: 0),
-          ButtonWidget(
-              buttonText: '插屏组件案例页面',
-              callBack: () {
-                // 使用命名路由跳转
-                Navigator.pushNamed(context, 'InterstitialPage');
-              }
-          ),
-          const SizedBox(height: 20,width: 0),
-          ButtonWidget(
-              buttonText: '点击跳转原生页面',
-              callBack: () {
-                // 使用命名路由跳转
-                Navigator.pushNamed(context, 'NativePage');
-              }
-          ),
-          const SizedBox(height: 20,width: 0),
-          ButtonWidget(
-              buttonText: '点击跳转自渲染页面',
-              callBack: () {
-                // 使用命名路由跳转
-                Navigator.pushNamed(context, 'NativeUnifiedPage');
-              }
-          )
-        ],),
+        Column(
+          children: [
+            const SizedBox(height: 100, width: 0),
+            ButtonWidget(
+                buttonText: getInitResult(initStatus),
+                backgroundColor: getInitColor(initStatus),
+                callBack: () {
+                  BeiZis.init("20826",
+                          BeiziCustomController(isPersonalRecommend: true))
+                      .then((value) {
+                    setState(() {
+                      initStatus = InitStatus.success;
+                    });
+                  });
+                }),
+            const SizedBox(height: 20, width: 0),
+            ButtonWidget(
+                buttonText: '开屏show案例页面',
+                callBack: () {
+                  // 使用命名路由跳转
+                  Navigator.pushNamed(context, 'SplashShowPage');
+                }),
+            const SizedBox(height: 20, width: 0),
+            ButtonWidget(
+                buttonText: '开屏组件案例页面',
+                callBack: () {
+                  // 使用命名路由跳转
+                  Navigator.pushNamed(context, 'SplashWidgetPage');
+                }),
+            const SizedBox(height: 20, width: 0),
+            ButtonWidget(
+                buttonText: '插屏show案例页面',
+                callBack: () {
+                  // 使用命名路由跳转
+                  Navigator.pushNamed(context, 'InterstitialShowPage');
+                }),
+            const SizedBox(height: 20, width: 0),
+            ButtonWidget(
+                buttonText: '插屏组件案例页面',
+                callBack: () {
+                  // 使用命名路由跳转
+                  Navigator.pushNamed(context, 'InterstitialPage');
+                }),
+            const SizedBox(height: 20, width: 0),
+            ButtonWidget(
+                buttonText: '点击跳转原生页面',
+                callBack: () {
+                  // 使用命名路由跳转
+                  Navigator.pushNamed(context, 'NativePage');
+                }),
+            const SizedBox(height: 20, width: 0),
+            ButtonWidget(
+                buttonText: '点击跳转自渲染页面',
+                callBack: () {
+                  // 使用命名路由跳转
+                  Navigator.pushNamed(context, 'NativeUnifiedPage');
+                })
+          ],
+        ),
       ],
     ));
   }

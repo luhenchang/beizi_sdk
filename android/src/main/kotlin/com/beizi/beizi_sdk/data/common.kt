@@ -6,50 +6,53 @@ object StringConstants {
 
 data class AdOptions(val spaceId: String)
 
-object AMPSChannels {
+object BeiZiChannels {
     private const val CHANNEL_DOMAIN = "biz.beizi.adn"
 
-    const val AMPS_SDK_INIT = "$CHANNEL_DOMAIN/sdk"
-    const val AMPS_SDK_SPLASH = "$CHANNEL_DOMAIN/splash"
-    const val AMPS_SDK_SPLASH_AD_LOAD = "$CHANNEL_DOMAIN/splash_ad_load"
-    const val AMPS_SDK_INTERSTITIAL_AD_LOAD = "$CHANNEL_DOMAIN/interstitial_ad_load"
-    const val AMPS_SDK_NATIVE_AD_LOAD = "$CHANNEL_DOMAIN/native_ad_load"
+    const val BeiZi_SDK_INIT = "$CHANNEL_DOMAIN/sdk"
+    const val BeiZi_SDK_SPLASH = "$CHANNEL_DOMAIN/splash"
+    const val BeiZi_SDK_SPLASH_AD_LOAD = "$CHANNEL_DOMAIN/splash_ad_load"
+    const val BeiZi_SDK_INTERSTITIAL_AD_LOAD = "$CHANNEL_DOMAIN/interstitial_ad_load"
+    const val BeiZi_SDK_NATIVE_AD_LOAD = "$CHANNEL_DOMAIN/native_ad_load"
 }
 
-object AMPSPlatformViewRegistry {
-    private const val CHANNEL_DOMAIN = "biz.beizi.adn" // Or use AMPSChannels.CHANNEL_DOMAIN if accessible
+object BBeiZiPlatformViewRegistry {
+    private const val CHANNEL_DOMAIN = "biz.beizi.adn"
 
-    const val AMPS_SDK_SPLASH_VIEW_ID = "$CHANNEL_DOMAIN/splash_view_id"
-    const val AMPS_SDK_INTERSTITIAL_VIEW_ID = "$CHANNEL_DOMAIN/interstitial_view_id"
-    const val AMPS_SDK_NATIVE_VIEW_ID = "$CHANNEL_DOMAIN/native_view_id"
-    const val AMPS_SDK_UNIFIED_VIEW_ID = "$CHANNEL_DOMAIN/unified_view_id"
+    const val BeiZi_SDK_SPLASH_VIEW_ID = "$CHANNEL_DOMAIN/splash_view_id"
+    const val BeiZi_SDK_INTERSTITIAL_VIEW_ID = "$CHANNEL_DOMAIN/interstitial_view_id"
+    const val BeiZi_SDK_NATIVE_VIEW_ID = "$CHANNEL_DOMAIN/native_view_id"
+    const val BeiZi_SDK_UNIFIED_VIEW_ID = "$CHANNEL_DOMAIN/unified_view_id"
 }
 
-object AMPSInitChannelMethod {
+object BeiZiInitChannelMethod {
     const val INIT_SUCCESS = "initSuccess"
     const val INITIALIZING = "initializing"
     const val ALREADY_INIT = "alreadyInit"
     const val INIT_FAILED = "initFailed"
 }
 
-object AMPSAdCallBackChannelMethod {
-    const val ON_LOAD_SUCCESS = "onLoadSuccess"
-    const val ON_LOAD_FAILURE = "onLoadFailure"
-    const val ON_RENDER_OK = "onRenderOk"
-    const val ON_AD_SHOW = "onAdShow"
-    const val ON_AD_EXPOSURE = "onAdExposure"
-    const val ON_AD_CLICKED = "onAdClicked"
-    const val ON_AD_CLOSED = "onAdClosed"
-    const val ON_RENDER_FAILURE = "onRenderFailure"
-    const val ON_AD_SHOW_ERROR = "onAdShowError"
-    const val ON_VIDEO_PLAY_START = "onVideoPlayStart"
-    const val ON_VIDEO_PLAY_END = "onVideoPlayEnd"
-    const val ON_VIDEO_PLAY_ERROR = "onVideoPlayError"
-    const val ON_VIDEO_SKIP_TO_END = "onVideoSkipToEnd"
-    const val ON_AD_REWARD = "onAdReward"
+object BeiZiAdCallBackChannelMethod {
+    /// 广告加载成功
+    const val ON_AD_LOADED = "onAdLoaded";
+
+    /// 广告展示成功
+    const val ON_AD_SHOWN = "onAdShown";
+
+    /// 广告加载失败
+    const val ON_AD_FAILED_TO_LOAD = "onAdFailedToLoad";
+
+    /// 广告关闭 (开屏广告结束/用户跳过)
+    const val ON_AD_CLOSED = "onAdClosed";
+
+    /// 广告倒计时/进度更新
+    const val ON_AD_TICK = "onAdTick";
+
+    /// 广告被点击
+    const val ON_AD_CLICKED = "onAdClicked";
 }
 
-object AMPSNativeCallBackChannelMethod {
+object BeiZiNativeCallBackChannelMethod {
     // Ad loading callback identifiers
     const val LOAD_OK = "loadOk"
     const val LOAD_FAIL = "loadFail"
@@ -86,40 +89,53 @@ object DownLoadCallBackChannelMethod {
     const val onInstalled = "onInstalled"
 }
 
-object AMPSAdSdkMethodNames {
-    // Method name for initializing AMPS Ad SDK
-    const val TEST_MODE = "testMode"
-    const val INIT = "AMPSAdSdk_init"
+object BeiZiSdkMethodNames {
+    // Method name for initializing BeiZi Ad SDK
+    const val INIT = "BeiZiSdk_init"
 
     // Splash ad related methods
-    const val SPLASH_LOAD = "AMPSSplashAd_load"
-    const val SPLASH_SHOW_AD = "AMPSSplashAd_showAd"
-    const val SPLASH_GET_ECPM = "AMPSSplashAd_getECPM"
-    const val SPLASH_NOTIFY_RTB_WIN = "AMPSSplashAd_notifyRTBWin"
-    const val SPLASH_NOTIFY_RTB_LOSS = "AMPSSplashAd_notifyRTBLoss"
-    const val SPLASH_IS_READY_AD = "AMPSSplashAd_isReadyAd"
+    const val SPLASH_CREATE = "BeiZiSplashAd_create";
+    const val SPLASH_LOAD = "BeiZiSplashAd_load"
+    const val SPLASH_SHOW_AD = "BeiZiSplashAd_showAd"
+    const val SPLASH_GET_ECPM = "BeiZiSplashAd_getECPM"
+    const val SPLASH_NOTIFY_RTB_WIN = "BeiZiSplashAd_notifyRTBWin"
+    const val SPLASH_NOTIFY_RTB_LOSS = "BeiZiSplashAd_notifyRTBLoss"
+    const val SPLASH_GET_CUSTOM_EXT_DATA = "BeiZiSplashAd_getCustomExtData"
+    const val SPLASH_GET_CUSTOM_JSON_DATA = "BeiZiSplashAd_getCustomJsonData"
+    const val SPLASH_SET_BID_RESPONSE = "BeiZiSplashAd_setBidResponse"
+    const val SPLASH_SET_SPACE_PARAM = "BeiZiSplashAd_setSpaceParam"
+    const val SPLASH_CANCEL = "BeiZiSplashAd_Cancel"
 
     // Interstitial ad related methods
-    const val INTERSTITIAL_LOAD = "AMPSInterstitial_load"
-    const val INTERSTITIAL_SHOW_AD = "AMPSSInterstitial_showAd"
-    const val INTERSTITIAL_GET_ECPM = "AMPSSInterstitial_getECPM"
-    const val INTERSTITIAL_NOTIFY_RTB_WIN = "AMPSInterstitial_notifyRTBWin"
-    const val INTERSTITIAL_NOTIFY_RTB_LOSS = "AMPSInterstitial_notifyRTBLoss"
-    const val INTERSTITIAL_IS_READY_AD = "AMPSInterstitial_isReadyAd"
+    const val INTERSTITIAL_LOAD = "BeiZiInterstitial_load"
+    const val INTERSTITIAL_SHOW_AD = "BeiZiSInterstitial_showAd"
+    const val INTERSTITIAL_GET_ECPM = "BeiZiSInterstitial_getECPM"
+    const val INTERSTITIAL_NOTIFY_RTB_WIN = "BeiZiInterstitial_notifyRTBWin"
+    const val INTERSTITIAL_NOTIFY_RTB_LOSS = "BeiZiInterstitial_notifyRTBLoss"
+    const val INTERSTITIAL_IS_READY_AD = "BeiZiInterstitial_isReadyAd"
 
     // Native ad related methods
-    const val NATIVE_LOAD = "AMPSNative_load"
-    const val NATIVE_SHOW_AD = "AMPSNative_showAd"
-    const val NATIVE_GET_ECPM = "AMPSNative_getECPM"
-    const val NATIVE_NOTIFY_RTB_WIN = "AMPSNative_notifyRTBWin"
-    const val NATIVE_NOTIFY_RTB_LOSS = "AMPSNative_notifyRTBLoss"
-    const val NATIVE_IS_READY_AD = "AMPSNative_isReadyAd"
-    const val NATIVE_IS_NATIVE_EXPRESS = "AMPSNative_isNativeExpress"
-    const val NATIVE_GET_VIDEO_DURATION = "AMPSNative_getVideoDuration"
-    const val NATIVE_SET_VIDEO_PLAY_CONFIG = "AMPSNative_setVideoPlayConfig"
+    const val NATIVE_LOAD = "BeiZiNative_load"
+    const val NATIVE_SHOW_AD = "BeiZiNative_showAd"
+    const val NATIVE_GET_ECPM = "BeiZiNative_getECPM"
+    const val NATIVE_NOTIFY_RTB_WIN = "BeiZiNative_notifyRTBWin"
+    const val NATIVE_NOTIFY_RTB_LOSS = "BeiZiNative_notifyRTBLoss"
+    const val NATIVE_IS_READY_AD = "BeiZiNative_isReadyAd"
+    const val NATIVE_IS_NATIVE_EXPRESS = "BeiZiNative_isNativeExpress"
+    const val NATIVE_GET_VIDEO_DURATION = "BeiZiNative_getVideoDuration"
+    const val NATIVE_SET_VIDEO_PLAY_CONFIG = "BeiZiNative_setVideoPlayConfig"
+}
+
+object BeiZiSplashKeys {
+    const val WIDTH = "width"
+    const val HEIGHT = "height"
+    const val AD_SPACE_ID = "adSpaceId"
+    const val TOTAL_TIME = "totalTime"
 }
 
 // Constants for argument keys or other string values
+const val SPACE_ID = "spaceId"
+const val TIME_OUT = "mTimeout"
 const val NATIVE_WIDTH = "width"
 const val NATIVE_TYPE = "nativeType"
 const val AD_WIN_PRICE = "winPrice"
@@ -136,41 +152,47 @@ const val VIDEO_LOOP_REPLAY = "videoLoopReplay"
 enum class NativeType(val value: Int) {
     // 原生广告
     NATIVE(0),
+
     // 原生自渲染
     UNIFIED(1);
 }
 
 val InitMethodNames: Set<String> = setOf(
-    AMPSAdSdkMethodNames.INIT
+    BeiZiSdkMethodNames.INIT
 )
 
 val SplashMethodNames: Set<String> = setOf(
-    AMPSAdSdkMethodNames.SPLASH_LOAD,
-    AMPSAdSdkMethodNames.SPLASH_SHOW_AD,
-    AMPSAdSdkMethodNames.SPLASH_GET_ECPM,
-    AMPSAdSdkMethodNames.SPLASH_NOTIFY_RTB_WIN,
-    AMPSAdSdkMethodNames.SPLASH_NOTIFY_RTB_LOSS,
-    AMPSAdSdkMethodNames.SPLASH_IS_READY_AD
+    BeiZiSdkMethodNames.SPLASH_CREATE,
+    BeiZiSdkMethodNames.SPLASH_LOAD,
+    BeiZiSdkMethodNames.SPLASH_SHOW_AD,
+    BeiZiSdkMethodNames.SPLASH_GET_ECPM,
+    BeiZiSdkMethodNames.SPLASH_NOTIFY_RTB_WIN,
+    BeiZiSdkMethodNames.SPLASH_NOTIFY_RTB_LOSS,
+    BeiZiSdkMethodNames.SPLASH_GET_CUSTOM_EXT_DATA,
+    BeiZiSdkMethodNames.SPLASH_GET_CUSTOM_JSON_DATA,
+    BeiZiSdkMethodNames.SPLASH_SET_BID_RESPONSE,
+    BeiZiSdkMethodNames.SPLASH_SET_SPACE_PARAM,
+    BeiZiSdkMethodNames.SPLASH_CANCEL
 )
 
 val InterstitialMethodNames: Set<String> = setOf(
-    AMPSAdSdkMethodNames.INTERSTITIAL_LOAD,
-    AMPSAdSdkMethodNames.INTERSTITIAL_SHOW_AD,
-    AMPSAdSdkMethodNames.INTERSTITIAL_GET_ECPM,
-    AMPSAdSdkMethodNames.INTERSTITIAL_NOTIFY_RTB_WIN,
-    AMPSAdSdkMethodNames.INTERSTITIAL_NOTIFY_RTB_LOSS,
-    AMPSAdSdkMethodNames.INTERSTITIAL_IS_READY_AD
+    BeiZiSdkMethodNames.INTERSTITIAL_LOAD,
+    BeiZiSdkMethodNames.INTERSTITIAL_SHOW_AD,
+    BeiZiSdkMethodNames.INTERSTITIAL_GET_ECPM,
+    BeiZiSdkMethodNames.INTERSTITIAL_NOTIFY_RTB_WIN,
+    BeiZiSdkMethodNames.INTERSTITIAL_NOTIFY_RTB_LOSS,
+    BeiZiSdkMethodNames.INTERSTITIAL_IS_READY_AD
 )
 
 val NativeMethodNames: Set<String> = setOf(
-    AMPSAdSdkMethodNames.NATIVE_LOAD,
-    AMPSAdSdkMethodNames.NATIVE_SHOW_AD,
-    AMPSAdSdkMethodNames.NATIVE_GET_ECPM,
-    AMPSAdSdkMethodNames.NATIVE_NOTIFY_RTB_WIN,
-    AMPSAdSdkMethodNames.NATIVE_NOTIFY_RTB_LOSS,
-    AMPSAdSdkMethodNames.NATIVE_IS_READY_AD,
-    AMPSAdSdkMethodNames.NATIVE_IS_NATIVE_EXPRESS,
-    AMPSAdSdkMethodNames.NATIVE_GET_VIDEO_DURATION,
-    AMPSAdSdkMethodNames.NATIVE_SET_VIDEO_PLAY_CONFIG
+    BeiZiSdkMethodNames.NATIVE_LOAD,
+    BeiZiSdkMethodNames.NATIVE_SHOW_AD,
+    BeiZiSdkMethodNames.NATIVE_GET_ECPM,
+    BeiZiSdkMethodNames.NATIVE_NOTIFY_RTB_WIN,
+    BeiZiSdkMethodNames.NATIVE_NOTIFY_RTB_LOSS,
+    BeiZiSdkMethodNames.NATIVE_IS_READY_AD,
+    BeiZiSdkMethodNames.NATIVE_IS_NATIVE_EXPRESS,
+    BeiZiSdkMethodNames.NATIVE_GET_VIDEO_DURATION,
+    BeiZiSdkMethodNames.NATIVE_SET_VIDEO_PLAY_CONFIG
 )
 

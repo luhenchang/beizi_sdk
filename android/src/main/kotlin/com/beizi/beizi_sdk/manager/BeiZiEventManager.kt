@@ -12,16 +12,16 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import java.lang.ref.WeakReference
 
-class BeiziEventManager private constructor() : MethodCallHandler {
+class BeiZiEventManager private constructor() : MethodCallHandler {
 
     private var channel: MethodChannel? = null
     private var mContext: WeakReference<Activity>? = null // 在 Android 中通常使用 Context
 
     companion object {
-        private var sInstance: BeiziEventManager? = null
-        fun getInstance(): BeiziEventManager {
+        private var sInstance: BeiZiEventManager? = null
+        fun getInstance(): BeiZiEventManager {
             return sInstance ?: synchronized(this) {
-                sInstance ?: BeiziEventManager().also { sInstance = it }
+                sInstance ?: BeiZiEventManager().also { sInstance = it }
             }
         }
     }
@@ -40,7 +40,7 @@ class BeiziEventManager private constructor() : MethodCallHandler {
      */
     fun init(binaryMessenger: BinaryMessenger) {
         if (channel == null) {
-            channel = MethodChannel(binaryMessenger, "amps_sdk") // "amps_sdk" 是通道名称
+            channel = MethodChannel(binaryMessenger, "beizi_sdk") // "amps_sdk" 是通道名称
             channel?.setMethodCallHandler(this) // 将当前类设置为回调处理器
         }
     }
@@ -51,10 +51,10 @@ class BeiziEventManager private constructor() : MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: Result) {
         when {
             InitMethodNames.contains(call.method) -> {
-                BeiziSDKInitManager.Companion.getInstance().handleMethodCall(call, result)
+                BeiZiSDKInitManager.Companion.getInstance().handleMethodCall(call, result)
             }
             SplashMethodNames.contains(call.method) -> {
-                //AMPSSplashManager.getInstance().handleMethodCall(call, result)
+                BeiZiSplashManager.getInstance().handleMethodCall(call, result)
             }
             InterstitialMethodNames.contains(call.method) -> {
                 //AMPSInterstitialManager.getInstance().handleMethodCall(call, result)

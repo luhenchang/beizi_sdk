@@ -74,8 +74,9 @@ class BeiziCustomController {
 
   /// Converts the BeiziCustomController object into a Map for transmission
   /// over a MethodChannel to the native Android side.
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toMap(String appId) {
     return {
+      'appId': appId,
       'isPersonalRecommend': isPersonalRecommend,
       'canUseLocation': canUseLocation,
       'location': location?.toMap(), // Nested map for location

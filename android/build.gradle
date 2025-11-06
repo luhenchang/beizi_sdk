@@ -1,11 +1,17 @@
 group = "com.beizi.beizi_sdk"
 version = "1.0-SNAPSHOT"
-
+// At the top of your build.gradle
+String mavenLocalRepoPath = "${rootProject.projectDir}/m2repository"
+// Ensure the directory exists
+new File(mavenLocalRepoPath).mkdirs()
 buildscript {
     ext.kotlin_version = "2.1.0"
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "file://${rootProject.projectDir}/m2repository"
+        }
     }
 
     dependencies {
@@ -18,11 +24,36 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven {
+            name = "myrepo"
+            url = uri("file://${rootProject.projectDir}/m2repository")
+        }
     }
 }
 
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
+apply plugin: "maven-publish"
+publishing {
+    publications {
+        // 第一个 AAR 的 Publication
+        release(MavenPublication) {
+            groupId = 'com.example'
+            artifactId = 'beizi_fusion_sdk'
+            version = '5.2.2.2'
+            //示例：假设你的模块名为 'amps_sdk' (与项目名一致)
+            //并且你要发布 release AAR
+            // 这个路径是相对于当前 build.gradle 所在模块的
+            artifact "libs/beizi_fusion_sdk_5.2.2.2.aar"
+        }
+    }
+    repositories {
+        maven {
+            name = 'myrepo'
+            url = mavenLocalRepoPath
+        }
+    }
+}
 
 android {
     if (project.android.hasProperty("namespace")) {
@@ -50,13 +81,21 @@ android {
     }
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 21
     }
 
     dependencies {
-        compileOnly fileTree(dir: 'libs', include: '*.aar')
+        api ('com.example:beizi_fusion_sdk:5.2.2.2')
+        implementation ('androidx.annotation:annotation:1.9.1')
+        implementation ('androidx.appcompat:appcompat:1.7.1')
+        implementation ('com.google.android.material:material:1.13.0')
+        testImplementation ('junit:junit:4.13.2')
+        androidTestImplementation ('androidx.test.ext:junit:1.3.0')
+        androidTestImplementation ('androidx.test.espresso:espresso-core:3.7.0')
         testImplementation("org.jetbrains.kotlin:kotlin-test")
         testImplementation("org.mockito:mockito-core:5.19.0")
+        // 添加下面这行代码来修复 NoClassDefFoundError
+        implementation ("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
     }
 
     testOptions {
