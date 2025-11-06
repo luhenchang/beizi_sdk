@@ -1,87 +1,94 @@
 import 'dart:core';
-import 'dart:ffi';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import '../beizi_sdk.dart';
 import '../common.dart';
 import '../data/beizi_listener.dart';
-import '../widget/splash_bottom_widget.dart';
 
 // 广告事件监听器
-class SplashAdListener {
+class InterstitialAdListener {
   final VoidCallback? onAdLoaded;
   final VoidCallback? onAdShown;
-  final AdFailureCallback? onAdFailedToLoad;
+  final AdFailureCallback? onAdFailed;
   final VoidCallback? onAdClosed;
-  final AdTickCallback? onAdTick;
-  final VoidCallback? onAdClicked;
+  final VoidCallback? onAdClick;
 
-  SplashAdListener({
+  InterstitialAdListener({
     this.onAdLoaded,
     this.onAdShown,
-    this.onAdFailedToLoad,
+    this.onAdFailed,
     this.onAdClosed,
-    this.onAdTick,
-    this.onAdClicked,
+    this.onAdClick,
   });
 }
 
-class SplashAd {
+class InterstitialAd {
   final String adSpaceId;
   final int totalTime;
-  final SplashAdListener listener;
+  final int? modelType;
+  final InterstitialAdListener listener;
 
   // 构造函数
-  SplashAd({
-    required this.adSpaceId,
-    required this.totalTime,
-    required this.listener,
-  }) {
+  InterstitialAd(
+      {required this.adSpaceId,
+      required this.totalTime,
+      required this.listener,
+      this.modelType}) {
     _setMethodCallHandler();
     //调用 Native 方法，并传递参数
-    BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashCreate, {
+    BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialCreate, {
       'adSpaceId': adSpaceId,
-      'totalTime': totalTime
+      'totalTime': totalTime,
+      'modelType': modelType
     });
   }
 
-  Future<void> loadAd({
-    required int width,
-    required int height,
-  }) async {
+  Future<void> setAdVersion() async{
+    await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialLoad);
+  }
+
+  Future<void> loadAd() async {
     //调用 Native 方法，并传递参数
-    await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashLoad, {
-      'width': width,
-      'height': height
-    });
+    await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialLoad);
   }
 
-  ///开屏广告显示调用
-  void showAd({SplashBottomWidget? splashBottomWidget}) async {
-    await BeiziSdk.channel.invokeMethod(
-        BeiZiSdkMethodNames.splashShowAd, splashBottomWidget?.toMap());
+  ///插屏广告显示调用
+  void showAd() async {
+    try {
+      await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialShowAd);
+    } on PlatformException catch (e) {
+      debugPrint('调用showAd失败: ${e.details}');
+    }
+  }
+
+  Future<bool> isLoaded() async {
+    try {
+      return await BeiziSdk.channel
+          .invokeMethod(BeiZiSdkMethodNames.interstitialIsLoaded);
+    } on PlatformException catch (e) {
+      debugPrint('调用isLoaded失败: ${e.message}');
+      return false;
+    }
   }
 
   void _setMethodCallHandler() {
     BeiziSdk.channel.setMethodCallHandler((call) async {
       switch (call.method) {
-        case BeiZiAdCallBackChannelMethod.onAdLoaded:
+        case BeiZiInterstitialAdChannelMethod.onAdLoaded:
           listener.onAdLoaded?.call();
           break;
-        case BeiZiAdCallBackChannelMethod.onAdShown:
+        case BeiZiInterstitialAdChannelMethod.onAdShown:
           listener.onAdShown?.call();
           break;
-        case BeiZiAdCallBackChannelMethod.onAdFailedToLoad:
-          listener.onAdFailedToLoad?.call(call.arguments as int);
+        case BeiZiInterstitialAdChannelMethod.onAdFailed:
+          listener.onAdFailed?.call(call.arguments as int);
           break;
-        case BeiZiAdCallBackChannelMethod.onAdClosed:
+        case BeiZiInterstitialAdChannelMethod.onAdClosed:
           listener.onAdClosed?.call();
           break;
-        case BeiZiAdCallBackChannelMethod.onAdTick:
-          listener.onAdTick?.call(call.arguments as Long);
-          break;
-        case BeiZiAdCallBackChannelMethod.onAdClicked:
-          listener.onAdClicked?.call();
+        case BeiZiInterstitialAdChannelMethod.onAdClicked:
+          listener.onAdClick?.call();
           break;
         default:
           break;
@@ -92,7 +99,7 @@ class SplashAd {
   ///单位：人民币（分）
   Future<int> getECPM() async {
     return await BeiziSdk.channel
-        .invokeMethod(BeiZiSdkMethodNames.splashGetECPM);
+        .invokeMethod(BeiZiSdkMethodNames.interstitialGetEcpm);
   }
 
   /// 注意：必须为有效的字符串格式的键值对！！！！！
@@ -103,7 +110,7 @@ class SplashAd {
   Future<void> sendWinNotificationWithInfo(Map<String, String> winInfo) async {
     try {
       await BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.splashNotifyRTBWin, winInfo);
+          .invokeMethod(BeiZiSdkMethodNames.interstitialNotifyRtbWin, winInfo);
     } on PlatformException catch (e) {
       // 处理调用异常
       throw Exception('调用sendWinNotificationWithInfo失败: ${e.message}');
@@ -118,8 +125,8 @@ class SplashAd {
   Future<void> sendLossNotificationWithInfo(
       Map<String, String> lossInfo) async {
     try {
-      await BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.splashNotifyRTBLoss, lossInfo);
+      await BeiziSdk.channel.invokeMethod(
+          BeiZiSdkMethodNames.interstitialNotifyRtbLoss, lossInfo);
     } on PlatformException catch (e) {
       throw Exception('调用sendLossNotificationWithInfo失败: ${e.message}');
     }
@@ -128,7 +135,7 @@ class SplashAd {
   Future<String> getCustomExtraJsonData() async {
     try {
       return await BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.splashGetCustomJsonData);
+          .invokeMethod(BeiZiSdkMethodNames.interstitialGetCustomJsonData);
     } on PlatformException catch (e) {
       throw Exception('调用getCustomExtraJsonData失败: ${e.message}');
     }
@@ -137,7 +144,7 @@ class SplashAd {
   Future<String> getCustomExtraData() async {
     try {
       return await BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.splashGetCustomExtData);
+          .invokeMethod(BeiZiSdkMethodNames.interstitialGetCustomExtData);
     } on PlatformException catch (e) {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }
@@ -145,8 +152,8 @@ class SplashAd {
 
   setBidResponse(String content) {
     try {
-      BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.splashSetBidResponse, content);
+      BeiziSdk.channel.invokeMethod(
+          BeiZiSdkMethodNames.interstitialSetBidResponse, content);
     } on PlatformException catch (e) {
       throw Exception('调用setBidResponse失败: ${e.message}');
     }
@@ -155,20 +162,18 @@ class SplashAd {
   setSpaceParam(Map<String, Object> map) {
     try {
       BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.splashSetSpaceParam, map);
+          .invokeMethod(BeiZiSdkMethodNames.interstitialSetSpaceParam, map);
     } on PlatformException catch (e) {
       throw Exception('调用setSpaceParam失败: ${e.message}');
     }
   }
 
-  ///splashAd.cancel
-  cancel() {
+  ///InterstitialAd.cancel
+  destroy() {
     try {
-      BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.splashCancel);
+      BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialDestroy);
     } on PlatformException catch (e) {
       throw Exception('调用cancel失败: ${e.message}');
     }
   }
-
 }

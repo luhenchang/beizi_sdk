@@ -57,7 +57,7 @@ class BeiZiEventManager private constructor() : MethodCallHandler {
                 BeiZiSplashManager.getInstance().handleMethodCall(call, result)
             }
             InterstitialMethodNames.contains(call.method) -> {
-                //AMPSInterstitialManager.getInstance().handleMethodCall(call, result)
+                BeiZiInterstitialManager.getInstance().handleMethodCall(call, result)
             }
             NativeMethodNames.contains(call.method) -> {
                 //AMPSNativeManager.getInstance().handleMethodCall(call, result)

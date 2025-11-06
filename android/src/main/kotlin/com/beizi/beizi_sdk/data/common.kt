@@ -52,6 +52,23 @@ object BeiZiAdCallBackChannelMethod {
     const val ON_AD_CLICKED = "onAdClicked";
 }
 
+object BeiZiInterAdCallBackMethod {
+    /// 广告加载成功
+    const val ON_AD_LOADED = "Inter_onAdLoaded";
+
+    /// 广告展示成功
+    const val ON_AD_SHOWN = "Inter_onAdShown";
+
+    /// 广告加载失败
+    const val ON_AD_FAILED = "Inter_onAdFailed";
+
+    /// 广告关闭 (开屏广告结束/用户跳过)
+    const val ON_AD_CLOSED = "Inter_onAdClosed";
+
+    /// 广告被点击
+    const val ON_AD_CLICKED = "Inter_onAdClicked";
+}
+
 object BeiZiNativeCallBackChannelMethod {
     // Ad loading callback identifiers
     const val LOAD_OK = "loadOk"
@@ -107,12 +124,19 @@ object BeiZiSdkMethodNames {
     const val SPLASH_CANCEL = "BeiZiSplashAd_Cancel"
 
     // Interstitial ad related methods
+    const val INTERSTITIAL_CREATE = "BeiZiInterstitial_create"
     const val INTERSTITIAL_LOAD = "BeiZiInterstitial_load"
+    const val INTERSTITIAL_SET_AD_VERSION = "BeiZiInterstitial_setAdVersion"
     const val INTERSTITIAL_SHOW_AD = "BeiZiSInterstitial_showAd"
+    const val INTERSTITIAL_IS_LOADED = "BeiZiSInterstitial_isLoaded";
     const val INTERSTITIAL_GET_ECPM = "BeiZiSInterstitial_getECPM"
     const val INTERSTITIAL_NOTIFY_RTB_WIN = "BeiZiInterstitial_notifyRTBWin"
     const val INTERSTITIAL_NOTIFY_RTB_LOSS = "BeiZiInterstitial_notifyRTBLoss"
-    const val INTERSTITIAL_IS_READY_AD = "BeiZiInterstitial_isReadyAd"
+    const val INTERSTITIAL_GET_CUSTOM_EXT_DATA = "BeiZiInterstitial_getCustomExtData"
+    const val INTERSTITIAL_GET_CUSTOM_JSON_DATA = "BeiZiInterstitial_getCustomJsonData"
+    const val INTERSTITIAL_SET_BID_RESPONSE = "BeiZiInterstitial_setBidResponse"
+    const val INTERSTITIAL_SET_SPACE_PARAM = "BeiZiInterstitial_setSpaceParam"
+    const val INTERSTITIAL_DESTROY = "BeiZiInterstitial_Destroy"
 
     // Native ad related methods
     const val NATIVE_LOAD = "BeiZiNative_load"
@@ -131,6 +155,12 @@ object BeiZiSplashKeys {
     const val HEIGHT = "height"
     const val AD_SPACE_ID = "adSpaceId"
     const val TOTAL_TIME = "totalTime"
+}
+
+object BeiZiInterKeys {
+    const val AD_SPACE_ID = "adSpaceId"
+    const val TOTAL_TIME = "totalTime"
+    const val MODEL_TYPE = "modelType"
 }
 
 // Constants for argument keys or other string values
@@ -176,12 +206,18 @@ val SplashMethodNames: Set<String> = setOf(
 )
 
 val InterstitialMethodNames: Set<String> = setOf(
+    BeiZiSdkMethodNames.INTERSTITIAL_CREATE,
     BeiZiSdkMethodNames.INTERSTITIAL_LOAD,
     BeiZiSdkMethodNames.INTERSTITIAL_SHOW_AD,
+    BeiZiSdkMethodNames.INTERSTITIAL_IS_LOADED,
     BeiZiSdkMethodNames.INTERSTITIAL_GET_ECPM,
     BeiZiSdkMethodNames.INTERSTITIAL_NOTIFY_RTB_WIN,
     BeiZiSdkMethodNames.INTERSTITIAL_NOTIFY_RTB_LOSS,
-    BeiZiSdkMethodNames.INTERSTITIAL_IS_READY_AD
+    BeiZiSdkMethodNames.INTERSTITIAL_GET_CUSTOM_EXT_DATA,
+    BeiZiSdkMethodNames.INTERSTITIAL_GET_CUSTOM_JSON_DATA,
+    BeiZiSdkMethodNames.INTERSTITIAL_SET_BID_RESPONSE,
+    BeiZiSdkMethodNames.INTERSTITIAL_SET_SPACE_PARAM,
+    BeiZiSdkMethodNames.INTERSTITIAL_DESTROY
 )
 
 val NativeMethodNames: Set<String> = setOf(

@@ -139,7 +139,7 @@ class BeiZiSplashManager private constructor() {
         val mSpaceId: String? = adOptionsMap?.get(BeiZiSplashKeys.AD_SPACE_ID) as String?
         val mTimeout: Int = adOptionsMap?.get(BeiZiSplashKeys.TOTAL_TIME) as Int? ?: 5000
         mSplashAd = SplashAd(activity, null, mSpaceId, adCallback, mTimeout.toLong())
-
+        result.success(null)
     }
 
     private fun cancel(result: Result) {
