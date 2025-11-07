@@ -5,6 +5,7 @@ import com.beizi.beizi_sdk.data.InitMethodNames
 import com.beizi.beizi_sdk.data.SplashMethodNames
 import com.beizi.beizi_sdk.data.InterstitialMethodNames
 import com.beizi.beizi_sdk.data.NativeMethodNames
+import com.beizi.beizi_sdk.data.RewardedVideoAdMethodNames
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -58,6 +59,9 @@ class BeiZiEventManager private constructor() : MethodCallHandler {
             }
             InterstitialMethodNames.contains(call.method) -> {
                 BeiZiInterstitialManager.getInstance().handleMethodCall(call, result)
+            }
+            RewardedVideoAdMethodNames.contains(call.method) -> {
+                BeiZiRewardedVideoManager.getInstance().handleMethodCall(call, result)
             }
             NativeMethodNames.contains(call.method) -> {
                 //AMPSNativeManager.getInstance().handleMethodCall(call, result)

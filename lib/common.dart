@@ -45,6 +45,24 @@ class BeiZiSdkMethodNames {
   static const String interstitialSetSpaceParam =
       "BeiZiInterstitial_setSpaceParam";
   static const String interstitialDestroy = "BeiZiInterstitial_Destroy";
+
+  ///激励视频相关方法
+  static const String rewardedVideoCreate = "BeiZiRewardedVideo_create";
+  static const String rewardedVideoLoad = "BeiZiRewardedVideo_load";
+  static const String rewardedVideoShowAd = "BeiZiSRewardedVideo_showAd";
+  static const String rewardedVideoIsLoaded = "BeiZiSRewardedVideo_isLoaded";
+  static const String rewardedVideoGetUserId = "BeiZiSRewardedVideo_getUserId";
+  static const String rewardedVideoSetUserId = "BeiZiSRewardedVideo_setUserId";
+  static const String rewardedVideoGetEcpm = "BeiZiSRewardedVideo_getECPM";
+  static const String rewardedVideoNotifyRtbWin = "BeiZiRewardedVideo_notifyRTBWin";
+  static const String rewardedVideoNotifyRtbLoss = "BeiZiRewardedVideo_notifyRTBLoss";
+  static const String rewardedVideoGetExtra = "BeiZiRewardedVideo_getExtra";
+  static const String rewardedVideoSetExtra = "BeiZiRewardedVideo_setExtra";
+  static const String rewardedVideoGetCustomExtData = "BeiZiRewardedVideo_getCustomExtData";
+  static const String rewardedVideoGetCustomJsonData = "BeiZiRewardedVideo_getCustomJsonData";
+  static const String rewardedVideoSetBidResponse = "BeiZiRewardedVideo_setBidResponse";
+  static const String rewardedVideoSetSpaceParam = "BeiZiRewardedVideo_setSpaceParam";
+  static const String rewardedVideoDestroy = "BeiZiRewardedVideo_Destroy";
 }
 
 class BeiZiAdCallBackChannelMethod {
@@ -74,4 +92,26 @@ class BeiZiInterstitialAdChannelMethod {
   static const String onAdClosed = "Inter_onAdClosed";
   /// 广告被点击
   static const String onAdClicked = "Inter_onAdClicked";
+}
+
+/// 激励视频广告相关方法
+class BeiZiRewardedVideoAdChannelMethod {
+  /// 广告激励发放
+  static const String onRewarded = "Reward_onRewarded";
+  /// 广告加载失败
+  static const String onRewardedVideoAdFailedToLoad = "Reward_onAdFailedToLoad";
+  /// 广告加载成功
+  static const String onRewardedVideoAdLoaded = "Reward_onAdLoaded";
+  /// 广告缓存成功
+  static const String onRewardedVideoCacheSuccess = "Reward_onCacheSuccess";
+  /// 广告展示成功
+  static const String onRewardedVideoAdShown = "Reward_onAdShown";
+  /// 广告关闭
+  static const String onRewardedVideoAdClosed = "Reward_onAdClosed";
+  /// 广告被点击
+  static const String onRewardedVideoClick = "Reward_onAdClicked";
+  /// 广告播放完成
+  static const String onRewardedVideoComplete = "Reward_onAdComplete";
+  /// 广告播放错误
+  static const String onRewardedVideoPlayError = "Reward_onPlayError";
 }

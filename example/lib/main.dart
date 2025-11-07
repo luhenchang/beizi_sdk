@@ -1,4 +1,5 @@
 import 'package:beizi_sdk/beizi_sdk_export.dart';
+import 'package:beizi_sdk_example/reward_video_page.dart';
 import 'package:beizi_sdk_example/splash_show_page.dart';
 import 'package:beizi_sdk_example/widgets/blurred_background.dart';
 import 'package:beizi_sdk_example/widgets/button_widget.dart';
@@ -17,11 +18,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: 'SplashPage',
+      initialRoute: 'HomePage',
       routes: {
-        'SplashPage': (context) => const SplashPage(title: '开屏页面'),
+        'HomePage': (context) => const HomePage(title: '首页'),
         'SplashShowPage':(context)=>const SplashShowPage(title: '开屏页面'),
         'InterstitialShowPage':(context)=> const InterstitialShowPage(title: '插屏页面'),
+        'RewardVideoPage':(context)=> const RewardedVideoPage(title: '激励视频页面'),
         //'NativePage':(context)=> const NativePage(title: '原生页面'),
         //'NativeUnifiedPage':(context)=> const NativeUnifiedPage(title: '原生自渲染页面')
       },
@@ -29,16 +31,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class SplashPage extends StatefulWidget {
-  const SplashPage({super.key, required this.title});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _HomePageState extends State<HomePage> {
   InitStatus initStatus = InitStatus.normal;
 
   @override
@@ -82,6 +84,13 @@ class _SplashPageState extends State<SplashPage> {
                 callBack: () {
                   // 使用命名路由跳转
                   Navigator.pushNamed(context, 'InterstitialShowPage');
+                }),
+            const SizedBox(height: 20, width: 0),
+            ButtonWidget(
+                buttonText: '激励视频案例页面',
+                callBack: () {
+                  // 使用命名路由跳转
+                  Navigator.pushNamed(context, 'RewardVideoPage');
                 }),
             const SizedBox(height: 20, width: 0),
             ButtonWidget(

@@ -1,5 +1,7 @@
 package com.beizi.beizi_sdk.data
 
+import com.beizi.fusion.RewardedVideoAd
+
 object StringConstants {
     const val EMPTY_STRING = ""
 }
@@ -67,6 +69,28 @@ object BeiZiInterAdCallBackMethod {
 
     /// 广告被点击
     const val ON_AD_CLICKED = "Inter_onAdClicked";
+}
+
+/// 激励视频广告相关方法
+object BeiZiRewardedVideoAdChannelMethod {
+    /// 广告激励发放
+    const val ON_REWARDED = "Reward_onRewarded"
+    /// 广告加载失败
+    const val ON_REWARDED_VIDEO_AD_FAILED_TO_LOAD = "Reward_onAdFailedToLoad"
+    /// 广告加载成功
+    const val ON_REWARDED_VIDEO_AD_LOADED = "Reward_onAdLoaded"
+    /// 广告缓存成功
+    const val ON_REWARDED_VIDEO_CACHE_SUCCESS = "Reward_onCacheSuccess"
+    /// 广告展示成功
+    const val ON_REWARDED_VIDEO_AD_SHOWN = "Reward_onAdShown"
+    /// 广告关闭
+    const val ON_REWARDED_VIDEO_AD_CLOSED = "Reward_onAdClosed"
+    /// 广告被点击
+    const val ON_REWARDED_VIDEO_CLICK = "Reward_onAdClicked"
+    /// 广告播放完成
+    const val ON_REWARDED_VIDEO_COMPLETE = "Reward_onAdComplete"
+    /// 广告播放错误
+    const val ON_REWARDED_VIDEO_PLAY_ERROR = "Reward_onPlayError"
 }
 
 object BeiZiNativeCallBackChannelMethod {
@@ -138,6 +162,24 @@ object BeiZiSdkMethodNames {
     const val INTERSTITIAL_SET_SPACE_PARAM = "BeiZiInterstitial_setSpaceParam"
     const val INTERSTITIAL_DESTROY = "BeiZiInterstitial_Destroy"
 
+    //RewardedVideo ad related methods
+    const val REWARDED_VIDEO_CREATE = "BeiZiRewardedVideo_create"
+    const val REWARDED_VIDEO_LOAD = "BeiZiRewardedVideo_load"
+    const val REWARDED_VIDEO_SHOW_AD = "BeiZiSRewardedVideo_showAd"
+    const val REWARDED_VIDEO_IS_LOADED = "BeiZiSRewardedVideo_isLoaded"
+    const val REWARDED_VIDEO_GET_USERID = "BeiZiSRewardedVideo_getUserId"
+    const val REWARDED_VIDEO_SET_USERID = "BeiZiSRewardedVideo_setUserId"
+    const val REWARDED_VIDEO_GET_ECPM = "BeiZiSRewardedVideo_getECPM"
+    const val REWARDED_VIDEO_NOTIFY_RTB_WIN = "BeiZiRewardedVideo_notifyRTBWin"
+    const val REWARDED_VIDEO_NOTIFY_RTB_LOSS = "BeiZiRewardedVideo_notifyRTBLoss"
+    const val REWARDED_VIDEO_GET_EXTRA = "BeiZiRewardedVideo_getExtra"
+    const val REWARDED_VIDEO_SET_EXTRA = "BeiZiRewardedVideo_setExtra"
+    const val REWARDED_VIDEO_GET_CUSTOM_EXT_DATA = "BeiZiRewardedVideo_getCustomExtData"
+    const val REWARDED_VIDEO_GET_CUSTOM_JSON_DATA = "BeiZiRewardedVideo_getCustomJsonData"
+    const val REWARDED_VIDEO_SET_BID_RESPONSE = "BeiZiRewardedVideo_setBidResponse"
+    const val REWARDED_VIDEO_SET_SPACE_PARAM = "BeiZiRewardedVideo_setSpaceParam"
+    const val REWARDED_VIDEO_DESTROY = "BeiZiRewardedVideo_Destroy"
+
     // Native ad related methods
     const val NATIVE_LOAD = "BeiZiNative_load"
     const val NATIVE_SHOW_AD = "BeiZiNative_showAd"
@@ -158,6 +200,12 @@ object BeiZiSplashKeys {
 }
 
 object BeiZiInterKeys {
+    const val AD_SPACE_ID = "adSpaceId"
+    const val TOTAL_TIME = "totalTime"
+    const val MODEL_TYPE = "modelType"
+}
+
+object BeiZiRewardVideoKeys {
     const val AD_SPACE_ID = "adSpaceId"
     const val TOTAL_TIME = "totalTime"
     const val MODEL_TYPE = "modelType"
@@ -218,6 +266,26 @@ val InterstitialMethodNames: Set<String> = setOf(
     BeiZiSdkMethodNames.INTERSTITIAL_SET_BID_RESPONSE,
     BeiZiSdkMethodNames.INTERSTITIAL_SET_SPACE_PARAM,
     BeiZiSdkMethodNames.INTERSTITIAL_DESTROY
+)
+
+// 激励视频广告相关方法名集合
+val RewardedVideoAdMethodNames: Set<String> = setOf(
+    BeiZiSdkMethodNames.REWARDED_VIDEO_CREATE,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_LOAD,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_SHOW_AD,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_IS_LOADED,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_GET_USERID,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_SET_USERID,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_GET_ECPM,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_NOTIFY_RTB_WIN,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_NOTIFY_RTB_LOSS,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_GET_EXTRA,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_SET_EXTRA,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_GET_CUSTOM_EXT_DATA,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_GET_CUSTOM_JSON_DATA,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_SET_BID_RESPONSE,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_SET_SPACE_PARAM,
+    BeiZiSdkMethodNames.REWARDED_VIDEO_DESTROY
 )
 
 val NativeMethodNames: Set<String> = setOf(
