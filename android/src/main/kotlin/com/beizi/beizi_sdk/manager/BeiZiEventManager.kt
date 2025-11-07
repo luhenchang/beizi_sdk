@@ -64,7 +64,7 @@ class BeiZiEventManager private constructor() : MethodCallHandler {
                 BeiZiRewardedVideoManager.getInstance().handleMethodCall(call, result)
             }
             NativeMethodNames.contains(call.method) -> {
-                //AMPSNativeManager.getInstance().handleMethodCall(call, result)
+                BeiZiNativeManager.getInstance().handleMethodCall(call, result)
             }
             else -> {
                 result.notImplemented() // 如果方法名未被识别

@@ -1,6 +1,7 @@
 import 'package:beizi_sdk/beizi_sdk_export.dart';
 import 'package:beizi_sdk/controller/beizi_reward_video_ad.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RewardedVideoPage extends StatefulWidget {
   const RewardedVideoPage({super.key, required this.title});
@@ -19,6 +20,7 @@ class _RewardedVideoPageState extends State<RewardedVideoPage> {
 
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     super.initState();
     _adCallBack = RewardedVideoAdListener(onRewarded: (){
 

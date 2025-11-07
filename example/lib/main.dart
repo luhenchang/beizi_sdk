@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'data/init_data.dart';
 import 'interstitial_show_page.dart';
+import 'native_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         'SplashShowPage':(context)=>const SplashShowPage(title: '开屏页面'),
         'InterstitialShowPage':(context)=> const InterstitialShowPage(title: '插屏页面'),
         'RewardVideoPage':(context)=> const RewardedVideoPage(title: '激励视频页面'),
-        //'NativePage':(context)=> const NativePage(title: '原生页面'),
+        'NativePage':(context)=> const NativePage(title: '原生页面'),
         //'NativeUnifiedPage':(context)=> const NativeUnifiedPage(title: '原生自渲染页面')
       },
     );

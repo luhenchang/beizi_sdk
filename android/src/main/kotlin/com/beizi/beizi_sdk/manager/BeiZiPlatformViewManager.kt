@@ -1,5 +1,8 @@
-package com.beizi.beizi_sdk.manager // 根据你的项目结构调整包名
+package com.beizi.beizi_sdk.manager
+import com.beizi.beizi_sdk.data.BeiZiPlatformViewRegistry
+import com.beizi.beizi_sdk.view.NativeFactory
 import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding
+import io.flutter.plugin.common.StandardMessageCodec
 
 class BeiZiPlatformViewManager private constructor() {
     companion object {
@@ -22,23 +25,10 @@ class BeiZiPlatformViewManager private constructor() {
     fun init(binding: FlutterPluginBinding) {
         val platformViewRegistry = binding.platformViewRegistry
         val binaryMessenger = binding.binaryMessenger
-//        // 注册 Splash 视图工厂
-//        platformViewRegistry.registerViewFactory(
-//            AMPSPlatformViewRegistry.AMPS_SDK_SPLASH_VIEW_ID,
-//            SplashFactory(binaryMessenger, StandardMessageCodec.INSTANCE)
-//        )
-//
-//        // 注册 Interstitial 视图工厂
-//        platformViewRegistry.registerViewFactory(
-//            AMPSPlatformViewRegistry.AMPS_SDK_INTERSTITIAL_VIEW_ID,
-//            InterstitialFactory(binaryMessenger, StandardMessageCodec.INSTANCE)
-//        )
-//
-//        // 注册 Native 视图工厂
-//        platformViewRegistry.registerViewFactory(
-//            AMPSPlatformViewRegistry.AMPS_SDK_NATIVE_VIEW_ID,
-//            NativeFactory(binaryMessenger, StandardMessageCodec.INSTANCE)
-//        )
+        platformViewRegistry.registerViewFactory(
+            BeiZiPlatformViewRegistry.BeiZi_SDK_NATIVE_VIEW_ID,
+            NativeFactory(binaryMessenger, StandardMessageCodec.INSTANCE)
+        )
 //
 //        // 注册 Unified 视图工厂
 //        platformViewRegistry.registerViewFactory(

@@ -63,6 +63,20 @@ class BeiZiSdkMethodNames {
   static const String rewardedVideoSetBidResponse = "BeiZiRewardedVideo_setBidResponse";
   static const String rewardedVideoSetSpaceParam = "BeiZiRewardedVideo_setSpaceParam";
   static const String rewardedVideoDestroy = "BeiZiRewardedVideo_Destroy";
+
+  //原生相关方法
+  static const String nativeCreate = "BeiZiNative_create";
+  static const String nativeLoad = "BeiZiNative_load";
+  static const String nativeResume = "BeiZiNative_resume";
+  static const String nativePause = "BeiZiNative_pause";
+  static const String nativeGetEcpm = "BeiZiNative_getECPM";
+  static const String nativeDestroy = "BeiZiNative_destroy";
+  static const String nativeGetCustomExtData = "BeiZiNative_getCustomExtData";
+  static const String nativeGetCustomJsonData = "BeiZiNative_getCustomJsonData";
+  static const String nativeNotifyRtbWin = "BeiZiNative_notifyRTBWin";
+  static const String nativeNotifyRtbLoss = "BeiZiNative_notifyRTBLoss";
+  static const String nativeSetBidResponse = "BeiZiNative_setBidResponse";
+  static const String nativeSetSpaceParam = "BeiZiNative_setSpaceParam";
 }
 
 class BeiZiAdCallBackChannelMethod {
@@ -114,4 +128,20 @@ class BeiZiRewardedVideoAdChannelMethod {
   static const String onRewardedVideoComplete = "Reward_onAdComplete";
   /// 广告播放错误
   static const String onRewardedVideoPlayError = "Reward_onPlayError";
+}
+
+/// 用于 EventChannel 接收 Native 端原生广告回调的事件类型
+class BeiZiNativeAdChannelMethod {
+  /// 广告加载失败
+  static const String onAdFailed = "Native_onAdFailed";
+  /// 广告加载成功
+  static const String onAdLoaded = "Native_onAdLoaded";
+  /// 广告展示成功
+  static const String onAdShown = "Native_onAdShown";
+  /// 广告关闭
+  static const String onAdClosed = "Native_onAdClosed";
+  /// 广告视图关闭
+  static const String onAdClosedView = "Native_onAdClosedView";
+  /// 广告被点击
+  static const String onAdClicked = "Native_onAdClick";
 }

@@ -1,4 +1,4 @@
-import '../data/amps_native_interactive_listener.dart';
+import '../data/beizi_native_listener.dart';
 import 'widget_layout.dart';
 ///自渲染组件自定义内容
 class NativeUnifiedWidget extends LayoutWidget {
@@ -333,15 +333,13 @@ class DownLoadWidget extends LayoutWidget {
   final double fontSize;
   final String fontColor;
   final String content;
-  final AMPSUnifiedDownloadListener? downloadListener;
   DownLoadWidget({
     required this.width,
     required this.x,
     required this.y,
     required this.fontSize,
     required this.fontColor,
-    required this.content,
-    this.downloadListener
+    required this.content
   });
 
   @override

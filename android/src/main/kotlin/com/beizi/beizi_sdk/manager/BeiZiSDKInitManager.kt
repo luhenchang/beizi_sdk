@@ -1,7 +1,5 @@
 package com.beizi.beizi_sdk.manager
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.beizi.beizi_sdk.data.BeiZiSdkMethodNames
 import com.beizi.beizi_sdk.data.BeiziInitKeys
 import com.beizi.fusion.BeiZis
