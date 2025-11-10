@@ -1,16 +1,16 @@
 import 'package:beizi_sdk/beizi_sdk_export.dart';
 import 'package:flutter/material.dart';
 
-class InterstitialShowPage extends StatefulWidget {
-  const InterstitialShowPage({super.key, required this.title});
+class InterstitialPage extends StatefulWidget {
+  const InterstitialPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<InterstitialShowPage> createState() => _InterstitialShowPageState();
+  State<InterstitialPage> createState() => _InterstitialPageState();
 }
 
-class _InterstitialShowPageState extends State<InterstitialShowPage> {
+class _InterstitialPageState extends State<InterstitialPage> {
   late InterstitialAdListener _adCallBack;
   InterstitialAd? _interAd;
   bool couldBack = true;

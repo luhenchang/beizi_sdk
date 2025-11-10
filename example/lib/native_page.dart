@@ -11,7 +11,7 @@ class NativePage extends StatefulWidget {
   State<NativePage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<NativePage> {
+class _SplashPageState extends State<NativePage> with WidgetsBindingObserver{
   late BeiZiNativeAdListener _adCallBack;
   BeiZiNativeAd? _nativeAd;
   List<String> feedList = [];
@@ -22,6 +22,8 @@ class _SplashPageState extends State<NativePage> {
   @override
   void initState() {
     super.initState();
+    // 注册观察者
+    WidgetsBinding.instance.addObserver(this);
     for (var i = 0; i < 30; i++) {
       feedList.add("item name =$i");
     }
@@ -35,6 +37,26 @@ class _SplashPageState extends State<NativePage> {
     _nativeAd = BeiZiNativeAd(adSpaceId: '106064', totalTime: 10000, listener: _adCallBack);
     _nativeAd?.loadAd(width: expressWidth, height: expressHeight);
   }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    // 监听生命周期状态变化
+    switch (state) {
+      case AppLifecycleState.resumed:
+        _nativeAd?.resume();
+        break;
+      case AppLifecycleState.inactive:
+        break;
+      case AppLifecycleState.paused:
+        _nativeAd?.pause();
+        break;
+      case AppLifecycleState.detached:
+        break;
+      case AppLifecycleState.hidden:
+    }
+  }
+
   @override
   void dispose() {
     debugPrint("页面关闭完成");

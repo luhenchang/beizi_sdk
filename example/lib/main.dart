@@ -1,13 +1,13 @@
 import 'package:beizi_sdk/beizi_sdk_export.dart';
 import 'package:beizi_sdk_example/reward_video_page.dart';
-import 'package:beizi_sdk_example/splash_show_page.dart';
 import 'package:beizi_sdk_example/widgets/blurred_background.dart';
 import 'package:beizi_sdk_example/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'data/init_data.dart';
-import 'interstitial_show_page.dart';
+import 'interstitialPage.dart';
 import 'native_page.dart';
+import 'splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
       initialRoute: 'HomePage',
       routes: {
         'HomePage': (context) => const HomePage(title: '首页'),
-        'SplashShowPage':(context)=>const SplashShowPage(title: '开屏页面'),
-        'InterstitialShowPage':(context)=> const InterstitialShowPage(title: '插屏页面'),
+        'SplashShowPage':(context)=>const SplashPage(title: '开屏页面'),
+        'InterstitialShowPage':(context)=> const InterstitialPage(title: '插屏页面'),
         'RewardVideoPage':(context)=> const RewardedVideoPage(title: '激励视频页面'),
         'NativePage':(context)=> const NativePage(title: '原生页面'),
         //'NativeUnifiedPage':(context)=> const NativeUnifiedPage(title: '原生自渲染页面')

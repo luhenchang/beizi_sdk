@@ -5,16 +5,16 @@ import 'package:flutter/services.dart';
 import 'widgets/blurred_background.dart';
 import 'widgets/button_widget.dart';
 
-class SplashShowPage extends StatefulWidget {
-  const SplashShowPage({super.key, required this.title});
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<SplashShowPage> createState() => _SplashShowPageState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashShowPageState extends State<SplashShowPage> {
+class _SplashPageState extends State<SplashPage> {
   SplashAd? _splashAd;
   late SplashAdListener _adCallBack;
   num eCpm = 0;
