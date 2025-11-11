@@ -249,3 +249,25 @@ let nativeMethodNames: Set<String> = [
     BeiZiSdkMethodNames.nativeSetBidResponse,
     BeiZiSdkMethodNames.nativeSetSpaceParam
 ]
+
+
+enum ArgumentKeys {
+    // 参数键或其他字符串值的常量
+    static let adWinPrice = "winPrice"
+    static let adSecPrice = "secPrice"
+    static let adId = "adId"
+    static let adLossReason = "lossReason"
+    static let adOption = "AdOption"
+    static let config = "config"
+    static let splashBottom = "SplashBottomView"
+    static let videoSound = "videoSoundEnable"
+    static let videoPlayType = "videoAutoPlayType"
+    static let videoLoopReplay = "videoLoopReplay"
+}
+enum BidKeys{
+    static let winPrince = "AMPS_WIN_PRICE"
+    static let winADNId = "AMPS_WIN_ADNID"
+    static let lossSecondPrice = "AMPS_HIGHRST_LOSS_PRICE"
+    static let lossReason = "AMPS_LOSS_REASON"
+    static let expectPrice = "AMPS_EXPECT_PRICE"
+}
