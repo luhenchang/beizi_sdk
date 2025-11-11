@@ -20,13 +20,13 @@ class BZEventManager : NSObject{
     var registrar: FlutterPluginRegistrar?
     func regist(_ registrar: FlutterPluginRegistrar) {
         self.registrar = registrar
-        channel = FlutterMethodChannel(name: "amps_sdk", binaryMessenger:  registrar.messenger())
+        channel = FlutterMethodChannel(name: "beizi_sdk", binaryMessenger:  registrar.messenger())
         channel?.setMethodCallHandler { methodCall, result in
             switch methodCall.method {
-//            case let name where  initMethodNames.contains(name):
-//                AMPSSDKInitManager.shared.handleMethodCall(methodCall, result: result)
-//            case let name where splashMethodNames.contains(name):
-//                AMPSSplashManager.getInstance().handleMethodCall(methodCall, result:result)
+            case let name where  initMethodNames.contains(name):
+                BZSDKInitManager.shared.handleMethodCall(methodCall, result: result)
+            case let name where splashMethodNames.contains(name):
+                BeiZiSplashManager.getInstance().handleMethodCall(methodCall, result:result)
 //            case let name where interstitialMethodNames.contains(name):
 //                AMPSInterstitialManager.getInstance().handleMethodCall(methodCall, result: result)
 //            case let name where  nativeMethodNames.contains(name):

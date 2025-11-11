@@ -3,17 +3,9 @@ import UIKit
 
 public class BeiziSdkPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "beizi_sdk", binaryMessenger: registrar.messenger())
-    let instance = BeiziSdkPlugin()
-    registrar.addMethodCallDelegate(instance, channel: channel)
+      BZEventManager.getInstance().regist(registrar)
+//      BZPlatformViewRegistry.getInstance().regist(registrar)
   }
 
-  public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    switch call.method {
-    case "getPlatformVersion":
-      result("iOS " + UIDevice.current.systemVersion)
-    default:
-      result(FlutterMethodNotImplemented)
-    }
-  }
+
 }
