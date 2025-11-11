@@ -95,8 +95,8 @@ enum BeiZiSdkMethodNames {
     static let splashGetEcpm = "BeiZiSplashAd_getECPM"
     static let splashNotifyRtbWin = "BeiZiSplashAd_notifyRTBWin"
     static let splashNotifyRtbLoss = "BeiZiSplashAd_notifyRTBLoss"
-    static let splashGetCustomExtData = "BeiZiSplashAd_getCustomExtData"
-    static let splashGetCustomJsonData = "BeiZiSplashAd_getCustomJsonData"
+    static let splashGetCustomParam = "BeiZiSplashAd_GetCustomParam"
+    static let splashGetAnyParam = "BeiZiSplashAd_GetAnyParam"
     static let splashSetBidResponse = "BeiZiSplashAd_setBidResponse"
     static let splashSetSpaceParam = "BeiZiSplashAd_setSpaceParam"
     static let splashCancel = "BeiZiSplashAd_Cancel"
@@ -193,8 +193,8 @@ let splashMethodNames: Set<String> = [
     BeiZiSdkMethodNames.splashGetEcpm,
     BeiZiSdkMethodNames.splashNotifyRtbWin,
     BeiZiSdkMethodNames.splashNotifyRtbLoss,
-    BeiZiSdkMethodNames.splashGetCustomExtData,
-    BeiZiSdkMethodNames.splashGetCustomJsonData,
+    BeiZiSdkMethodNames.splashGetCustomParam,
+    BeiZiSdkMethodNames.splashGetAnyParam,
     BeiZiSdkMethodNames.splashSetBidResponse,
     BeiZiSdkMethodNames.splashSetSpaceParam,
     BeiZiSdkMethodNames.splashCancel
