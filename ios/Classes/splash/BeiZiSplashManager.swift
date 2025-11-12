@@ -14,9 +14,6 @@ import BeiZiSDK
 class BeiZiSplashManager: NSObject {
     
     private static var instance: BeiZiSplashManager?
-    private var splashAd: BeiZiSplash?
-    private var bottomView: UIView = UIView()
-
     // Singleton
     static func getInstance() -> BeiZiSplashManager {
         if instance == nil {
@@ -26,6 +23,10 @@ class BeiZiSplashManager: NSObject {
     }
     private override init() {}
     
+    private var splashAd: BeiZiSplash?
+    private var s2sToken: String?
+    private var bottomView: UIView?
+    
     // MARK: - Public Methods
     func handleMethodCall(_ call: FlutterMethodCall, result: FlutterResult) {
         let arguments = call.arguments as? [String: Any]
@@ -34,6 +35,10 @@ class BeiZiSplashManager: NSObject {
             handleSplashCreate(arguments: arguments, result: result)
         case BeiZiSdkMethodNames.splashLoad:
             handleSplashLoad(arguments: arguments, result: result)
+        case BeiZiSdkMethodNames.splashSetBidResponse:
+            if let tokon = call.arguments as? String{
+                s2sToken = tokon
+            }
             result(true)
         case BeiZiSdkMethodNames.splashShowAd:
             handleSplashShowAd(arguments: arguments, result: result)
@@ -48,7 +53,8 @@ class BeiZiSplashManager: NSObject {
             result(self.splashAd?.customParam)
         case BeiZiSdkMethodNames.splashGetAnyParam:
             result(self.splashAd?.anyParam)
-        case BeiZiSdkMethodNames.splashSetSpaceParam:
+        case BeiZiSdkMethodNames.splashCancel:
+            self.cleanUp()
             result(true)
         default:
             result(false)
@@ -78,16 +84,24 @@ class BeiZiSplashManager: NSObject {
     
         self.creatBottomView(arguments)
         splashAd?.delegate = self
-        splashAd?.beiZi_loadAd()
+        
+        if let token = self.s2sToken {
+            splashAd?.beiZi_loadAd(withToken: token)
+        }else{
+            splashAd?.beiZi_loadAd()
+        }
         result(true)
     }
     //创建底部自定义view
     private func creatBottomView(_ arguments: [String: Any]?){
+        guard let arguments = arguments else {
+            return
+        }
         
         guard let window = getKeyWindow() else {
             return
         }
-        if let param = arguments {
+        if let param = arguments["bottomWidget"] as? [String: Any] {
             let height = param["height"]  as? CGFloat ?? 0
             let bgColor = param["backgroundColor"] as? String
             var imageModel: SplashBottomImage?
@@ -148,17 +162,11 @@ class BeiZiSplashManager: NSObject {
             return
         }
         
-        guard let window = getKeyWindow() else {
-            result(false)
-            return
-        }
-        
-       
-            
         if let window = getKeyWindow() {
             splashAd.beiZi_showAd(with: window)
         }
-        
+        result(true)
+
 
     }
     
@@ -170,9 +178,9 @@ class BeiZiSplashManager: NSObject {
         let secPrice = arguments[ArgumentKeys.adSecPrice] as? Int ?? 0
         let adnID = arguments[ArgumentKeys.adnId] as? String ?? ""
         splashAd?.sendWinNotification(withInfo: [
-            BidKeys.winPrince:String(winPrice),
-            BidKeys.lossSecondPrice:String(secPrice),
-            BidKeys.ADNId: adnID
+            BeiZi_WIN_PRICE:String(winPrice),
+            BeiZi_HIGHRST_LOSS_PRICE:String(secPrice),
+            BeiZi_ADNID: adnID
         ])
         result(true)
     }
@@ -186,30 +194,22 @@ class BeiZiSplashManager: NSObject {
         let lossReason = arguments[ArgumentKeys.adLossReason] as? String ?? ""
         
         splashAd?.sendLossNotification(withInfo: [
-            BidKeys.winPrince:String(lossWinPrice),
-            BidKeys.ADNId:adnId,
-            BidKeys.lossReason:lossReason
+            BeiZi_WIN_PRICE:String(lossWinPrice),
+            BeiZi_ADNID:adnId,
+            BeiZi_LOSS_REASON:lossReason
         ])
         result(true)
     }
-    
-    private func cleanupExistingSplashViews() {
-        UIApplication.shared.windows.forEach { window in
-            window.subviews.forEach { subview in
-                if subview.tag == 12345 { // Match the tag used for main container
-                    subview.removeFromSuperview()
-                }
-            }
-        }
-    }
-    
-    private func cleanupViewsAfterAdClosed() {
-        cleanupExistingSplashViews()
-        splashAd = nil
-    }
+
     
     private func sendMessage(_ method: String, _ args: Any? = nil) {
         BZEventManager.getInstance().sendToFlutter(method, arg: args)
+    }
+    
+    private func cleanUp(){
+        self.splashAd = nil
+        self.bottomView = nil
+        self.s2sToken = nil
     }
     
 
@@ -217,7 +217,7 @@ class BeiZiSplashManager: NSObject {
 
 extension BeiZiSplashManager: BeiZiSplashDelegate {
     func beiZi_splashBottomView() -> UIView {
-        return self.bottomView
+        return self.bottomView ?? UIView()
     }
     
     func beiZi_splashDidLoadSuccess(_ beiziSplash: BeiZiSplash) {

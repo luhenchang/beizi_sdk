@@ -95,8 +95,8 @@ enum BeiZiSdkMethodNames {
     static let splashGetEcpm = "BeiZiSplashAd_getECPM"
     static let splashNotifyRtbWin = "BeiZiSplashAd_notifyRTBWin"
     static let splashNotifyRtbLoss = "BeiZiSplashAd_notifyRTBLoss"
-    static let splashGetCustomParam = "BeiZiSplashAd_GetCustomParam"
-    static let splashGetAnyParam = "BeiZiSplashAd_GetAnyParam"
+    static let splashGetCustomParam = "BeiZiSplashAd_getCustomParam"
+    static let splashGetAnyParam = "BeiZiSplashAd_getAnyParam"
     static let splashSetBidResponse = "BeiZiSplashAd_setBidResponse"
     static let splashSetSpaceParam = "BeiZiSplashAd_setSpaceParam"
     static let splashCancel = "BeiZiSplashAd_Cancel"
@@ -110,8 +110,8 @@ enum BeiZiSdkMethodNames {
     static let interstitialGetEcpm = "BeiZiSInterstitial_getECPM"
     static let interstitialNotifyRtbWin = "BeiZiInterstitial_notifyRTBWin"
     static let interstitialNotifyRtbLoss = "BeiZiInterstitial_notifyRTBLoss"
-    static let interstitialGetCustomExtData = "BeiZiInterstitial_getCustomExtData"
-    static let interstitialGetCustomJsonData = "BeiZiInterstitial_getCustomJsonData"
+    static let interstitialGetCustomParam = "BeiZiInterstitial_getCustomParam"
+    static let interstitialGetAnyParam = "BeiZiInterstitial_getAnyParam"
     static let interstitialSetBidResponse = "BeiZiInterstitial_setBidResponse"
     static let interstitialSetSpaceParam = "BeiZiInterstitial_setSpaceParam"
     static let interstitialDestroy = "BeiZiInterstitial_Destroy"
@@ -128,8 +128,8 @@ enum BeiZiSdkMethodNames {
     static let rewardedVideoNotifyRtbLoss = "BeiZiRewardedVideo_notifyRTBLoss"
     static let rewardedVideoGetExtra = "BeiZiRewardedVideo_getExtra"
     static let rewardedVideoSetExtra = "BeiZiRewardedVideo_setExtra"
-    static let rewardedVideoGetCustomExtData = "BeiZiRewardedVideo_getCustomExtData"
-    static let rewardedVideoGetCustomJsonData = "BeiZiRewardedVideo_getCustomJsonData"
+    static let rewardedVideoGetCustomParam = "BeiZiRewardedVideo_getCustomParam"
+    static let rewardedVideoGetAnyParam = "BeiZiRewardedVideo_getAnyParam"
     static let rewardedVideoSetBidResponse = "BeiZiRewardedVideo_setBidResponse"
     static let rewardedVideoSetSpaceParam = "BeiZiRewardedVideo_setSpaceParam"
     static let rewardedVideoDestroy = "BeiZiRewardedVideo_Destroy"
@@ -141,8 +141,8 @@ enum BeiZiSdkMethodNames {
     static let nativePause = "BeiZiNative_pause"
     static let nativeGetEcpm = "BeiZiNative_getECPM"
     static let nativeDestroy = "BeiZiNative_destroy"
-    static let nativeGetCustomExtData = "BeiZiNative_getCustomExtData"
-    static let nativeGetCustomJsonData = "BeiZiNative_getCustomJsonData"
+    static let nativeGetCustomParam = "BeiZiNative_getCustomParam"
+    static let nativeGetAnyParam = "BeiZiNative_getAnyParam"
     static let nativeNotifyRtbWin = "BeiZiNative_notifyRTBWin"
     static let nativeNotifyRtbLoss = "BeiZiNative_notifyRTBLoss"
     static let nativeSetBidResponse = "BeiZiNative_setBidResponse"
@@ -209,8 +209,8 @@ let interstitialMethodNames: Set<String> = [
     BeiZiSdkMethodNames.interstitialGetEcpm,
     BeiZiSdkMethodNames.interstitialNotifyRtbWin,
     BeiZiSdkMethodNames.interstitialNotifyRtbLoss,
-    BeiZiSdkMethodNames.interstitialGetCustomExtData,
-    BeiZiSdkMethodNames.interstitialGetCustomJsonData,
+    BeiZiSdkMethodNames.interstitialGetCustomParam,
+    BeiZiSdkMethodNames.interstitialGetAnyParam,
     BeiZiSdkMethodNames.interstitialSetBidResponse,
     BeiZiSdkMethodNames.interstitialSetSpaceParam,
     BeiZiSdkMethodNames.interstitialDestroy
@@ -229,8 +229,8 @@ let rewardedVideoAdMethodNames: Set<String> = [
     BeiZiSdkMethodNames.rewardedVideoNotifyRtbLoss,
     BeiZiSdkMethodNames.rewardedVideoGetExtra,
     BeiZiSdkMethodNames.rewardedVideoSetExtra,
-    BeiZiSdkMethodNames.rewardedVideoGetCustomExtData,
-    BeiZiSdkMethodNames.rewardedVideoGetCustomJsonData,
+    BeiZiSdkMethodNames.rewardedVideoGetCustomParam,
+    BeiZiSdkMethodNames.rewardedVideoGetAnyParam,
     BeiZiSdkMethodNames.rewardedVideoSetBidResponse,
     BeiZiSdkMethodNames.rewardedVideoSetSpaceParam,
     BeiZiSdkMethodNames.rewardedVideoDestroy
@@ -243,8 +243,8 @@ let nativeMethodNames: Set<String> = [
     BeiZiSdkMethodNames.nativePause,
     BeiZiSdkMethodNames.nativeGetEcpm,
     BeiZiSdkMethodNames.nativeDestroy,
-    BeiZiSdkMethodNames.nativeGetCustomExtData,
-    BeiZiSdkMethodNames.nativeGetCustomJsonData,
+    BeiZiSdkMethodNames.nativeGetCustomParam,
+    BeiZiSdkMethodNames.nativeGetAnyParam,
     BeiZiSdkMethodNames.nativeNotifyRtbWin,
     BeiZiSdkMethodNames.nativeNotifyRtbLoss,
     BeiZiSdkMethodNames.nativeSetBidResponse,
@@ -266,10 +266,4 @@ enum ArgumentKeys {
     static let videoSound = "videoSoundEnable"
     static let videoPlayType = "videoAutoPlayType"
     static let videoLoopReplay = "videoLoopReplay"
-}
-enum BidKeys{
-    static let winPrince = "BeiZi_WIN_PRICE"
-    static let ADNId = "BeiZi_ADNID"
-    static let lossSecondPrice = "BeiZi_HIGHRST_LOSS_PRICE"
-    static let lossReason = "BeiZi_LOSS_REASON"
 }

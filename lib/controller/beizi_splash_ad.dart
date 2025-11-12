@@ -146,6 +146,20 @@ class SplashAd {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }
   }
+  ///
+  /// ios使用
+  Future<Map<String, dynamic>?> getCustomParam() async {
+    try {
+      final dynamic param = await BeiziSdk.channel
+          .invokeMethod(BeiZiSdkMethodNames.splashGetCustomParam);
+      if (param == null){
+        return null;
+      }
+      return Map<String, dynamic>.from(param);
+    } on PlatformException catch (e) {
+      throw Exception('调用getCustomExtraData失败: ${e.message}');
+    }
+  }
 
   setBidResponse(String content) {
     try {

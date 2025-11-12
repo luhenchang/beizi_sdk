@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -44,8 +45,8 @@ class InterstitialAd {
     });
   }
 
-  Future<void> setAdVersion() async{
-    await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialLoad);
+  Future<void> setAdVersion(Int ver) async{
+    await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialSetAdVersion,ver);
   }
 
   Future<void> loadAd() async {
@@ -145,6 +146,21 @@ class InterstitialAd {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.interstitialGetCustomExtData);
+    } on PlatformException catch (e) {
+      throw Exception('调用getCustomExtraData失败: ${e.message}');
+    }
+  }
+
+  ///
+  /// ios使用
+  Future<Map<String, dynamic>?> getCustomParam() async {
+    try {
+      final dynamic param = await BeiziSdk.channel
+          .invokeMethod(BeiZiSdkMethodNames.interstitialGetCustomParam);
+      if (param == null){
+        return null;
+      }
+      return Map<String, dynamic>.from(param);
     } on PlatformException catch (e) {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }

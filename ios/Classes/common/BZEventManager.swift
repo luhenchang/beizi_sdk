@@ -27,8 +27,8 @@ class BZEventManager : NSObject{
                 BZSDKInitManager.shared.handleMethodCall(methodCall, result: result)
             case let name where splashMethodNames.contains(name):
                 BeiZiSplashManager.getInstance().handleMethodCall(methodCall, result:result)
-//            case let name where interstitialMethodNames.contains(name):
-//                AMPSInterstitialManager.getInstance().handleMethodCall(methodCall, result: result)
+            case let name where interstitialMethodNames.contains(name):
+                BeiziInterstitialManager.getInstance().handleMethodCall(methodCall, result: result)
 //            case let name where  nativeMethodNames.contains(name):
 //                AMPSNativeManager.getInstance().handleMethodCall(methodCall, result: result)
             default:

@@ -34,6 +34,12 @@ class _SplashPageState extends State<SplashPage> {
       _splashAd?.showAd();
     }, onAdFailedToLoad: (errorCode) {
       debugPrint("请求广告失败=$errorCode");
+    }, onAdShown: (){
+      debugPrint("广告展示");
+    }, onAdClicked: (){
+      debugPrint("广告点击");
+    }, onAdClosed: (){
+      debugPrint("广告关闭");
     });
     _splashAd = SplashAd(
         adSpaceId: '104835',

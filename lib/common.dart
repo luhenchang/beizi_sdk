@@ -20,6 +20,7 @@ class BeiZiSdkMethodNames {
   static const String splashNotifyRTBWin = 'BeiZiSplashAd_notifyRTBWin';
   static const String splashNotifyRTBLoss = 'BeiZiSplashAd_notifyRTBLoss';
   static const String splashGetCustomExtData = 'BeiZiSplashAd_getCustomExtData';
+  static const String splashGetCustomParam = 'BeiZiSplashAd_getCustomParam';
   static const String splashGetCustomJsonData =
       "BeiZiSplashAd_getCustomJsonData";
   static const String splashSetBidResponse = 'BeiZiSplashAd_setBidResponse';
@@ -31,6 +32,7 @@ class BeiZiSdkMethodNames {
   static const String interstitialLoad = "BeiZiInterstitial_load";
   static const String interstitialShowAd = "BeiZiSInterstitial_showAd";
   static const String interstitialIsLoaded = "BeiZiSInterstitial_isLoaded";
+  static const String interstitialSetAdVersion = "BeiZiInterstitial_setAdVersion";
   static const String interstitialGetEcpm = "BeiZiSInterstitial_getECPM";
   static const String interstitialNotifyRtbWin =
       "BeiZiInterstitial_notifyRTBWin";
@@ -44,6 +46,7 @@ class BeiZiSdkMethodNames {
       "BeiZiInterstitial_setBidResponse";
   static const String interstitialSetSpaceParam =
       "BeiZiInterstitial_setSpaceParam";
+  static const String interstitialGetCustomParam = 'BeiZiInterstitial_getCustomParam';
   static const String interstitialDestroy = "BeiZiInterstitial_Destroy";
 
   ///激励视频相关方法
