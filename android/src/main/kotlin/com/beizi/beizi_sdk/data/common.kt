@@ -3,6 +3,8 @@ package com.beizi.beizi_sdk.data
 object BeiZiPlatformViewRegistry {
     private const val CHANNEL_DOMAIN = "com.beizi.sdk"
     const val BeiZi_SDK_NATIVE_VIEW_ID = "$CHANNEL_DOMAIN/native_view_id"
+    const val BeiZi_SDK_NATIVE_UNIFIED_VIEW_ID = "$CHANNEL_DOMAIN/native_unified_view_id"
+
 }
 
 object BeiZiInitChannelMethod {
@@ -80,6 +82,14 @@ object BeiZiNativeAdChannelMethod {
     const val ON_AD_CLICK = "Native_onAdClick"
 }
 
+object BeiZiNativeUnifiedAdChannelMethod {
+    const val ON_AD_FAILED = "Native_Unified_onAdFailed"
+    const val ON_AD_LOADED = "Native_Unified_onAdLoaded"
+    const val ON_AD_SHOWN = "Native_Unified_onAdShown"
+    const val ON_AD_CLOSED = "Native_Unified_onAdClosed"
+    const val ON_AD_CLICK = "Native_Unified_onAdClick"
+}
+
 object BeiZiSdkMethodNames {
     // Method name for initializing BeiZi Ad SDK
     const val INIT = "BeiZiSdk_init"
@@ -143,11 +153,27 @@ object BeiZiSdkMethodNames {
     const val NATIVE_NOTIFY_RTB_LOSS = "BeiZiNative_notifyRTBLoss"
     const val NATIVE_SET_BID_RESPONSE = "BeiZiNative_setBidResponse"
     const val NATIVE_SET_SPACE_PARAM = "BeiZiNative_setSpaceParam"
+
+    // Native Unified ad related methods
+    const val NATIVE_UNIFIED_CREATE = "BeiZiNativeUnified_create"
+    const val NATIVE_UNIFIED_SET_HIDE = "BeiZiNativeUnified_setHide"
+    const val NATIVE_UNIFIED_GET_DOWNLOAD = "BeiZiNativeUnified_getDownLoad"
+    const val NATIVE_UNIFIED_LOAD = "BeiZiNativeUnified_load"
+    const val NATIVE_UNIFIED_RESUME = "BeiZiNativeUnified_resume"
+    const val NATIVE_UNIFIED_GET_ECPM = "BeiZiNativeUnified_getECPM"
+    const val NATIVE_UNIFIED_DESTROY = "BeiZiNativeUnified_destroy"
+    const val NATIVE_UNIFIED_GET_CUSTOM_EXT_DATA = "BeiZiNativeUnified_getCustomExtData"
+    const val NATIVE_UNIFIED_GET_CUSTOM_JSON_DATA = "BeiZiNativeUnified_getCustomJsonData"
+    const val NATIVE_UNIFIED_NOTIFY_RTB_WIN = "BeiZiNativeUnified_notifyRTBWin"
+    const val NATIVE_UNIFIED_NOTIFY_RTB_LOSS = "BeiZiNativeUnified_notifyRTBLoss"
+    const val NATIVE_UNIFIED_SET_BID_RESPONSE = "BeiZiNativeUnified_setBidResponse"
+    const val NATIVE_UNIFIED_SET_SPACE_PARAM = "BeiZiNativeUnified_setSpaceParam"
 }
 
 object BeiZiSplashKeys {
     const val WIDTH = "width"
     const val HEIGHT = "height"
+    const val BOTTOM_WIDGET = "bottomWidget"
     const val AD_SPACE_ID = "adSpaceId"
     const val TOTAL_TIME = "totalTime"
 }
@@ -171,6 +197,17 @@ object BeiZiNativeKeys {
     const val TOTAL_TIME = "totalTime"
     const val AD_ID = "native_adId"
     const val MODEL_TYPE = "modelType"
+}
+
+object BeiZiNativeUnifiedKeys {
+    const val WIDTH = "width"
+    const val HEIGHT = "height"
+    const val AD_SPACE_ID = "adSpaceId"
+    const val TOTAL_TIME = "totalTime"
+    const val AD_ID = "adId"
+    const val MODEL_TYPE = "modelType"
+    const val HIDE_AD_LOGO = "HideAdLogo"
+    const val HIDE_DOWNLOAD_INFO = "HideDownloadInfo"
 }
 
 val InitMethodNames: Set<String> = setOf(
@@ -239,5 +276,21 @@ val NativeMethodNames: Set<String> = setOf(
     BeiZiSdkMethodNames.NATIVE_NOTIFY_RTB_LOSS,
     BeiZiSdkMethodNames.NATIVE_SET_BID_RESPONSE,
     BeiZiSdkMethodNames.NATIVE_SET_SPACE_PARAM
+)
+
+val NativeUnifiedMethodNames: Set<String> = setOf(
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_CREATE,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_SET_HIDE,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_GET_DOWNLOAD,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_LOAD,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_RESUME,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_GET_ECPM,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_DESTROY,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_GET_CUSTOM_EXT_DATA,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_GET_CUSTOM_JSON_DATA,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_NOTIFY_RTB_WIN,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_NOTIFY_RTB_LOSS,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_SET_BID_RESPONSE,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_SET_SPACE_PARAM
 )
 

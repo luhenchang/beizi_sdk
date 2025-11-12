@@ -30,36 +30,40 @@ class SplashAd {
   final String adSpaceId;
   final int totalTime;
   final SplashAdListener listener;
-
+  final String? spaceParam;
   // 构造函数
   SplashAd({
     required this.adSpaceId,
     required this.totalTime,
     required this.listener,
+    this.spaceParam
   }) {
     _setMethodCallHandler();
     //调用 Native 方法，并传递参数
     BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashCreate, {
       'adSpaceId': adSpaceId,
-      'totalTime': totalTime
+      'totalTime': totalTime,
+      'spaceParam': spaceParam
     });
   }
 
   Future<void> loadAd({
     required int width,
     required int height,
+    SplashBottomWidget? splashBottomWidget
   }) async {
     //调用 Native 方法，并传递参数
     await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashLoad, {
       'width': width,
-      'height': height
+      'height': height,
+      'bottomWidget': splashBottomWidget?.toMap()
     });
   }
 
   ///开屏广告显示调用
-  void showAd({SplashBottomWidget? splashBottomWidget}) async {
+  void showAd() async {
     await BeiziSdk.channel.invokeMethod(
-        BeiZiSdkMethodNames.splashShowAd, splashBottomWidget?.toMap());
+        BeiZiSdkMethodNames.splashShowAd);
   }
 
   void _setMethodCallHandler() {
@@ -152,6 +156,7 @@ class SplashAd {
     }
   }
 
+  //提供android使用
   setSpaceParam(Map<String, Object> map) {
     try {
       BeiziSdk.channel

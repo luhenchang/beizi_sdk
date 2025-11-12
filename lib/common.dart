@@ -5,7 +5,7 @@ class BeiZiPlatformViewRegistry {
   static const beiZiSdkInterstitialViewId =
       '$channelDomain/interstitial_view_id';
   static const beiZiSdkNativeViewId = '$channelDomain/native_view_id';
-  static const beiZiSdkUnifiedViewId = '$channelDomain/unified_view_id';
+  static const beiZiSdkUnifiedViewId = '$channelDomain/native_unified_view_id';
 }
 
 class BeiZiSdkMethodNames {
@@ -77,6 +77,27 @@ class BeiZiSdkMethodNames {
   static const String nativeNotifyRtbLoss = "BeiZiNative_notifyRTBLoss";
   static const String nativeSetBidResponse = "BeiZiNative_setBidResponse";
   static const String nativeSetSpaceParam = "BeiZiNative_setSpaceParam";
+
+  // Native Unified ad related methods
+  static const String nativeUnifiedCreate = "BeiZiNativeUnified_create";
+  static const String nativeUnifiedSetHide = "BeiZiNativeUnified_setHide";
+  static const String nativeUnifiedLoad = "BeiZiNativeUnified_load";
+  static const String nativeUnifiedGetDownLoad = "BeiZiNativeUnified_getDownLoad";
+  static const String nativeUnifiedResume = "BeiZiNativeUnified_resume";
+  static const String nativeUnifiedGetEcpm = "BeiZiNativeUnified_getECPM";
+  static const String nativeUnifiedDestroy = "BeiZiNativeUnified_destroy";
+  static const String nativeUnifiedGetCustomExtData =
+      "BeiZiNativeUnified_getCustomExtData";
+  static const String nativeUnifiedGetCustomJsonData =
+      "BeiZiNativeUnified_getCustomJsonData";
+  static const String nativeUnifiedNotifyRtbWin =
+      "BeiZiNativeUnified_notifyRTBWin";
+  static const String nativeUnifiedNotifyRtbLoss =
+      "BeiZiNativeUnified_notifyRTBLoss";
+  static const String nativeUnifiedSetBidResponse =
+      "BeiZiNativeUnified_setBidResponse";
+  static const String nativeUnifiedSetSpaceParam =
+      "BeiZiNativeUnified_setSpaceParam";
 }
 
 class BeiZiAdCallBackChannelMethod {
@@ -144,4 +165,17 @@ class BeiZiNativeAdChannelMethod {
   static const String onAdClosedView = "Native_onAdClosedView";
   /// 广告被点击
   static const String onAdClicked = "Native_onAdClick";
+}
+
+class BeiZiNativeUnifiedAdChannelMethod {
+  /// 广告加载失败
+  static const String onAdFailed = "Native_Unified_onAdFailed";
+  /// 广告加载成功
+  static const String onAdLoaded = "Native_Unified_onAdLoaded";
+  /// 广告展示成功
+  static const String onAdShown = "Native_Unified_onAdShown";
+  /// 广告关闭
+  static const String onAdClosed = "Native_Unified_onAdClosed";
+  /// 广告被点击
+  static const String onAdClick = "Native_Unified_onAdClick";
 }

@@ -324,34 +324,3 @@ class ShakeWidget extends LayoutWidget {
   }
 
 }
-
-///下载六要素，android独有
-class DownLoadWidget extends LayoutWidget {
-  final double width;
-  final double x;
-  final double y;
-  final double fontSize;
-  final String fontColor;
-  final String content;
-  DownLoadWidget({
-    required this.width,
-    required this.x,
-    required this.y,
-    required this.fontSize,
-    required this.fontColor,
-    required this.content
-  });
-
-  @override
-  Map<String, dynamic> toMap() {
-    return {
-      'type': 'downloadInfo',
-      'width': width,
-      'fontSize': fontSize,
-      'x': x,
-      'y': y,
-      'fontColor': fontColor,
-      'content': content
-    };
-  }
-}

@@ -5,6 +5,7 @@ import com.beizi.beizi_sdk.data.InitMethodNames
 import com.beizi.beizi_sdk.data.SplashMethodNames
 import com.beizi.beizi_sdk.data.InterstitialMethodNames
 import com.beizi.beizi_sdk.data.NativeMethodNames
+import com.beizi.beizi_sdk.data.NativeUnifiedMethodNames
 import com.beizi.beizi_sdk.data.RewardedVideoAdMethodNames
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
@@ -65,6 +66,9 @@ class BeiZiEventManager private constructor() : MethodCallHandler {
             }
             NativeMethodNames.contains(call.method) -> {
                 BeiZiNativeManager.getInstance().handleMethodCall(call, result)
+            }
+            NativeUnifiedMethodNames.contains(call.method) -> {
+                BeiZiNativeUnifiedManager.getInstance().handleMethodCall(call, result)
             }
             else -> {
                 result.notImplemented() // 如果方法名未被识别

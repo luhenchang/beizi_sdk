@@ -20,6 +20,7 @@ class _SplashPageState extends State<SplashPage> {
   num eCpm = 0;
   bool initSuccess = false;
   bool couldBack = true;
+
   @override
   void dispose() {
     super.dispose();
@@ -30,29 +31,43 @@ class _SplashPageState extends State<SplashPage> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     super.initState();
     _adCallBack = SplashAdListener(onAdLoaded: () {
-      _splashAd?.showAd(
+      _splashAd?.showAd();
+    }, onAdFailedToLoad: (errorCode) {
+      debugPrint("请求广告失败=$errorCode");
+    });
+    _splashAd = SplashAd(
+        adSpaceId: '104835',
+        totalTime: 5000,
+        listener: _adCallBack);
+    // 使用命名路由跳转
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // 此时可以安全获取 MediaQuery 信息
+      var width = MediaQuery.of(context).size.width.toInt();
+      var height = MediaQuery.of(context).size.height.toInt();
+      _splashAd?.loadAd(
+          width: width,
+          height: height - 100,
           splashBottomWidget: SplashBottomWidget(
               height: 100,
               backgroundColor: "#FFFFFFFF",
               children: [
-            ImageComponent(
-              width: 25,
-              height: 25,
-              x: 170,
-              y: 10,
-              imagePath: 'assets/images/img.png',
-            ),
-            TextComponent(
-              fontSize: 24,
-              color: "#00ff00",
-              x: 140,
-              y: 50,
-              text: 'Hello Android!',
-            ),
-          ]));
-    }, onAdFailedToLoad: (errorCode) {
-      debugPrint("请求广告失败=$errorCode");
+                ImageComponent(
+                  width: 25,
+                  height: 25,
+                  x: 170,
+                  y: 10,
+                  imagePath: 'assets/images/img.png',
+                ),
+                TextComponent(
+                  fontSize: 24,
+                  color: "#00ff00",
+                  x: 140,
+                  y: 50,
+                  text: 'Hello Android!',
+                ),
+              ]));
     });
+
   }
 
   @override
@@ -73,12 +88,34 @@ class _SplashPageState extends State<SplashPage> {
                     ButtonWidget(
                         buttonText: '点击加载开屏页面',
                         callBack: () {
-                          _splashAd = SplashAd(adSpaceId: '104835', totalTime: 5000, listener: _adCallBack);
-                          // 使用命名路由跳转
+                          _splashAd = SplashAd(
+                              adSpaceId: '104835',
+                              totalTime: 5000,
+                              listener: _adCallBack);
                           var width = MediaQuery.of(context).size.width.toInt();
-                          var height =
-                              MediaQuery.of(context).size.height.toInt();
-                          _splashAd?.loadAd(width: width, height: height - 100);
+                          var height = MediaQuery.of(context).size.height.toInt();
+                          _splashAd?.loadAd(
+                              width: width,
+                              height: height - 100,
+                              splashBottomWidget: SplashBottomWidget(
+                                  height: 100,
+                                  backgroundColor: "#FFFFFFFF",
+                                  children: [
+                                    ImageComponent(
+                                      width: 25,
+                                      height: 25,
+                                      x: 170,
+                                      y: 10,
+                                      imagePath: 'assets/images/img.png',
+                                    ),
+                                    TextComponent(
+                                      fontSize: 24,
+                                      color: "#00ff00",
+                                      x: 140,
+                                      y: 50,
+                                      text: 'Hello Android!',
+                                    ),
+                                  ]));
                         }),
                     ButtonWidget(
                         buttonText: '获取竞价=$eCpm',
@@ -105,7 +142,8 @@ class _SplashPageState extends State<SplashPage> {
                           Map<String, String> map = {
                             BeiZiBiddingConstant.winPriceKey: "10",
                             BeiZiBiddingConstant.adnIdKey: BeiZiAdn.adnBz,
-                            BeiZiBiddingConstant.lossReasonKey: BeiZiLossReason.lowPrice
+                            BeiZiBiddingConstant.lossReasonKey:
+                                BeiZiLossReason.lowPrice
                           };
                           _splashAd?.sendLossNotificationWithInfo(map);
                         }),
