@@ -45,7 +45,7 @@ class InterstitialAd {
     });
   }
 
-  Future<void> setAdVersion(Int ver) async{
+  Future<void> setAdVersion(int ver) async{
     await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialSetAdVersion,ver);
   }
 
