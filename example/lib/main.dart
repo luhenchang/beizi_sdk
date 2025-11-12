@@ -9,6 +9,7 @@ import 'interstitialPage.dart';
 import 'native_page.dart';
 import 'native_unified_page.dart';
 import 'splash_page.dart';
+import 'union_download_app_info_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         'InterstitialShowPage':(context)=> const InterstitialPage(title: '插屏页面'),
         'RewardVideoPage':(context)=> const RewardedVideoPage(title: '激励视频页面'),
         'NativePage':(context)=> const NativePage(title: '原生页面'),
-        'NativeUnifiedPage':(context)=> const NativeUnifiedPage(title: '原生自渲染页面')
+        'NativeUnifiedPage':(context)=> const NativeUnifiedPage(title: '原生自渲染页面'),
+        'UnionDownloadAppInfoPage':(context)=> const UnionDownloadAppInfoPage()
       },
     );
   }

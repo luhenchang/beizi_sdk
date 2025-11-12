@@ -2,6 +2,8 @@ import 'package:beizi_sdk/beizi_sdk_export.dart';
 import 'package:beizi_sdk/data/beizi_unified_native_listener.dart';
 import 'package:flutter/material.dart';
 
+import 'union_download_app_info_page.dart';
+
 class NativeUnifiedPage extends StatefulWidget {
   const NativeUnifiedPage({super.key, required this.title});
 
@@ -148,7 +150,14 @@ class _SplashPageState extends State<NativeUnifiedPage> {
                         top: 100,
                         child: InkWell(
                           onTap: () {
-                            setState(() {});
+                            Navigator.pushNamed(
+                                context, 'UnionDownloadAppInfoPage',
+                                arguments: AppInfoArguments(
+                                  titleContent: downLoadAppInfo?.appName ?? "",
+                                  permissionContent: downLoadAppInfo?.appPermission ?? "",
+                                  privacyContent: downLoadAppInfo?.appPrivacy ?? "",
+                                  introContent: downLoadAppInfo?.appIntro ?? "",
+                                ).toMap());
                           },
                           borderRadius: BorderRadius.circular(16), // 水波纹圆角
                           child: Text(
