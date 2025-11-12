@@ -49,7 +49,7 @@ class BeiZiSplashManager: NSObject {
         case BeiZiSdkMethodNames.splashGetAnyParam:
             result(self.splashAd?.anyParam)
         case BeiZiSdkMethodNames.splashSetSpaceParam:
-            result(self.splashAd?.spaceParam)
+            result(true)
         default:
             result(false)
         }
@@ -67,29 +67,24 @@ class BeiZiSplashManager: NSObject {
             return
         }
         spaceId = "104833"
+        self.bottomView = UIView()
         let time = param[BeiZiSplashKeys.totalTime] as? UInt64 ?? 5000
-        splashAd = BeiZiSplash(spaceID: spaceId, spaceParam: "", lifeTime: time)
+        let spaceParam = param[BeiZiSplashKeys.spacePram] as? String ?? ""
+        splashAd = BeiZiSplash(spaceID: spaceId, spaceParam: spaceParam, lifeTime: time)
         result(true)
     }
+    
     private func handleSplashLoad(arguments: [String: Any]?, result: FlutterResult) {
     
-//        guard let param = arguments else {
-//            return
-//        }
+        self.creatBottomView(arguments)
         splashAd?.delegate = self
         splashAd?.beiZi_loadAd()
         result(true)
     }
-    
-    private func handleSplashShowAd(arguments: [String: Any]?, result: FlutterResult) {
-        guard let splashAd = splashAd else {
-            result(false)
-            return
-        }
+    //创建底部自定义view
+    private func creatBottomView(_ arguments: [String: Any]?){
         
         guard let window = getKeyWindow() else {
-            
-            result(false)
             return
         }
         if let param = arguments {
@@ -145,6 +140,19 @@ class BeiZiSplashManager: NSObject {
             }
             
         }
+    }
+    
+    private func handleSplashShowAd(arguments: [String: Any]?, result: FlutterResult) {
+        guard let splashAd = splashAd else {
+            result(false)
+            return
+        }
+        
+        guard let window = getKeyWindow() else {
+            result(false)
+            return
+        }
+        
        
             
         if let window = getKeyWindow() {
@@ -160,7 +168,12 @@ class BeiZiSplashManager: NSObject {
         }
         let winPrice = arguments[ArgumentKeys.adWinPrice] as? Int ?? 0
         let secPrice = arguments[ArgumentKeys.adSecPrice] as? Int ?? 0
-        splashAd?.sendWinNotification(withInfo: [BidKeys.winPrince:String(winPrice),BidKeys.lossSecondPrice:String(secPrice)])
+        let adnID = arguments[ArgumentKeys.adnId] as? String ?? ""
+        splashAd?.sendWinNotification(withInfo: [
+            BidKeys.winPrince:String(winPrice),
+            BidKeys.lossSecondPrice:String(secPrice),
+            BidKeys.ADNId: adnID
+        ])
         result(true)
     }
     
@@ -169,12 +182,12 @@ class BeiZiSplashManager: NSObject {
             return
         }
         let lossWinPrice = arguments[ArgumentKeys.adWinPrice] as? Int ?? 0
-        let lossSecPrice = arguments[ArgumentKeys.adSecPrice] as? Int ?? 0
+        let adnId = arguments[ArgumentKeys.adnId] as? String ?? ""
         let lossReason = arguments[ArgumentKeys.adLossReason] as? String ?? ""
         
         splashAd?.sendLossNotification(withInfo: [
             BidKeys.winPrince:String(lossWinPrice),
-            BidKeys.lossSecondPrice:String(lossSecPrice),
+            BidKeys.ADNId:adnId,
             BidKeys.lossReason:lossReason
         ])
         result(true)

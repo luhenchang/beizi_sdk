@@ -60,11 +60,7 @@ class BZSDKInitManager {
             BeiZiSDKManager.setCustomIDFA(idfa)
         }
         BeiZiSDKManager.setPersonalRecommend(initParam?.isPersonalRecommend ?? true)
-        BeiZiSDKManager.configure(withApplicationID: appid) { status in
-            if status ==  BeiZiSDKInitStatus.success{
-                self.sendMessage(BeiZiInitChannelMethod.initSuccess)
-            }
-        }
+        BeiZiSDKManager.configure(withApplicationID: appid)
     
     }
     

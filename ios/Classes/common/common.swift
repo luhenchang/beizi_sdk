@@ -155,6 +155,7 @@ enum BeiZiSplashKeys {
     static let height = "height"
     static let adSpaceId = "adSpaceId"
     static let totalTime = "totalTime"
+    static let spacePram = "spaceParam"
 }
 
 // 插屏广告参数键名
@@ -254,20 +255,21 @@ let nativeMethodNames: Set<String> = [
 enum ArgumentKeys {
     // 参数键或其他字符串值的常量
     static let adWinPrice = "winPrice"
-    static let adSecPrice = "secPrice"
-    static let adId = "adId"
+    static let adSecPrice = "highestLossPrice"
+    static let adnId = "adnId"
     static let adLossReason = "lossReason"
+    
     static let adOption = "AdOption"
     static let config = "config"
     static let splashBottom = "SplashBottomView"
+    
     static let videoSound = "videoSoundEnable"
     static let videoPlayType = "videoAutoPlayType"
     static let videoLoopReplay = "videoLoopReplay"
 }
 enum BidKeys{
-    static let winPrince = "AMPS_WIN_PRICE"
-    static let winADNId = "AMPS_WIN_ADNID"
-    static let lossSecondPrice = "AMPS_HIGHRST_LOSS_PRICE"
-    static let lossReason = "AMPS_LOSS_REASON"
-    static let expectPrice = "AMPS_EXPECT_PRICE"
+    static let winPrince = "BeiZi_WIN_PRICE"
+    static let ADNId = "BeiZi_ADNID"
+    static let lossSecondPrice = "BeiZi_HIGHRST_LOSS_PRICE"
+    static let lossReason = "BeiZi_LOSS_REASON"
 }
