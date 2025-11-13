@@ -21,7 +21,7 @@ class _SplashPageState extends State<NativeUnifiedPage> {
   late double expressWidth = 350;
   late double expressHeight = 128;
   UnifiedAdDownloadAppInfo? downLoadAppInfo;
-
+  int materialType = 0;
   @override
   void initState() {
     super.initState();
@@ -32,6 +32,12 @@ class _SplashPageState extends State<NativeUnifiedPage> {
     _adCallBack = BeiZiUnifiedNativeAdListener(
         onAdLoaded: (adId) {
           setState(() {
+            _nativeAd?.getMaterialType(adId).then((type){
+              debugPrint("materialType=$type");
+              setState(() {
+                materialType = type;
+              });
+            });
             _nativeAd?.getDownLoadInfo(adId).then((info) {
               if (info != null) {
                 setState(() {
@@ -91,6 +97,7 @@ class _SplashPageState extends State<NativeUnifiedPage> {
                           height: expressHeight,
                           backgroundColor: '#F0EDF4',
                           children: [
+                            if(materialType == 1)
                             UnifiedMainImgWidget(
                                 width: expressWidth,
                                 height: expressHeight,
@@ -98,6 +105,9 @@ class _SplashPageState extends State<NativeUnifiedPage> {
                                 y: 0,
                                 backgroundColor: '#FFFFFF',
                                 clickType: AMPSAdItemClickType.click),
+                            if(materialType == 2)
+                            UnifiedVideoWidget(
+                                width: 100, height: 0, x: 200, y: 0),
                             UnifiedTitleWidget(
                                 fontSize: 16,
                                 color: "#FFFFFF",
@@ -120,8 +130,6 @@ class _SplashPageState extends State<NativeUnifiedPage> {
                                 y: 80),
                             UnifiedAppIconWidget(
                                 width: 25, height: 25, x: 320, y: 100),
-                            UnifiedVideoWidget(
-                                width: 100, height: 0, x: 200, y: 0),
                             // UnifiedCloseWidget(
                             //     imagePath: 'assets/images/close.png',
                             //     width: 16,

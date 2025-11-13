@@ -160,6 +160,7 @@ object BeiZiSdkMethodNames {
     const val NATIVE_UNIFIED_GET_DOWNLOAD = "BeiZiNativeUnified_getDownLoad"
     const val NATIVE_UNIFIED_LOAD = "BeiZiNativeUnified_load"
     const val NATIVE_UNIFIED_RESUME = "BeiZiNativeUnified_resume"
+    const val NATIVE_UNIFIED_MATERIAL_TYPE = "BeiZiNativeUnified_materialType"
     const val NATIVE_UNIFIED_GET_ECPM = "BeiZiNativeUnified_getECPM"
     const val NATIVE_UNIFIED_DESTROY = "BeiZiNativeUnified_destroy"
     const val NATIVE_UNIFIED_GET_CUSTOM_EXT_DATA = "BeiZiNativeUnified_getCustomExtData"
@@ -284,6 +285,7 @@ val NativeUnifiedMethodNames: Set<String> = setOf(
     BeiZiSdkMethodNames.NATIVE_UNIFIED_GET_DOWNLOAD,
     BeiZiSdkMethodNames.NATIVE_UNIFIED_LOAD,
     BeiZiSdkMethodNames.NATIVE_UNIFIED_RESUME,
+    BeiZiSdkMethodNames.NATIVE_UNIFIED_MATERIAL_TYPE,
     BeiZiSdkMethodNames.NATIVE_UNIFIED_GET_ECPM,
     BeiZiSdkMethodNames.NATIVE_UNIFIED_DESTROY,
     BeiZiSdkMethodNames.NATIVE_UNIFIED_GET_CUSTOM_EXT_DATA,

@@ -87,6 +87,7 @@ class BeiZiSdkMethodNames {
   static const String nativeUnifiedLoad = "BeiZiNativeUnified_load";
   static const String nativeUnifiedGetDownLoad = "BeiZiNativeUnified_getDownLoad";
   static const String nativeUnifiedResume = "BeiZiNativeUnified_resume";
+  static const String nativeUnifiedMaterialType = "BeiZiNativeUnified_materialType";
   static const String nativeUnifiedGetEcpm = "BeiZiNativeUnified_getECPM";
   static const String nativeUnifiedDestroy = "BeiZiNativeUnified_destroy";
   static const String nativeUnifiedGetCustomExtData =
