@@ -8,9 +8,10 @@
 import Foundation
 
 // 平台视图注册相关常量
-enum BeiZiPlatformViewRegistry {
+enum BeiZiPlatformViewIds {
     private static let channelDomain = "com.beizi.sdk"
     static let beiZiSDKNativeViewId = "\(channelDomain)/native_view_id"
+    static let beiZiSdkUnifiedViewId = "\(channelDomain)/native_unified_view_id"
 }
 
 // 初始化相关回调方法名
@@ -147,6 +148,22 @@ enum BeiZiSdkMethodNames {
     static let nativeNotifyRtbLoss = "BeiZiNative_notifyRTBLoss"
     static let nativeSetBidResponse = "BeiZiNative_setBidResponse"
     static let nativeSetSpaceParam = "BeiZiNative_setSpaceParam"
+    
+    static let unifiedNativeCreate = "BeiZiNativeUnified_create";
+    static let unifiedNativeSetHide = "BeiZiNativeUnified_setHide";
+    static let unifiedNativeLoad = "BeiZiNativeUnified_load";
+    static let unifiedNativeGetDownLoad = "BeiZiNativeUnified_getDownLoad";
+    static let unifiedNativePause = "BeiZiNativeUnified_pause"
+    static let unifiedNativeResume = "BeiZiNativeUnified_resume";
+    static let unifiedNativeMaterialType = "BeiZiNativeUnified_materialType";
+    static let unifiedNativeGetEcpm = "BeiZiNativeUnified_getECPM";
+    static let unifiedNativeDestroy = "BeiZiNativeUnified_destroy";
+    static let unifiedNativeGetCustomParam = "BeiZiNativeUnified_getCustomParam";
+//    static let unifiedNativeGetCustomJsonData = "BeiZiNativeUnified_getCustomJsonData";
+    static let unifiedNativeNotifyRtbWin = "BeiZiNativeUnified_notifyRTBWin";
+    static let unifiedNativeNotifyRtbLoss = "BeiZiNativeUnified_notifyRTBLoss";
+    static let unifiedNativeSetBidResponse = "BeiZiNativeUnified_setBidResponse";
+    static let unifiedNativeSetSpaceParam = "BeiZiNativeUnified_setSpaceParam";
 }
 
 // 开屏广告参数键名
@@ -249,6 +266,19 @@ let nativeMethodNames: Set<String> = [
     BeiZiSdkMethodNames.nativeNotifyRtbLoss,
     BeiZiSdkMethodNames.nativeSetBidResponse,
     BeiZiSdkMethodNames.nativeSetSpaceParam
+]
+let unifiedNativeMethodNames: Set<String> = [
+    BeiZiSdkMethodNames.unifiedNativeCreate,
+    BeiZiSdkMethodNames.unifiedNativeLoad,
+    BeiZiSdkMethodNames.unifiedNativeResume,
+    BeiZiSdkMethodNames.unifiedNativePause,
+    BeiZiSdkMethodNames.unifiedNativeGetEcpm,
+    BeiZiSdkMethodNames.unifiedNativeDestroy,
+    BeiZiSdkMethodNames.unifiedNativeGetCustomParam,
+    BeiZiSdkMethodNames.unifiedNativeNotifyRtbWin,
+    BeiZiSdkMethodNames.unifiedNativeNotifyRtbLoss,
+    BeiZiSdkMethodNames.unifiedNativeSetBidResponse,
+    BeiZiSdkMethodNames.unifiedNativeSetSpaceParam
 ]
 
 
