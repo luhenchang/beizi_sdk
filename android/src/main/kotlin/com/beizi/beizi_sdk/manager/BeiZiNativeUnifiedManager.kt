@@ -103,7 +103,7 @@ class BeiZiNativeUnifiedManager {
             BeiZiSdkMethodNames.NATIVE_UNIFIED_MATERIAL_TYPE -> {
                 val adResponse =
                     AdResponseManager.getInstance().getAdResponse(call.arguments as String)
-                result.success(2)//adResponse?.materialType ?: 0)
+                result.success(adResponse?.materialType ?: 0)
             }
 
             BeiZiSdkMethodNames.NATIVE_UNIFIED_RESUME -> {
