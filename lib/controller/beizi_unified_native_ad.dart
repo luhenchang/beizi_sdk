@@ -78,6 +78,11 @@ class BeiZiUnifiedNativeAd {
     });
   }
 
+  Future<int> getMaterialType(String adId) async {
+    return await BeiziSdk.channel
+        .invokeMethod(BeiZiSdkMethodNames.nativeUnifiedMaterialType, adId);
+  }
+
   ///单位：人民币（分）
   Future<int> getECPM() async {
     return await BeiziSdk.channel

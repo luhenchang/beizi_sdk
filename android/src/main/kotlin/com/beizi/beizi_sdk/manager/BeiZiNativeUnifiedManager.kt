@@ -82,39 +82,28 @@ class BeiZiNativeUnifiedManager {
             BeiZiSdkMethodNames.NATIVE_UNIFIED_GET_DOWNLOAD -> {
                 val adId = call.arguments
                 if (adId != null && adId is String) {
-                    val infoMap: Map<String, String?> = mapOf(
-                        "appName" to ("抖音"),
-                        "appVersion" to ("5.1.3"),
-                        "appDeveloper" to ("斗哥"),
-                        "appPermission" to ("权限列表内容比较清晰。了老师浪费精力联赛附加赛浪费精力十六分零四分类"),
-                        "appPrivacy" to ("零四点零分十六六十六分十六地方六十六的饭"),
-                        "appIntro" to ("抖音作为世界上最大的短视频代表真的厉害了"),
-                    )
-                    result.success(infoMap)
-                    return
                     AdResponseManager.getInstance()
                         .getAdResponse(adId)?.downloadAppInfo?.let { info ->
-//                            val infoMap: Map<String, String?> = mapOf(
-//                                "appName" to (info?.appName?:"抖音"),
-//                                "appVersion" to (info?.appVersion?:"5.1.3"),
-//                                "appDeveloper" to info?.appDeveloper,
-//                                "appPermission" to info?.appPermission,
-//                                "appPrivacy" to info?.appPrivacy,
-//                                "appIntro" to info?.appIntro,
-//                            )
                             val infoMap: Map<String, String?> = mapOf(
-                                "appName" to (info.appName?:"抖音"),
-                                "appVersion" to (info.appVersion?:"5.1.3"),
-                                "appDeveloper" to (info.appDeveloper?:"斗哥"),
-                                "appPermission" to (info.appPermission?:"权限列表内容比较清晰。了老师浪费精力联赛附加赛浪费精力十六分零四分类"),
-                                "appPrivacy" to (info.appPrivacy?:"零四点零分十六六十六分十六地方六十六的饭"),
-                                "appIntro" to (info.appIntro?:"抖音作为世界上最大的短视频代表真的厉害了"),
+                                "appName" to (info.appName),
+                                "appVersion" to (info.appVersion),
+                                "appDeveloper" to info.appDeveloper,
+                                "appPermission" to info.appPermission,
+                                "appPrivacy" to info.appPrivacy,
+                                "appIntro" to info.appIntro,
                             )
                             result.success(infoMap)
                             return
                         }
                 }
                 result.success(null)
+            }
+
+            //获取广告素材类型 0 未知  1单图 2视频
+            BeiZiSdkMethodNames.NATIVE_UNIFIED_MATERIAL_TYPE -> {
+                val adResponse =
+                    AdResponseManager.getInstance().getAdResponse(call.arguments as String)
+                result.success(2)//adResponse?.materialType ?: 0)
             }
 
             BeiZiSdkMethodNames.NATIVE_UNIFIED_RESUME -> {
