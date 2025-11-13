@@ -29,6 +29,8 @@ class BZEventManager : NSObject{
                 BeiZiSplashManager.getInstance().handleMethodCall(methodCall, result:result)
             case let name where interstitialMethodNames.contains(name):
                 BeiziInterstitialManager.getInstance().handleMethodCall(methodCall, result: result)
+            case let name where rewardedVideoAdMethodNames.contains(name):
+                BeiZiRewardVideoManager.getInstance().handleMethodCall(methodCall, result: result)
 //            case let name where  nativeMethodNames.contains(name):
 //                AMPSNativeManager.getInstance().handleMethodCall(methodCall, result: result)
             default:
