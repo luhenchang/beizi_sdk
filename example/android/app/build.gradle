@@ -24,6 +24,14 @@ if (flutterVersionName == null) {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\12769\\Desktop\\key')
+            storePassword '123456'
+            keyAlias 'key'
+            keyPassword '123456'
+        }
+    }
     namespace = "com.beizi.beizi_sdk_example"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
@@ -46,17 +54,45 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
-    }
-
-    buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+        ndk {
+            // 这是导致冲突的冗余或冲突配置
+            abiFilters 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
     }
+//    splits {
+//        abi {
+//            enable true
+//            // 排除 x86 和 x86_64 架构以进一步减小体积
+//            // 现在的手机几乎都是 ARM 架构，x86 架构的 Android 设备很少见
+//            // 如果需要支持模拟器或 x86 设备，可以保留它们
+//            reset()
+//            include "armeabi-v7a", "x86_64", "arm64-v8a"
+//            // 或 include "x86", "x86_64", "armeabi-v7a", "arm64-v8a"
+//            universalApk false // 设置为 false，不生成包含所有架构的“通用”APK
+//        }
+//    }
+    buildTypes {
+        release {
+            // 启用代码压缩（code shrinking）和混淆（minification）
+            minifyEnabled true
 
+            // 启用资源收缩（resource shrinking），仅在 minifyEnabled 为 true 时有效
+            shrinkResources true
+
+            // 指定混淆规则文件
+            // proguard-android-optimize.txt 是 Android SDK 提供的通用规则
+            // proguard-rules.pro 是您自己的项目特定规则文件
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    repositories {
+        // 添加本地仓库，指向存放 AAR 的目录
+        flatDir {
+            dirs 'libs'  // 表示 AAR 文件在 app/libs 目录下
+        }
+    }
     dependencies {
+        implementation(name: 'beizi_fusion_sdk_5.2.2.2', ext: 'aar')
         implementation("androidx.appcompat:appcompat:1.7.1")
     }
 }

@@ -2,10 +2,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven {
-            name = "myrepo"
-            url = uri("file://${rootProject.projectDir.parentFile.parentFile}/android/m2repository")
-        }
     }
 }
 
