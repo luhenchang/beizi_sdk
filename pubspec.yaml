@@ -1,7 +1,7 @@
 name: beizi_sdk
-description: "A new Flutter plugin project."
+description: "this plugin is beizi ad sdk by use to show ad"
 version: 0.0.1
-homepage:
+homepage: https://github.com/luhenchang/beizi_sdk.git
 
 environment:
   sdk: ^3.4.0

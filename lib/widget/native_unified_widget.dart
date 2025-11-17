@@ -1,4 +1,3 @@
-import '../data/beizi_native_listener.dart';
 import 'widget_layout.dart';
 ///自渲染组件自定义内容
 class NativeUnifiedWidget extends LayoutWidget {
