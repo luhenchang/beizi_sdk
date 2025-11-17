@@ -33,6 +33,8 @@ class BZEventManager : NSObject{
                 BeiZiRewardVideoManager.getInstance().handleMethodCall(methodCall, result: result)
             case let name where  nativeMethodNames.contains(name):
                 BeiZiNativeManager.getInstance().handleMethodCall(methodCall, result: result)
+            case let name where  unifiedNativeMethodNames.contains(name):
+                BeiZiUnifiedNativeManager.getInstance().handleMethodCall(methodCall, result: result)
             default:
                 result(FlutterMethodNotImplemented)
             }

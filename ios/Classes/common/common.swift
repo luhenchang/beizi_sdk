@@ -84,6 +84,19 @@ enum BeiZiNativeAdChannelMethod {
     static let onAdClick = "Native_onAdClick"
 }
 
+
+enum BeiZiNativeUnifiedAdChannelMethod {
+  /// 广告加载失败
+    static let onAdFailed = "Native_Unified_onAdFailed";
+  /// 广告加载成功
+    static let onAdLoaded = "Native_Unified_onAdLoaded";
+  /// 广告展示成功
+    static let onAdShown = "Native_Unified_onAdShown";
+  /// 广告关闭
+    static let onAdClosed = "Native_Unified_onAdClosed";
+  /// 广告被点击
+    static let onAdClick = "Native_Unified_onAdClick";
+}
 // SDK方法名集合
 enum BeiZiSdkMethodNames {
     // SDK初始化方法
@@ -278,7 +291,11 @@ let unifiedNativeMethodNames: Set<String> = [
     BeiZiSdkMethodNames.unifiedNativeNotifyRtbWin,
     BeiZiSdkMethodNames.unifiedNativeNotifyRtbLoss,
     BeiZiSdkMethodNames.unifiedNativeSetBidResponse,
-    BeiZiSdkMethodNames.unifiedNativeSetSpaceParam
+    BeiZiSdkMethodNames.unifiedNativeSetSpaceParam,
+    BeiZiSdkMethodNames.unifiedNativeSetHide,
+    BeiZiSdkMethodNames.unifiedNativeMaterialType,
+    BeiZiSdkMethodNames.unifiedNativeSetSpaceParam,
+    BeiZiSdkMethodNames.unifiedNativeGetDownLoad
 ]
 
 

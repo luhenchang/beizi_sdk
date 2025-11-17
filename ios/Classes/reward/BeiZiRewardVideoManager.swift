@@ -31,9 +31,9 @@ class BeiZiRewardVideoManager: NSObject {
         let arguments = call.arguments as? [String: Any]
         switch call.method {
         case BeiZiSdkMethodNames.rewardedVideoCreate:
-            handlerewardVideoCreate(arguments: arguments, result: result)
+            handleRewardVideoCreate(arguments: arguments, result: result)
         case BeiZiSdkMethodNames.rewardedVideoLoad:
-            handlerewardVideoLoad(arguments: arguments, result: result)
+            handleRewardVideoLoad(arguments: arguments, result: result)
             result(true)
         case BeiZiSdkMethodNames.rewardedVideoSetBidResponse:
             if let tokon = call.arguments as? String{
@@ -43,7 +43,7 @@ class BeiZiRewardVideoManager: NSObject {
         case BeiZiSdkMethodNames.rewardedVideoIsLoaded:
             result(rewardVideoAd?.adValid ?? false)
         case BeiZiSdkMethodNames.rewardedVideoShowAd:
-            handlerewardVideoShowAd(arguments: arguments, result: result)
+            handleRewardVideoShowAd(arguments: arguments, result: result)
             result(true)
         case BeiZiSdkMethodNames.rewardedVideoGetEcpm:
             result(rewardVideoAd?.eCPM ?? 0)
@@ -59,7 +59,7 @@ class BeiZiRewardVideoManager: NSObject {
         }
     }
 //
-    private func handlerewardVideoCreate(arguments: [String: Any]?, result: FlutterResult) {
+    private func handleRewardVideoCreate(arguments: [String: Any]?, result: FlutterResult) {
     
         guard let param = arguments else {
             result(false)
@@ -76,7 +76,7 @@ class BeiZiRewardVideoManager: NSObject {
         result(true)
     }
 //    // MARK: - Private Methods
-    private func handlerewardVideoLoad(arguments: [String: Any]?, result: FlutterResult) {
+    private func handleRewardVideoLoad(arguments: [String: Any]?, result: FlutterResult) {
     
         rewardVideoAd?.delegate = self
         if let s2sToken = s2sToken {
@@ -87,7 +87,7 @@ class BeiZiRewardVideoManager: NSObject {
         result(true)
     }
     
-    private func handlerewardVideoShowAd(arguments: [String: Any]?, result: FlutterResult) {
+    private func handleRewardVideoShowAd(arguments: [String: Any]?, result: FlutterResult) {
         guard let rewardVideoAd = rewardVideoAd else {
             result(false)
             return
@@ -147,6 +147,7 @@ class BeiZiRewardVideoManager: NSObject {
 }
 
 
+//
 extension BeiZiRewardVideoManager : BeiZiRewardedVideoDelegate {
     func beiZi_rewardedVideoDidReceiveAd(_ beiziRewardedVideo: BeiZiRewardedVideo) {
         sendMessage(BeiZiRewardedVideoAdChannelMethod.onRewardedVideoAdLoaded)

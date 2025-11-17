@@ -21,11 +21,12 @@ class BZPlatformViewRegistry {
     private init() {}
     
     
+    
+    //注册视图
     func regist(_ binding: FlutterPluginRegistrar){
         
         binding.register(BZNAtiveViewFactory(), withId: BeiZiPlatformViewIds.beiZiSDKNativeViewId)
-        //
-        //    binding.register(AMPSUnifiedNAtiveViewFactory(), withId: AMPSPlatformViewIds.unifiedViewId)
-        //
+        binding.register(BeiZiUnifiedNAtiveViewFactory(), withId: BeiZiPlatformViewIds.beiZiSdkUnifiedViewId)
+        
     }
 }
