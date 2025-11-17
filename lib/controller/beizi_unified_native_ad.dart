@@ -158,7 +158,10 @@ class BeiZiUnifiedNativeAd {
   Future<UnifiedAdDownloadAppInfo?> getDownLoadInfo(String adId) async {
     try {
       final dynamic appInfo = await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.nativeUnifiedGetDownLoad, adId);
-      final Map<String, dynamic> dataMap = Map<String, dynamic>.from(appInfo);
+      Map<String, dynamic>? dataMap = null;
+      if(appInfo != null) {
+        dataMap = Map<String, dynamic>.from(appInfo);
+      }
       return UnifiedAdDownloadAppInfo.fromMap(dataMap);
     } on PlatformException catch (e) {
       throw Exception('调用getDownLoadInfo失败: ${e.message}');
