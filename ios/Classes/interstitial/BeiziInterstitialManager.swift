@@ -78,7 +78,7 @@ class BeiziInterstitialManager: NSObject {
             result(false)
             return
         }
-        spaceId = "107249"
+//        spaceId = "107249"
         let time = param[BeiZiSplashKeys.totalTime] as? UInt64 ?? 5000
         let spaceParam = param[BeiZiSplashKeys.spacePram] as? String ?? ""
         interstitialAd = BeiZiInterstitial(spaceID: spaceId, spaceParam: spaceParam, lifeTime: time)

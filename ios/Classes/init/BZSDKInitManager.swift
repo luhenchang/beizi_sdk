@@ -35,8 +35,8 @@ class BZSDKInitManager {
             return
         }
         let initParam: InitParamModel? = Tools.convertToModel(from: flutterParams)
-//        let appid = initParam?.appId ?? ""
-        let appid =  "20825"
+        let appid = initParam?.appId ?? ""
+//        let appid =  "20825"
         var useData: [String:String] = [:]
         let canUseLocation = initParam?.canUseLocation ?? true
         useData["isLocation"] = canUseLocation ? "1" : "0"
@@ -68,3 +68,15 @@ class BZSDKInitManager {
         BZEventManager.getInstance().sendToFlutter(method)
     }
 }
+
+/*
+
+appid "20825"
+开屏"104833"
+插屏"107249"
+激励视频"111367"
+原生"106043"
+自渲染"106063"
+
+
+*/

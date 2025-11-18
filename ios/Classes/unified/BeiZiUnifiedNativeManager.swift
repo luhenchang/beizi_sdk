@@ -86,7 +86,7 @@ class BeiZiUnifiedNativeManager: NSObject {
             result(false)
             return
         }
-        spaceId = "106063"
+//        spaceId = "106063"
         cleanup()//清除
         let time = param[BeiZiSplashKeys.totalTime] as? UInt64 ?? 5000
         let spaceParam = param[BeiZiSplashKeys.spacePram] as? String ?? ""

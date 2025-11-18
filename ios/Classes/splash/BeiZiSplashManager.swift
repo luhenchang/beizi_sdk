@@ -72,7 +72,7 @@ class BeiZiSplashManager: NSObject {
             result(false)
             return
         }
-        spaceId = "104833"
+//        spaceId = "104833"
         self.bottomView = UIView()
         let time = param[BeiZiSplashKeys.totalTime] as? UInt64 ?? 5000
         let spaceParam = param[BeiZiSplashKeys.spacePram] as? String ?? ""

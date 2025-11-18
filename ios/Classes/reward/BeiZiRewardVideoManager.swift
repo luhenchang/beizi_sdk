@@ -69,7 +69,7 @@ class BeiZiRewardVideoManager: NSObject {
             result(false)
             return
         }
-        spaceId = "111367"
+//        spaceId = "111367"
         let time = param[BeiZiSplashKeys.totalTime] as? UInt64 ?? 5000
         let spaceParam = param[BeiZiSplashKeys.spacePram] as? String ?? ""
         rewardVideoAd = BeiZiRewardedVideo(spaceID: spaceId, spaceParam: spaceParam, lifeTime: time)
