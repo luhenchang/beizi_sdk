@@ -1,5 +1,6 @@
 import 'dart:core';
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 import '../beizi_sdk.dart';
@@ -7,7 +8,7 @@ import '../common.dart';
 import '../data/beizi_listener.dart';
 import '../widget/splash_bottom_widget.dart';
 
-// 广告事件监听器
+/// 广告事件监听器
 class SplashAdListener {
   final VoidCallback? onAdLoaded;
   final VoidCallback? onAdShown;
@@ -31,7 +32,6 @@ class SplashAd {
   final int totalTime;
   final SplashAdListener listener;
   final String? spaceParam;
-  // 构造函数
   SplashAd({
     required this.adSpaceId,
     required this.totalTime,
@@ -39,7 +39,6 @@ class SplashAd {
     this.spaceParam
   }) {
     _setMethodCallHandler();
-    //调用 Native 方法，并传递参数
     BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashCreate, {
       'adSpaceId': adSpaceId,
       'totalTime': totalTime,
@@ -52,7 +51,6 @@ class SplashAd {
     required int height,
     SplashBottomWidget? splashBottomWidget
   }) async {
-    //调用 Native 方法，并传递参数
     await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashLoad, {
       'width': width,
       'height': height,
@@ -129,7 +127,7 @@ class SplashAd {
     }
   }
 
-  Future<String> getCustomExtraJsonData() async {
+  Future<String?> getCustomExtraJsonData() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.splashGetCustomJsonData);
@@ -138,7 +136,9 @@ class SplashAd {
     }
   }
 
-  Future<String> getCustomExtraData() async {
+  /// Android 返回 String?类型
+  /// IOS 返回 Map 类型
+  Future<dynamic> getCustomExtraData() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.splashGetCustomExtData);
@@ -146,9 +146,12 @@ class SplashAd {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }
   }
-  ///
-  /// ios使用
+
+  ///only support ios
   Future<Map<String, dynamic>?> getCustomParam() async {
+    if(Platform.isAndroid) {
+      return null;
+    }
     try {
       final dynamic param = await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.splashGetCustomParam);

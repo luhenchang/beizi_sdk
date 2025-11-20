@@ -10,6 +10,7 @@ class BeiZiNativeAd {
   final String adSpaceId;
   final int totalTime;
   final int? modelType;
+  final String? spaceParam;
   double? adWidth;
   double? adHeight;
   BeiZiNativeAdListener? listener;
@@ -20,12 +21,14 @@ class BeiZiNativeAd {
       {required this.adSpaceId,
       required this.totalTime,
       required this.listener,
-      this.modelType}) {
+      this.modelType,
+      this.spaceParam}) {
     _setNativeAdMethodCallHandler();
     BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.nativeCreate, {
       'adSpaceId': adSpaceId,
       'totalTime': totalTime,
-      'modelType': modelType
+      'modelType': modelType,
+      'spaceParam': spaceParam
     });
   }
 
@@ -130,7 +133,7 @@ class BeiZiNativeAd {
     }
   }
 
-  Future<String> getCustomExtraJsonData() async {
+  Future<String?> getCustomExtraJsonData() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.nativeGetCustomJsonData);
@@ -139,7 +142,10 @@ class BeiZiNativeAd {
     }
   }
 
-  Future<String> getCustomExtraData() async {
+  ///开发者根据不同平台进行处理
+  /// Android 返回 String?类型
+  /// IOS 返回 Map? 类型
+  Future<dynamic> getCustomExtraData() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.nativeGetCustomExtData);

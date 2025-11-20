@@ -1,4 +1,5 @@
 import 'dart:core';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -27,20 +28,23 @@ class InterstitialAd {
   final String adSpaceId;
   final int totalTime;
   final int? modelType;
+  final String? spaceParam;
   final InterstitialAdListener listener;
 
-  // 构造函数
+  /// 构造函数
   InterstitialAd(
       {required this.adSpaceId,
       required this.totalTime,
       required this.listener,
-      this.modelType}) {
+      this.modelType,
+      this.spaceParam}) {
     _setMethodCallHandler();
-    //调用 Native 方法，并传递参数
+    ///调用 Native 方法，并传递参数
     BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialCreate, {
       'adSpaceId': adSpaceId,
       'totalTime': totalTime,
-      'modelType': modelType
+      'modelType': modelType,
+      'spaceParam': spaceParam
     });
   }
 
@@ -49,7 +53,7 @@ class InterstitialAd {
   }
 
   Future<void> loadAd() async {
-    //调用 Native 方法，并传递参数
+    ///调用 Native 方法，并传递参数
     await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialLoad);
   }
 
@@ -132,7 +136,7 @@ class InterstitialAd {
     }
   }
 
-  Future<String> getCustomExtraJsonData() async {
+  Future<String?> getCustomExtraJsonData() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.interstitialGetCustomJsonData);
@@ -141,7 +145,10 @@ class InterstitialAd {
     }
   }
 
-  Future<String> getCustomExtraData() async {
+  ///开发者根据不同平台进行处理
+  /// Android 返回 String?类型
+  /// IOS 返回 Map? 类型
+  Future<dynamic> getCustomExtraData() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.interstitialGetCustomExtData);
@@ -150,9 +157,11 @@ class InterstitialAd {
     }
   }
 
-  ///
   /// ios使用
   Future<Map<String, dynamic>?> getCustomParam() async {
+    if(Platform.isAndroid) {
+      return null;
+    }
     try {
       final dynamic param = await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.interstitialGetCustomParam);

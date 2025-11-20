@@ -40,19 +40,21 @@ class RewardedVideoAd {
   final int totalTime;
   final int? modelType;
   final RewardedVideoAdListener listener;
-
+  final String? spaceParam;
   // 构造函数
   RewardedVideoAd(
       {required this.adSpaceId,
       required this.totalTime,
       required this.listener,
-      this.modelType}) {
+      this.modelType,
+      this.spaceParam}) {
     _setMethodCallHandler();
     //调用 Native 方法，并传递参数
     BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.rewardedVideoCreate, {
       'adSpaceId': adSpaceId,
       'totalTime': totalTime,
-      'modelType': modelType
+      'modelType': modelType,
+      'spaceParam': spaceParam
     });
   }
 
@@ -149,7 +151,7 @@ class RewardedVideoAd {
     }
   }
 
-  Future<String> getCustomExtraJsonData() async {
+  Future<String?> getCustomExtraJsonData() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.rewardedVideoGetCustomJsonData);
@@ -158,15 +160,15 @@ class RewardedVideoAd {
     }
   }
 
-  setExtraData() {
+  setExtraData(String data) {
     try {
-      BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.rewardedVideoSetExtra);
+      BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.rewardedVideoSetExtra,data);
     } on PlatformException catch (e) {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }
   }
 
-  Future<String> getExtraData() async {
+  Future<String?> getExtraData() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.rewardedVideoGetExtra);
@@ -175,7 +177,10 @@ class RewardedVideoAd {
     }
   }
 
-  Future<String> getCustomExtraData() async {
+  ///开发者根据不同平台进行处理
+  /// Android 返回 String?类型
+  /// IOS 返回 Map? 类型
+  Future<dynamic> getCustomExtraData() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.rewardedVideoGetExtra);
@@ -207,7 +212,7 @@ class RewardedVideoAd {
         .invokeMethod(BeiZiSdkMethodNames.rewardedVideoSetUserId, userId);
   }
 
-  Future<String> getUserId() async {
+  Future<String?> getUserId() async {
     try {
       return await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.rewardedVideoGetUserId);
