@@ -1,6 +1,6 @@
 name: beizi_sdk
-description: "this plugin is beizi ad sdk by use to show ad"
-version: 0.0.3
+description: "Beizi SDK is designed to help Flutter app developers quickly integrate the SDK into their programs for ad serving, providing media owners with a way to monetize their assets. As an app developer, you only need to perform simple configurations to display customized ads in your application. For specific instructions on how to use the SDK, please read the following documentation carefully."
+version: 0.0.4
 homepage: https://github.com/luhenchang/beizi_sdk.git
 
 environment:
@@ -37,10 +37,16 @@ flutter:
       android:
         package: com.beizi.beizi_sdk
         pluginClass: BeiziSdkPlugin
-      ohos:
-        pluginClass: BeiziSdkPlugin
       ios:
         pluginClass: BeiziSdkPlugin
+      web:
+        supported: false
+      windows:
+        supported: false
+      macos:
+        supported: false
+      linux:
+        supported: false
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

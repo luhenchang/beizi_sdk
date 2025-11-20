@@ -122,7 +122,7 @@ class RewardedVideoAd {
   }
 
   /// 注意：必须为有效的字符串格式的键值对！！！！！
-  /// @param winInfo 竞胜信息，Map<String,String>类型
+  /// @param winInfo 竞胜信息
   /// BeiZiBiddingConstant.KEY_WIN_PRICE ：竞胜价格 (单位: 分; 整数)，必填（value值使用字符串即可）
   /// BeiZiBiddingConstant.KEY_ADN_ID ：失败渠道中最高价格渠道ID，必填（value值使用BeiZiBiddingConstant.Adn类下的常量字符串即可）
   /// BeiZiBiddingConstant.KEY_HIGHEST_LOSS_PRICE ：失败渠道中最高价格，必填（value值使用字符串即可）
@@ -137,7 +137,7 @@ class RewardedVideoAd {
   }
 
   /// 注意：必须为有效的字符串格式的键值对！！！！！
-  /// @param lossInfo 竞败信息，Map<String,String>类型
+  /// @param lossInfo 竞败信息
   /// BeiZiBiddingConstant.KEY_WIN_PRICE ：竞胜价格 (单位: 分; 整数)，必填（value值使用字符串即可）
   /// BeiZiBiddingConstant.KEY_ADN_ID ：竞胜渠道ID，必填（value值使用BeiZiBiddingConstant.Adn类下的常量字符串即可）
   /// BeiZiBiddingConstant.KEY_LOSS_REASON ：失败原因，必填（value值使用BeiZiBiddingConstant.LossReason类下的常量字符串即可）
