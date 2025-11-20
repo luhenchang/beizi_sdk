@@ -158,7 +158,7 @@ class BeiZiUnifiedNativeAd {
     }
   }
 
-  setBidResponse(String content) {
+  void setBidResponse(String content) {
     try {
       BeiziSdk.channel.invokeMethod(
           BeiZiSdkMethodNames.nativeUnifiedSetBidResponse, content);
@@ -167,7 +167,7 @@ class BeiZiUnifiedNativeAd {
     }
   }
 
-  setSpaceParam(Map<String, Object> map) {
+  void setSpaceParam(Map<String, Object> map) {
     try {
       BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.nativeUnifiedSetSpaceParam, map);
@@ -190,7 +190,7 @@ class BeiZiUnifiedNativeAd {
   }
 
   ///InterstitialAd.cancel
-  destroy() {
+  void destroy() {
     try {
       BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.nativeUnifiedDestroy);
     } on PlatformException catch (e) {

@@ -164,7 +164,7 @@ class SplashAd {
     }
   }
 
-  setBidResponse(String content) {
+  void setBidResponse(String content) {
     try {
       BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.splashSetBidResponse, content);
@@ -174,7 +174,7 @@ class SplashAd {
   }
 
   //提供android使用
-  setSpaceParam(Map<String, Object> map) {
+  void setSpaceParam(Map<String, Object> map) {
     try {
       BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.splashSetSpaceParam, map);
@@ -184,7 +184,7 @@ class SplashAd {
   }
 
   ///splashAd.cancel
-  cancel() {
+  void cancel() {
     try {
       BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.splashCancel);

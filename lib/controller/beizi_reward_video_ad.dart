@@ -160,7 +160,7 @@ class RewardedVideoAd {
     }
   }
 
-  setExtraData(String data) {
+  void setExtraData(String data) {
     try {
       BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.rewardedVideoSetExtra,data);
     } on PlatformException catch (e) {
@@ -189,7 +189,7 @@ class RewardedVideoAd {
     }
   }
 
-  setBidResponse(String content) {
+  void setBidResponse(String content) {
     try {
       BeiziSdk.channel.invokeMethod(
           BeiZiSdkMethodNames.rewardedVideoSetBidResponse, content);
@@ -198,7 +198,7 @@ class RewardedVideoAd {
     }
   }
 
-  setSpaceParam(Map<String, Object> map) {
+  void setSpaceParam(Map<String, Object> map) {
     try {
       BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.rewardedVideoSetSpaceParam, map);
@@ -207,7 +207,7 @@ class RewardedVideoAd {
     }
   }
 
-  setUserId(String userId) {
+  void setUserId(String userId) {
     BeiziSdk.channel
         .invokeMethod(BeiZiSdkMethodNames.rewardedVideoSetUserId, userId);
   }
@@ -222,7 +222,7 @@ class RewardedVideoAd {
   }
 
   ///RewardedVideoAd.destroy
-  destroy() {
+  void destroy() {
     try {
       BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.rewardedVideoDestroy);
     } on PlatformException catch (e) {

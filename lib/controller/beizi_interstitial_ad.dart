@@ -174,7 +174,7 @@ class InterstitialAd {
     }
   }
 
-  setBidResponse(String content) {
+  void setBidResponse(String content) {
     try {
       BeiziSdk.channel.invokeMethod(
           BeiZiSdkMethodNames.interstitialSetBidResponse, content);
@@ -183,7 +183,7 @@ class InterstitialAd {
     }
   }
 
-  setSpaceParam(Map<String, Object> map) {
+  void setSpaceParam(Map<String, Object> map) {
     try {
       BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.interstitialSetSpaceParam, map);
@@ -193,7 +193,7 @@ class InterstitialAd {
   }
 
   ///InterstitialAd.cancel
-  destroy() {
+  void destroy() {
     try {
       BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialDestroy);
     } on PlatformException catch (e) {

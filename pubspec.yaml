@@ -1,6 +1,6 @@
 name: beizi_sdk
-description: "Beizi SDK is designed to help Flutter app developers quickly integrate the SDK into their programs for ad serving, providing media owners with a way to monetize their assets. As an app developer, you only need to perform simple configurations to display customized ads in your application. For specific instructions on how to use the SDK, please read the following documentation carefully."
-version: 0.0.4
+description: "Beizi SDK helps Flutter devs quickly integrate ad serving, enabling media owners to monetize. Simple configs for customized ads; see docs for details."
+version: 0.0.5
 homepage: https://github.com/luhenchang/beizi_sdk.git
 
 environment:

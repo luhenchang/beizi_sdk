@@ -168,7 +168,7 @@ class BeiZiNativeAd {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }
   }
-  setBidResponse(String content) {
+  void setBidResponse(String content) {
     try {
       BeiziSdk.channel.invokeMethod(
           BeiZiSdkMethodNames.nativeSetBidResponse, content);
@@ -177,7 +177,7 @@ class BeiZiNativeAd {
     }
   }
 
-  setSpaceParam(Map<String, Object> map) {
+  void setSpaceParam(Map<String, Object> map) {
     try {
       BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.nativeSetSpaceParam, map);
@@ -187,7 +187,7 @@ class BeiZiNativeAd {
   }
 
   ///InterstitialAd.cancel
-  destroy() {
+  void destroy() {
     try {
       BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.nativeDestroy);
     } on PlatformException catch (e) {
