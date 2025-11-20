@@ -153,7 +153,7 @@ extension BeiZiNativeManager : BeiZiNativeExpressDelegate {
         sendMessage(BeiZiNativeAdChannelMethod.onAdClick)
     }
     func beiZi_nativeExpressDislikeDidClick(_ beiziNativeExpress: BeiZiNativeExpress) {
-        
+        sendMessage(BeiZiNativeAdChannelMethod.onAdClosedView)
     }
 
 }

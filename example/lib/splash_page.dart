@@ -96,7 +96,7 @@ class _SplashPageState extends State<SplashPage> {
                         buttonText: '点击加载开屏页面',
                         callBack: () {
                           _splashAd = SplashAd(
-                              adSpaceId: '104835',
+                              adSpaceId: splashSpaceId,
                               totalTime: 5000,
                               listener: _adCallBack);
                           var width = MediaQuery.of(context).size.width.toInt();

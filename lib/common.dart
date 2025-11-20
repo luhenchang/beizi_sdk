@@ -80,6 +80,7 @@ class BeiZiSdkMethodNames {
   static const String nativeNotifyRtbLoss = "BeiZiNative_notifyRTBLoss";
   static const String nativeSetBidResponse = "BeiZiNative_setBidResponse";
   static const String nativeSetSpaceParam = "BeiZiNative_setSpaceParam";
+  static const String nativeGetCustomParam = 'BeiZiNative_getCustomParam';
 
   // Native Unified ad related methods
   static const String nativeUnifiedCreate = "BeiZiNativeUnified_create";
@@ -102,6 +103,7 @@ class BeiZiSdkMethodNames {
       "BeiZiNativeUnified_setBidResponse";
   static const String nativeUnifiedSetSpaceParam =
       "BeiZiNativeUnified_setSpaceParam";
+  static const String nativeUnifiedGetCustomParam = 'BeiZiNativeUnified_getCustomParam';
 }
 
 class BeiZiAdCallBackChannelMethod {

@@ -55,6 +55,7 @@ class BeiZiRewardVideoManager: NSObject {
             if let arguments = call.arguments as? String{
                 rewardVideoAd?.extraInfo = arguments
             }
+            result(nil)
         case BeiZiSdkMethodNames.rewardedVideoGetUserId:
             result(rewardVideoAd?.userID)
         case BeiZiSdkMethodNames.rewardedVideoSetUserId:

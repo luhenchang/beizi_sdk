@@ -115,7 +115,7 @@ enum BeiZiSdkMethodNames {
     static let splashSetSpaceParam = "BeiZiSplashAd_setSpaceParam"
     static let splashCancel = "BeiZiSplashAd_Cancel"
     static let splashGetCustomJsonData = "BeiZiSplashAd_getCustomJsonData"
-    static let plashGetCustomExtData = "BeiZiSplashAd_getCustomExtData"
+    static let splashGetCustomExtData = "BeiZiSplashAd_getCustomExtData"
     
     // 插屏广告相关方法
     static let interstitialCreate = "BeiZiInterstitial_create"
@@ -144,7 +144,7 @@ enum BeiZiSdkMethodNames {
     static let rewardedVideoNotifyRtbWin = "BeiZiRewardedVideo_notifyRTBWin"
     static let rewardedVideoNotifyRtbLoss = "BeiZiRewardedVideo_notifyRTBLoss"
     static let rewardedVideoGetExtra = "BeiZiRewardedVideo_getExtra"
-    static let rewardedVideoSetExtra = "BeiZiRewardedVideo_setExtra"
+    static let rewardedVideoSetExtra = "BeiZiRewardedVideo_setExtra"//BeiZiRewardedVideo_setExtra
     static let rewardedVideoGetCustomExtData = "BeiZiRewardedVideo_getCustomExtData"
     static let rewardedVideoGetCustomJsonData = "BeiZiRewardedVideo_getCustomJsonData"
     static let rewardedVideoSetBidResponse = "BeiZiRewardedVideo_setBidResponse"
@@ -234,7 +234,10 @@ let splashMethodNames: Set<String> = [
     BeiZiSdkMethodNames.splashGetAnyParam,
     BeiZiSdkMethodNames.splashSetBidResponse,
     BeiZiSdkMethodNames.splashSetSpaceParam,
-    BeiZiSdkMethodNames.splashCancel
+    BeiZiSdkMethodNames.splashCancel,
+    BeiZiSdkMethodNames.splashGetCustomJsonData,
+    BeiZiSdkMethodNames.splashGetAnyParam,
+    BeiZiSdkMethodNames.splashGetCustomExtData
 ]
 
 let interstitialMethodNames: Set<String> = [
@@ -248,7 +251,9 @@ let interstitialMethodNames: Set<String> = [
     BeiZiSdkMethodNames.interstitialGetCustomParam,
     BeiZiSdkMethodNames.interstitialSetBidResponse,
     BeiZiSdkMethodNames.interstitialSetSpaceParam,
-    BeiZiSdkMethodNames.interstitialDestroy
+    BeiZiSdkMethodNames.interstitialDestroy,
+    BeiZiSdkMethodNames.interstitialGetCustomExtData,
+    BeiZiSdkMethodNames.interstitialGetCustomJsonData
 ]
 
 // 激励视频广告相关方法名集合

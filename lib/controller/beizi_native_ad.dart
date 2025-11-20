@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
@@ -153,7 +155,19 @@ class BeiZiNativeAd {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }
   }
-
+  ///开发者根据不同平台进行处理
+  /// 只有 IOS 返回 Map? 类型 ，Android 返回 null类型
+  Future<dynamic> getCustomParam() async {
+    if (Platform.isAndroid){
+      return null;
+    }
+    try {
+      return await BeiziSdk.channel
+          .invokeMethod(BeiZiSdkMethodNames.nativeGetCustomParam);
+    } on PlatformException catch (e) {
+      throw Exception('调用getCustomExtraData失败: ${e.message}');
+    }
+  }
   setBidResponse(String content) {
     try {
       BeiziSdk.channel.invokeMethod(

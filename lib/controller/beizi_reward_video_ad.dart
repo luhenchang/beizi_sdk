@@ -183,7 +183,7 @@ class RewardedVideoAd {
   Future<dynamic> getCustomExtraData() async {
     try {
       return await BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.rewardedVideoGetExtra);
+          .invokeMethod(BeiZiSdkMethodNames.rewardedVideoGetCustomExtData);
     } on PlatformException catch (e) {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }

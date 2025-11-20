@@ -52,7 +52,7 @@ class BeiZiSplashManager: NSObject {
         case BeiZiSdkMethodNames.splashSetSpaceParam,
              BeiZiSdkMethodNames.splashGetCustomJsonData:
             result(nil)
-        case BeiZiSdkMethodNames.plashGetCustomExtData:
+        case BeiZiSdkMethodNames.splashGetCustomExtData:
             result(splashAd?.extInfo)
         default:
             result(FlutterMethodNotImplemented)

@@ -31,7 +31,7 @@ class _InterstitialPageState extends State<InterstitialPage> {
         onAdClick: () {},
         onAdShown: () {});
     _interAd =
-        InterstitialAd(listener: _adCallBack, adSpaceId: '106981', totalTime: 5000);
+        InterstitialAd(listener: _adCallBack, adSpaceId: splashSpaceId, totalTime: 5000);
   }
 
   @override

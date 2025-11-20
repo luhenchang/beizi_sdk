@@ -33,7 +33,7 @@ class _RewardedVideoPageState extends State<RewardedVideoPage> {
         }
       });
     });
-    _rewardedAd = RewardedVideoAd(listener: _adCallBack, adSpaceId: rewardVideoSpaceId, totalTime: 15000);
+
   }
 
   @override
@@ -56,7 +56,7 @@ class _RewardedVideoPageState extends State<RewardedVideoPage> {
                   ElevatedButton(
                     child: const Text('点击展示激励视频'),
                     onPressed: () {
-                      _rewardedAd = RewardedVideoAd(listener: _adCallBack, adSpaceId: '111366', totalTime: 15000);
+                      _rewardedAd = RewardedVideoAd(listener: _adCallBack, adSpaceId: rewardVideoSpaceId, totalTime: 15000);
                       // 返回上一页
                       _rewardedAd?.loadAd();
                     },

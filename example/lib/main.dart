@@ -6,7 +6,7 @@ import 'package:beizi_sdk_example/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'data/init_data.dart';
-import 'interstitialPage.dart';
+import 'interstitial_page.dart';
 import 'native_page.dart';
 import 'native_unified_page.dart';
 import 'splash_page.dart';
