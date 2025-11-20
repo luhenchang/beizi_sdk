@@ -32,12 +32,11 @@ class SplashAd {
   final int totalTime;
   final SplashAdListener listener;
   final String? spaceParam;
-  SplashAd({
-    required this.adSpaceId,
-    required this.totalTime,
-    required this.listener,
-    this.spaceParam
-  }) {
+  SplashAd(
+      {required this.adSpaceId,
+      required this.totalTime,
+      required this.listener,
+      this.spaceParam}) {
     _setMethodCallHandler();
     BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashCreate, {
       'adSpaceId': adSpaceId,
@@ -46,11 +45,10 @@ class SplashAd {
     });
   }
 
-  Future<void> loadAd({
-    required int width,
-    required int height,
-    SplashBottomWidget? splashBottomWidget
-  }) async {
+  Future<void> loadAd(
+      {required int width,
+      required int height,
+      SplashBottomWidget? splashBottomWidget}) async {
     await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashLoad, {
       'width': width,
       'height': height,
@@ -60,8 +58,7 @@ class SplashAd {
 
   ///开屏广告显示调用
   void showAd() async {
-    await BeiziSdk.channel.invokeMethod(
-        BeiZiSdkMethodNames.splashShowAd);
+    await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashShowAd);
   }
 
   void _setMethodCallHandler() {
@@ -149,13 +146,13 @@ class SplashAd {
 
   ///only support ios
   Future<Map<String, dynamic>?> getCustomParam() async {
-    if(Platform.isAndroid) {
+    if (Platform.isAndroid) {
       return null;
     }
     try {
       final dynamic param = await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.splashGetCustomParam);
-      if (param == null){
+      if (param == null) {
         return null;
       }
       return Map<String, dynamic>.from(param);
@@ -186,11 +183,9 @@ class SplashAd {
   ///splashAd.cancel
   void cancel() {
     try {
-      BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.splashCancel);
+      BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.splashCancel);
     } on PlatformException catch (e) {
       throw Exception('调用cancel失败: ${e.message}');
     }
   }
-
 }

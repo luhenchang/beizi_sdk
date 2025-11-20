@@ -1,5 +1,4 @@
 import 'package:beizi_sdk/beizi_sdk_export.dart';
-import 'package:beizi_sdk/data/beizi_native_listener.dart';
 import 'package:beizi_sdk_example/data/common.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,7 @@ class NativePage extends StatefulWidget {
   State<NativePage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<NativePage> with WidgetsBindingObserver{
+class _SplashPageState extends State<NativePage> with WidgetsBindingObserver {
   late BeiZiNativeAdListener _adCallBack;
   BeiZiNativeAd? _nativeAd;
   List<String> feedList = [];
@@ -29,13 +28,14 @@ class _SplashPageState extends State<NativePage> with WidgetsBindingObserver{
       feedList.add("item name =$i");
     }
     setState(() {});
-    _adCallBack = BeiZiNativeAdListener(onAdLoaded: (adId){
+    _adCallBack = BeiZiNativeAdListener(onAdLoaded: (adId) {
       setState(() {
         feedAdList.add(adId);
       });
     });
-    
-    _nativeAd = BeiZiNativeAd(adSpaceId: nativeSpaceId, totalTime: 10000, listener: _adCallBack);
+
+    _nativeAd = BeiZiNativeAd(
+        adSpaceId: nativeSpaceId, totalTime: 10000, listener: _adCallBack);
     _nativeAd?.loadAd(width: expressWidth, height: expressHeight);
   }
 
@@ -64,6 +64,7 @@ class _SplashPageState extends State<NativePage> with WidgetsBindingObserver{
     _nativeAd?.destroy();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,26 +79,23 @@ class _SplashPageState extends State<NativePage> with WidgetsBindingObserver{
             if (index % 5 == 4 && adIndex < feedAdList.length) {
               String adId = feedAdList[adIndex];
               debugPrint(adId);
-              return NativeWidget(_nativeAd,
-                  key: ValueKey(adId),
-                  adId: adId);
+              return NativeWidget(_nativeAd, key: ValueKey(adId), adId: adId);
             }
             return Center(
-              child:Column(
-                children: [
-                  const Divider(height: 10,color: Colors.white),
-                  Container(
-                    height: expressHeight,
-                    width: expressWidth,
-                    color: Colors.blueAccent,
-                    alignment: Alignment.centerLeft,
-                    child: Text('List item ${feedList[feedIndex]}'),
-                  ),
-                  if(index % 5 == 3 && adIndex < feedAdList.length)
-                  const Divider(height: 10,color: Colors.white),
-                ],
-              )
-            );
+                child: Column(
+              children: [
+                const Divider(height: 10, color: Colors.white),
+                Container(
+                  height: expressHeight,
+                  width: expressWidth,
+                  color: Colors.blueAccent,
+                  alignment: Alignment.centerLeft,
+                  child: Text('List item ${feedList[feedIndex]}'),
+                ),
+                if (index % 5 == 3 && adIndex < feedAdList.length)
+                  const Divider(height: 10, color: Colors.white),
+              ],
+            ));
           },
         ));
   }

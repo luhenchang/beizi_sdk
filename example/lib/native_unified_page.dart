@@ -33,7 +33,7 @@ class _SplashPageState extends State<NativeUnifiedPage> {
     _adCallBack = BeiZiUnifiedNativeAdListener(
         onAdLoaded: (adId) {
           setState(() {
-            _nativeAd?.getMaterialType(adId).then((type){
+            _nativeAd?.getMaterialType(adId).then((type) {
               debugPrint("materialType=$type");
               setState(() {
                 materialType = type;
@@ -98,17 +98,17 @@ class _SplashPageState extends State<NativeUnifiedPage> {
                           height: expressHeight,
                           backgroundColor: '#F0EDF4',
                           children: [
-                            if(materialType == 1)
-                            UnifiedMainImgWidget(
-                                width: expressWidth,
-                                height: expressHeight,
-                                x: 0,
-                                y: 0,
-                                backgroundColor: '#FFFFFF',
-                                clickType: AMPSAdItemClickType.click),
-                            if(materialType == 2)
-                            UnifiedVideoWidget(
-                                width: 100, height: 0, x: 200, y: 0),
+                            if (materialType == 1)
+                              UnifiedMainImgWidget(
+                                  width: expressWidth,
+                                  height: expressHeight,
+                                  x: 0,
+                                  y: 0,
+                                  backgroundColor: '#FFFFFF',
+                                  clickType: AMPSAdItemClickType.click),
+                            if (materialType == 2)
+                              UnifiedVideoWidget(
+                                  width: 100, height: 0, x: 200, y: 0),
                             UnifiedTitleWidget(
                                 fontSize: 16,
                                 color: "#FFFFFF",
@@ -163,8 +163,10 @@ class _SplashPageState extends State<NativeUnifiedPage> {
                                 context, 'UnionDownloadAppInfoPage',
                                 arguments: AppInfoArguments(
                                   titleContent: downLoadAppInfo?.appName ?? "",
-                                  permissionContent: downLoadAppInfo?.appPermission ?? "",
-                                  privacyContent: downLoadAppInfo?.appPrivacy ?? "",
+                                  permissionContent:
+                                      downLoadAppInfo?.appPermission ?? "",
+                                  privacyContent:
+                                      downLoadAppInfo?.appPrivacy ?? "",
                                   introContent: downLoadAppInfo?.appIntro ?? "",
                                 ).toMap());
                           },

@@ -39,6 +39,7 @@ class InterstitialAd {
       this.modelType,
       this.spaceParam}) {
     _setMethodCallHandler();
+
     ///调用 Native 方法，并传递参数
     BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialCreate, {
       'adSpaceId': adSpaceId,
@@ -48,8 +49,9 @@ class InterstitialAd {
     });
   }
 
-  Future<void> setAdVersion(int ver) async{
-    await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialSetAdVersion,ver);
+  Future<void> setAdVersion(int ver) async {
+    await BeiziSdk.channel
+        .invokeMethod(BeiZiSdkMethodNames.interstitialSetAdVersion, ver);
   }
 
   Future<void> loadAd() async {
@@ -60,7 +62,8 @@ class InterstitialAd {
   ///插屏广告显示调用
   void showAd() async {
     try {
-      await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.interstitialShowAd);
+      await BeiziSdk.channel
+          .invokeMethod(BeiZiSdkMethodNames.interstitialShowAd);
     } on PlatformException catch (e) {
       debugPrint('调用showAd失败: ${e.details}');
     }
@@ -159,13 +162,13 @@ class InterstitialAd {
 
   /// ios使用
   Future<Map<String, dynamic>?> getCustomParam() async {
-    if(Platform.isAndroid) {
+    if (Platform.isAndroid) {
       return null;
     }
     try {
       final dynamic param = await BeiziSdk.channel
           .invokeMethod(BeiZiSdkMethodNames.interstitialGetCustomParam);
-      if (param == null){
+      if (param == null) {
         return null;
       }
       return Map<String, dynamic>.from(param);

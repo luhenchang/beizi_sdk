@@ -25,12 +25,16 @@ class MyApp extends StatelessWidget {
       initialRoute: 'HomePage',
       routes: {
         'HomePage': (context) => const HomePage(title: '首页'),
-        'SplashShowPage':(context)=>const SplashPage(title: '开屏页面'),
-        'InterstitialShowPage':(context)=> const InterstitialPage(title: '插屏页面'),
-        'RewardVideoPage':(context)=> const RewardedVideoPage(title: '激励视频页面'),
-        'NativePage':(context)=> const NativePage(title: '原生页面'),
-        'NativeUnifiedPage':(context)=> const NativeUnifiedPage(title: '原生自渲染页面'),
-        'UnionDownloadAppInfoPage':(context)=> const UnionDownloadAppInfoPage()
+        'SplashShowPage': (context) => const SplashPage(title: '开屏页面'),
+        'InterstitialShowPage': (context) =>
+            const InterstitialPage(title: '插屏页面'),
+        'RewardVideoPage': (context) =>
+            const RewardedVideoPage(title: '激励视频页面'),
+        'NativePage': (context) => const NativePage(title: '原生页面'),
+        'NativeUnifiedPage': (context) =>
+            const NativeUnifiedPage(title: '原生自渲染页面'),
+        'UnionDownloadAppInfoPage': (context) =>
+            const UnionDownloadAppInfoPage()
       },
     );
   }

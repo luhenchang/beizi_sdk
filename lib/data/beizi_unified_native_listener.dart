@@ -19,13 +19,12 @@ class BeiZiUnifiedNativeAdListener {
   /// 广告关闭点击回调
   final Function(String adId)? onAdClosed;
 
-  BeiZiUnifiedNativeAdListener({
-    this.onAdLoaded,
-    this.onAdShown,
-    this.onAdFailed,
-    this.onAdClicked,
-    this.onAdClosed
-  });
+  BeiZiUnifiedNativeAdListener(
+      {this.onAdLoaded,
+      this.onAdShown,
+      this.onAdFailed,
+      this.onAdClicked,
+      this.onAdClosed});
 }
 
 ///组件关闭通知接口

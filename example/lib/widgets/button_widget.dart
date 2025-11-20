@@ -4,13 +4,11 @@ class ButtonWidget extends StatelessWidget {
   final String buttonText;
   final Function callBack;
   final Color? backgroundColor;
-  const ButtonWidget({
-    super.key,
-    required this.buttonText,
-    required this.callBack,
-    this.backgroundColor = Colors.blue
-  });
-
+  const ButtonWidget(
+      {super.key,
+      required this.buttonText,
+      required this.callBack,
+      this.backgroundColor = Colors.blue});
 
   @override
   Widget build(BuildContext context) {

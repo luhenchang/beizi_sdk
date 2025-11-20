@@ -7,6 +7,7 @@ class BeiZis {
   /// 发送数据给native
   static Future<bool> init(
       String appId, BeiziCustomController controller) async {
-    return await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.init, controller.toMap(appId));
+    return await BeiziSdk.channel
+        .invokeMethod(BeiZiSdkMethodNames.init, controller.toMap(appId));
   }
 }

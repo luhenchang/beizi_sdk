@@ -1,4 +1,5 @@
 import 'widget_layout.dart';
+
 ///开屏底部自定义组件
 class SplashBottomWidget extends LayoutWidget {
   final double height;
@@ -21,6 +22,7 @@ class SplashBottomWidget extends LayoutWidget {
     };
   }
 }
+
 ///图标
 class ImageComponent extends LayoutWidget {
   final double width;
@@ -49,6 +51,7 @@ class ImageComponent extends LayoutWidget {
     };
   }
 }
+
 ///文字
 class TextComponent extends LayoutWidget {
   final double fontSize;

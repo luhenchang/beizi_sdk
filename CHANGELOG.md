@@ -1,3 +1,7 @@
+## version: 0.0.6
+
+* TODO:  beizi sdk 4.0 base version 0.0.6 submit.
+
 ## version: 0.0.5
 
 * TODO:  beizi sdk 4.0 base version submit.

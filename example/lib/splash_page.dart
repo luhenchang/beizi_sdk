@@ -27,6 +27,7 @@ class _SplashPageState extends State<SplashPage> {
     super.dispose();
     _splashAd?.cancel();
   }
+
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
@@ -35,17 +36,15 @@ class _SplashPageState extends State<SplashPage> {
       _splashAd?.showAd();
     }, onAdFailedToLoad: (errorCode) {
       debugPrint("请求广告失败=$errorCode");
-    }, onAdShown: (){
+    }, onAdShown: () {
       debugPrint("广告展示");
-    }, onAdClicked: (){
+    }, onAdClicked: () {
       debugPrint("广告点击");
-    }, onAdClosed: (){
+    }, onAdClosed: () {
       debugPrint("广告关闭");
     });
     _splashAd = SplashAd(
-        adSpaceId: splashSpaceId,
-        totalTime: 5000,
-        listener: _adCallBack);
+        adSpaceId: splashSpaceId, totalTime: 5000, listener: _adCallBack);
     // 使用命名路由跳转
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // 此时可以安全获取 MediaQuery 信息
@@ -74,7 +73,6 @@ class _SplashPageState extends State<SplashPage> {
                 ),
               ]));
     });
-
   }
 
   @override
@@ -100,7 +98,8 @@ class _SplashPageState extends State<SplashPage> {
                               totalTime: 5000,
                               listener: _adCallBack);
                           var width = MediaQuery.of(context).size.width.toInt();
-                          var height = MediaQuery.of(context).size.height.toInt();
+                          var height =
+                              MediaQuery.of(context).size.height.toInt();
                           _splashAd?.loadAd(
                               width: width,
                               height: height - 100,

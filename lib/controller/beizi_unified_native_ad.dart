@@ -38,7 +38,8 @@ class BeiZiUnifiedNativeAd {
   }
 
   Future<bool> setHide(Map<String, dynamic> map) async {
-    return await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.nativeUnifiedSetHide, map);
+    return await BeiziSdk.channel
+        .invokeMethod(BeiZiSdkMethodNames.nativeUnifiedSetHide, map);
   }
 
   Future<void> loadAd() async {
@@ -144,10 +145,11 @@ class BeiZiUnifiedNativeAd {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }
   }
+
   ///开发者根据不同平台进行处理
   /// 只有 IOS 返回 Map? 类型 ，Android 返回 null类型
   Future<dynamic> getCustomParam() async {
-    if (Platform.isAndroid){
+    if (Platform.isAndroid) {
       return null;
     }
     try {
@@ -178,9 +180,10 @@ class BeiZiUnifiedNativeAd {
 
   Future<UnifiedAdDownloadAppInfo?> getDownLoadInfo(String adId) async {
     try {
-      final dynamic appInfo = await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.nativeUnifiedGetDownLoad, adId);
+      final dynamic appInfo = await BeiziSdk.channel
+          .invokeMethod(BeiZiSdkMethodNames.nativeUnifiedGetDownLoad, adId);
       Map<String, dynamic>? dataMap;
-      if(appInfo != null) {
+      if (appInfo != null) {
         dataMap = Map<String, dynamic>.from(appInfo);
       }
       return UnifiedAdDownloadAppInfo.fromMap(dataMap);

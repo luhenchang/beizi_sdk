@@ -8,6 +8,7 @@ import 'beizi_location.dart';
 class BeiziCustomController {
   /// 是否支持个性化设置
   final bool? isPersonalRecommend;
+
   /// Whether location information can be used. Defaults to `true`.
   /// Corresponds to `isCanUseLocation()`.
   final bool canUseLocation;

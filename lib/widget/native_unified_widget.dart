@@ -1,4 +1,5 @@
 import 'widget_layout.dart';
+
 ///自渲染组件自定义内容
 class NativeUnifiedWidget extends LayoutWidget {
   final double height;
@@ -22,6 +23,7 @@ class NativeUnifiedWidget extends LayoutWidget {
     };
   }
 }
+
 ///自渲染主图组件
 class UnifiedMainImgWidget extends LayoutWidget {
   final double width;
@@ -32,15 +34,14 @@ class UnifiedMainImgWidget extends LayoutWidget {
   AMPSAdItemClickType clickType;
   AMPSAdItemClickIdType clickIdType;
 
-  UnifiedMainImgWidget({
-    required this.width,
-    required this.height,
-    required this.x,
-    required this.y,
-    required this.backgroundColor,
-    this.clickType = AMPSAdItemClickType.none,
-    this.clickIdType = AMPSAdItemClickIdType.click
-  });
+  UnifiedMainImgWidget(
+      {required this.width,
+      required this.height,
+      required this.x,
+      required this.y,
+      required this.backgroundColor,
+      this.clickType = AMPSAdItemClickType.none,
+      this.clickIdType = AMPSAdItemClickIdType.click});
 
   @override
   Map<String, dynamic> toMap() {
@@ -56,6 +57,7 @@ class UnifiedMainImgWidget extends LayoutWidget {
     };
   }
 }
+
 ///自渲染点击类型
 enum AMPSAdItemClickType {
   none(-1),
@@ -68,10 +70,12 @@ enum AMPSAdItemClickType {
 
   const AMPSAdItemClickType(this.value);
 }
+
 ///自渲染点击Id类型
 enum AMPSAdItemClickIdType {
   click(0),
   create(1);
+
   final int value;
   const AMPSAdItemClickIdType(this.value);
 }
@@ -158,7 +162,6 @@ class UnifiedActionButtonWidget extends LayoutWidget {
   AMPSAdItemClickType clickType; //可选参数
   AMPSAdItemClickIdType clickIdType;
 
-
   UnifiedActionButtonWidget({
     required this.fontSize,
     required this.fontColor,
@@ -199,14 +202,13 @@ class UnifiedAppIconWidget extends LayoutWidget {
   AMPSAdItemClickType clickType;
   AMPSAdItemClickIdType clickIdType;
 
-  UnifiedAppIconWidget({
-    required this.width,
-    required this.height,
-    required this.x,
-    required this.y,
-    this.clickType = AMPSAdItemClickType.none,
-    this.clickIdType = AMPSAdItemClickIdType.click
-  });
+  UnifiedAppIconWidget(
+      {required this.width,
+      required this.height,
+      required this.x,
+      required this.y,
+      this.clickType = AMPSAdItemClickType.none,
+      this.clickIdType = AMPSAdItemClickIdType.click});
 
   @override
   Map<String, dynamic> toMap() {
@@ -221,6 +223,7 @@ class UnifiedAppIconWidget extends LayoutWidget {
     };
   }
 }
+
 class UnifiedAdSourceLogoWidget extends LayoutWidget {
   final double width;
   final double height;
@@ -229,14 +232,13 @@ class UnifiedAdSourceLogoWidget extends LayoutWidget {
   AMPSAdItemClickType clickType;
   AMPSAdItemClickIdType clickIdType;
 
-  UnifiedAdSourceLogoWidget({
-    required this.width,
-    required this.height,
-    required this.x,
-    required this.y,
-    this.clickType = AMPSAdItemClickType.none,
-    this.clickIdType = AMPSAdItemClickIdType.click
-  });
+  UnifiedAdSourceLogoWidget(
+      {required this.width,
+      required this.height,
+      required this.x,
+      required this.y,
+      this.clickType = AMPSAdItemClickType.none,
+      this.clickIdType = AMPSAdItemClickIdType.click});
 
   @override
   Map<String, dynamic> toMap() {
@@ -251,6 +253,7 @@ class UnifiedAdSourceLogoWidget extends LayoutWidget {
     };
   }
 }
+
 ///自渲染视频
 class UnifiedVideoWidget extends LayoutWidget {
   final double width;
@@ -277,13 +280,12 @@ class UnifiedCloseWidget extends LayoutWidget {
   final double height;
   final double x;
   final double y;
-  UnifiedCloseWidget({
-    required this.imagePath,
-    required this.width,
-    required this.height,
-    required this.x,
-    required this.y
-  });
+  UnifiedCloseWidget(
+      {required this.imagePath,
+      required this.width,
+      required this.height,
+      required this.x,
+      required this.y});
 
   @override
   Map<String, dynamic> toMap() {
@@ -304,22 +306,14 @@ class ShakeWidget extends LayoutWidget {
   final double height;
   final double x;
   final double y;
-  ShakeWidget({
-    required this.width,
-    required this.height,
-    required this.x,
-    required this.y
-  });
+  ShakeWidget(
+      {required this.width,
+      required this.height,
+      required this.x,
+      required this.y});
 
   @override
   Map<String, dynamic> toMap() {
-    return {
-      'type': 'shake',
-      'width': width,
-      'height': height,
-      'x': x,
-      'y': y
-    };
+    return {'type': 'shake', 'width': width, 'height': height, 'x': x, 'y': y};
   }
-
 }

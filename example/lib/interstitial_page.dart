@@ -22,7 +22,7 @@ class _InterstitialPageState extends State<InterstitialPage> {
     super.initState();
     _adCallBack = InterstitialAdListener(
         onAdLoaded: () {
-          _interAd?.isLoaded().then((isLoaded){
+          _interAd?.isLoaded().then((isLoaded) {
             _interAd?.showAd();
           });
         },
@@ -30,8 +30,8 @@ class _InterstitialPageState extends State<InterstitialPage> {
         onAdFailed: (code) {},
         onAdClick: () {},
         onAdShown: () {});
-    _interAd =
-        InterstitialAd(listener: _adCallBack, adSpaceId: splashSpaceId, totalTime: 5000);
+    _interAd = InterstitialAd(
+        listener: _adCallBack, adSpaceId: splashSpaceId, totalTime: 5000);
   }
 
   @override

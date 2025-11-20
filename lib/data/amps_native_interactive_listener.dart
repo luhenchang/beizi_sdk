@@ -12,7 +12,8 @@ class AmpsNativeAdListener {
 
 /// 渲染回调
 typedef AMPSNativeRenderCallback = void Function(String adId);
-typedef AMPSNativeRenderFailedCallback = void Function(String adId, int code, String message);
+typedef AMPSNativeRenderFailedCallback = void Function(
+    String adId, int code, String message);
 
 class AMPSNativeRenderListener {
   final AMPSNativeRenderCallback? renderSuccess;
@@ -40,19 +41,20 @@ class AmpsNativeInteractiveListener {
 
 /// 视频相关回调
 typedef VideoPlayerEventCallback = void Function(String adId);
-typedef VideoPlayerErrorCallback = void Function(String adId, int code, String extra);
+typedef VideoPlayerErrorCallback = void Function(
+    String adId, int code, String extra);
 
 class AmpsVideoPlayListener {
-  final VideoPlayerEventCallback? onVideoInit;//android有
-  final VideoPlayerEventCallback? onVideoLoading;//android有
+  final VideoPlayerEventCallback? onVideoInit; //android有
+  final VideoPlayerEventCallback? onVideoLoading; //android有
   final VideoPlayerEventCallback? onVideoReady;
-  final VideoPlayerEventCallback? onVideoLoaded;//android有
+  final VideoPlayerEventCallback? onVideoLoaded; //android有
   final VideoPlayerEventCallback? onVideoPlayStart;
   final VideoPlayerEventCallback? onVideoPlayComplete;
   final VideoPlayerEventCallback? onVideoPause;
   final VideoPlayerEventCallback? onVideoResume;
-  final VideoPlayerEventCallback? onVideoStop;//android有
-  final VideoPlayerEventCallback? onVideoClicked;//android有
+  final VideoPlayerEventCallback? onVideoStop; //android有
+  final VideoPlayerEventCallback? onVideoClicked; //android有
   final VideoPlayerErrorCallback? onVideoPlayError;
 
   const AmpsVideoPlayListener({
@@ -72,9 +74,9 @@ class AmpsVideoPlayListener {
 
 ///Android下载相关回调
 class AMPSUnifiedDownloadListener {
-  final Function(int position,String adId)? onDownloadPaused;
+  final Function(int position, String adId)? onDownloadPaused;
   final Function(String adId)? onDownloadStarted;
-  final Function(int position,String adId)? onDownloadProgressUpdate;
+  final Function(int position, String adId)? onDownloadProgressUpdate;
   final Function(String adId)? onDownloadFinished;
   final Function(String adId)? onDownloadFailed;
   final Function(String adId)? onInstalled;

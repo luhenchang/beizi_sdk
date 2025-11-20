@@ -17,5 +17,5 @@ var splashSpaceId = Platform.isAndroid ? '104835' : "104833";
 var interstitialSpaceId = Platform.isAndroid ? '106981' : "107249";
 var nativeSpaceId = Platform.isAndroid ? '106064' : "106043";
 var unifiedSpaceId = Platform.isAndroid ? '106064' : "106063";
-var rewardVideoSpaceId = Platform.isAndroid ? '111366': "111367";
-var timeOut = 5000;//广告请求超时时长，建议5000毫秒,该参数单位为ms
+var rewardVideoSpaceId = Platform.isAndroid ? '111366' : "111367";
+var timeOut = 5000; //广告请求超时时长，建议5000毫秒,该参数单位为ms

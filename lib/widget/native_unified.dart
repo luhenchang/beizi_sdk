@@ -14,21 +14,21 @@ class UnifiedWidget extends StatefulWidget {
 
   final BeiZiUnifiedNativeAd? adNative;
   final NativeUnifiedWidget? unifiedContent;
-  const UnifiedWidget(
-    this.adNative, {
-    super.key,
-    required this.adId,
-    required this.unifiedContent,
-    this.show = true
-  });
+  const UnifiedWidget(this.adNative,
+      {super.key,
+      required this.adId,
+      required this.unifiedContent,
+      this.show = true});
 
   @override
   State<StatefulWidget> createState() => _UnifiedWidgetState();
 }
 
-class _UnifiedWidgetState extends State<UnifiedWidget> with AutomaticKeepAliveClientMixin{
+class _UnifiedWidgetState extends State<UnifiedWidget>
+    with AutomaticKeepAliveClientMixin {
   /// 创建参数
   late Map<String, dynamic> creationParams;
+
   /// 宽高
   double width = 375, height = 128;
   bool widgetNeedClose = false;
@@ -60,7 +60,7 @@ class _UnifiedWidgetState extends State<UnifiedWidget> with AutomaticKeepAliveCl
           onPlatformViewCreated: _onPlatformViewCreated,
           creationParamsCodec: const StandardMessageCodec());
     } else if (Platform.isIOS) {
-      view =  UiKitView(
+      view = UiKitView(
           viewType: BeiZiPlatformViewRegistry.beiZiSdkUnifiedViewId,
           creationParams: creationParams,
           onPlatformViewCreated: _onPlatformViewCreated,
@@ -74,22 +74,22 @@ class _UnifiedWidgetState extends State<UnifiedWidget> with AutomaticKeepAliveCl
     //       creationParamsCodec: const StandardMessageCodec());
     // }
     else {
-      view =  const Center(child: Text("暂不支持此平台"));
+      view = const Center(child: Text("暂不支持此平台"));
     }
+
     /// 有宽高信息了（渲染成功了）设置对应宽高
     return SizedBox.fromSize(
       size: Size(width, height),
       child: view,
     );
   }
+
   @override
   bool get wantKeepAlive => true;
 
-  Future<void> callBack(MethodCall call) async {
-
-  }
+  Future<void> callBack(MethodCall call) async {}
   void _onPlatformViewCreated(int id) {
-    widget.adNative?.setAdCloseCallBack((){
+    widget.adNative?.setAdCloseCallBack(() {
       setState(() {
         widgetNeedClose = true;
       });

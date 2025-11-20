@@ -24,16 +24,15 @@ class _RewardedVideoPageState extends State<RewardedVideoPage> {
   void initState() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     super.initState();
-    _adCallBack = RewardedVideoAdListener(onRewarded: (){
-
-    },onRewardedVideoAdLoaded: () {
-      _rewardedAd?.isLoaded().then((loaded){
-        if(loaded) {
-          _rewardedAd?.showAd();
-        }
-      });
-    });
-
+    _adCallBack = RewardedVideoAdListener(
+        onRewarded: () {},
+        onRewardedVideoAdLoaded: () {
+          _rewardedAd?.isLoaded().then((loaded) {
+            if (loaded) {
+              _rewardedAd?.showAd();
+            }
+          });
+        });
   }
 
   @override
@@ -56,7 +55,10 @@ class _RewardedVideoPageState extends State<RewardedVideoPage> {
                   ElevatedButton(
                     child: const Text('点击展示激励视频'),
                     onPressed: () {
-                      _rewardedAd = RewardedVideoAd(listener: _adCallBack, adSpaceId: rewardVideoSpaceId, totalTime: 15000);
+                      _rewardedAd = RewardedVideoAd(
+                          listener: _adCallBack,
+                          adSpaceId: rewardVideoSpaceId,
+                          totalTime: 15000);
                       // 返回上一页
                       _rewardedAd?.loadAd();
                     },

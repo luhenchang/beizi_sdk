@@ -41,17 +41,14 @@ class BeiZiNativeAd {
     adWidth = width;
     adHeight = height;
     //调用 Native 方法，并传递参数
-    await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.nativeLoad, {
-      'width': width,
-      'height': height
-    });
+    await BeiziSdk.channel.invokeMethod(
+        BeiZiSdkMethodNames.nativeLoad, {'width': width, 'height': height});
   }
 
   ///广告resume
   void resume() async {
     try {
-      await BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.nativeResume);
+      await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.nativeResume);
     } on PlatformException catch (e) {
       debugPrint('调用resume失败: ${e.details}');
     }
@@ -60,8 +57,7 @@ class BeiZiNativeAd {
   ///广告pause
   void pause() async {
     try {
-      await BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.nativePause);
+      await BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.nativePause);
     } on PlatformException catch (e) {
       debugPrint('调用pause失败: ${e.details}');
     }
@@ -128,8 +124,8 @@ class BeiZiNativeAd {
   Future<void> sendLossNotificationWithInfo(
       Map<String, String> lossInfo) async {
     try {
-      await BeiziSdk.channel.invokeMethod(
-          BeiZiSdkMethodNames.nativeNotifyRtbLoss, lossInfo);
+      await BeiziSdk.channel
+          .invokeMethod(BeiZiSdkMethodNames.nativeNotifyRtbLoss, lossInfo);
     } on PlatformException catch (e) {
       throw Exception('调用sendLossNotificationWithInfo失败: ${e.message}');
     }
@@ -155,10 +151,11 @@ class BeiZiNativeAd {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }
   }
+
   ///开发者根据不同平台进行处理
   /// 只有 IOS 返回 Map? 类型 ，Android 返回 null类型
   Future<dynamic> getCustomParam() async {
-    if (Platform.isAndroid){
+    if (Platform.isAndroid) {
       return null;
     }
     try {
@@ -168,10 +165,11 @@ class BeiZiNativeAd {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }
   }
+
   void setBidResponse(String content) {
     try {
-      BeiziSdk.channel.invokeMethod(
-          BeiZiSdkMethodNames.nativeSetBidResponse, content);
+      BeiziSdk.channel
+          .invokeMethod(BeiZiSdkMethodNames.nativeSetBidResponse, content);
     } on PlatformException catch (e) {
       throw Exception('调用setBidResponse失败: ${e.message}');
     }

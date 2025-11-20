@@ -1,7 +1,1 @@
-enum  InitStatus {
-  normal,
-  initialing,
-  alreadyInit,
-  success,
-  failed
-}
+enum InitStatus { normal, initialing, alreadyInit, success, failed }

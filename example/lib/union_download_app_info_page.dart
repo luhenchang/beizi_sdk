@@ -51,14 +51,20 @@ class UnionDownloadAppInfoPage extends StatefulWidget {
   const UnionDownloadAppInfoPage({super.key});
 
   @override
-  State<UnionDownloadAppInfoPage> createState() => _UnionDownloadAppInfoPageState();
+  State<UnionDownloadAppInfoPage> createState() =>
+      _UnionDownloadAppInfoPageState();
 }
 
-class _UnionDownloadAppInfoPageState extends State<UnionDownloadAppInfoPage> with SingleTickerProviderStateMixin {
+class _UnionDownloadAppInfoPageState extends State<UnionDownloadAppInfoPage>
+    with SingleTickerProviderStateMixin {
   // 对应 Android 的 titleContent, permissionContent 等
   // 在这里，我们将 _args 初始化为一个带默认值的实例，以避免在第一次 build 时崩溃
   // 如果页面参数是强制性的，更好的做法是在 didChangeDependencies 中抛出异常或 pop 页面
-  late AppInfoArguments _args = AppInfoArguments(titleContent: '', permissionContent: '', privacyContent: '', introContent: '');
+  late AppInfoArguments _args = AppInfoArguments(
+      titleContent: '',
+      permissionContent: '',
+      privacyContent: '',
+      introContent: '');
 
   late TabController _tabController;
   late WebViewController _webViewController;
@@ -101,7 +107,7 @@ class _UnionDownloadAppInfoPageState extends State<UnionDownloadAppInfoPage> wit
     if (!_isDataInitialized) {
       // 1. 安全地获取 arguments
       final Map<String, dynamic>? rawArgs =
-      ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+          ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
 
       if (rawArgs != null) {
         // 2. 转换数据
@@ -125,6 +131,7 @@ class _UnionDownloadAppInfoPageState extends State<UnionDownloadAppInfoPage> wit
     _tabController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     if (!_isDataInitialized) {
@@ -146,13 +153,17 @@ class _UnionDownloadAppInfoPageState extends State<UnionDownloadAppInfoPage> wit
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildTabButton(index: 0, text: '权限', content: _args.permissionContent),
-                _buildTabButton(index: 1, text: '隐私', content: _args.privacyContent),
-                _buildTabButton(index: 2, text: '介绍', content: _args.introContent),
+                _buildTabButton(
+                    index: 0, text: '权限', content: _args.permissionContent),
+                _buildTabButton(
+                    index: 1, text: '隐私', content: _args.privacyContent),
+                _buildTabButton(
+                    index: 2, text: '介绍', content: _args.introContent),
               ],
             ),
           ),
@@ -166,7 +177,8 @@ class _UnionDownloadAppInfoPageState extends State<UnionDownloadAppInfoPage> wit
   }
 
   // 辅助函数：构建 Tab 按钮
-  Widget _buildTabButton({required int index, required String text, required String content}) {
+  Widget _buildTabButton(
+      {required int index, required String text, required String content}) {
     if (content.isEmpty) {
       return const SizedBox.shrink();
     }
@@ -202,7 +214,8 @@ class _UnionDownloadAppInfoPageState extends State<UnionDownloadAppInfoPage> wit
     if (displayContent.startsWith("http")) {
       _webViewController.loadRequest(Uri.parse(displayContent));
     } else {
-      _webViewController.loadHtmlString("<html><body>$displayContent</body></html>");
+      _webViewController
+          .loadHtmlString("<html><body>$displayContent</body></html>");
     }
   }
 

@@ -10,9 +10,7 @@ class NativeWidget extends StatefulWidget {
   final String adId;
   final BeiZiNativeAd? adNative;
 
-  const NativeWidget(this.adNative,
-      {super.key,
-      required this.adId});
+  const NativeWidget(this.adNative, {super.key, required this.adId});
 
   @override
   State<StatefulWidget> createState() => _NativeWidgetState();
@@ -31,10 +29,10 @@ class _NativeWidgetState extends State<NativeWidget>
   void initState() {
     var adWidth = widget.adNative?.adWidth;
     var adHeight = widget.adNative?.adHeight;
-    if(adWidth != null) {
+    if (adWidth != null) {
       width = adWidth;
     }
-    if(adHeight != null) {
+    if (adHeight != null) {
       height = adHeight;
     }
     creationParams = <String, dynamic>{

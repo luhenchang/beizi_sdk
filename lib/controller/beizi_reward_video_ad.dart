@@ -64,8 +64,8 @@ class RewardedVideoAd {
   }
 
   void showAd() async {
-    await BeiziSdk.channel.invokeMethod(
-        BeiZiSdkMethodNames.rewardedVideoShowAd);
+    await BeiziSdk.channel
+        .invokeMethod(BeiZiSdkMethodNames.rewardedVideoShowAd);
   }
 
   Future<bool> isLoaded() async {
@@ -162,7 +162,8 @@ class RewardedVideoAd {
 
   void setExtraData(String data) {
     try {
-      BeiziSdk.channel.invokeMethod(BeiZiSdkMethodNames.rewardedVideoSetExtra,data);
+      BeiziSdk.channel
+          .invokeMethod(BeiZiSdkMethodNames.rewardedVideoSetExtra, data);
     } on PlatformException catch (e) {
       throw Exception('调用getCustomExtraData失败: ${e.message}');
     }

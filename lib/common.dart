@@ -32,7 +32,8 @@ class BeiZiSdkMethodNames {
   static const String interstitialLoad = "BeiZiInterstitial_load";
   static const String interstitialShowAd = "BeiZiSInterstitial_showAd";
   static const String interstitialIsLoaded = "BeiZiSInterstitial_isLoaded";
-  static const String interstitialSetAdVersion = "BeiZiInterstitial_setAdVersion";
+  static const String interstitialSetAdVersion =
+      "BeiZiInterstitial_setAdVersion";
   static const String interstitialGetEcpm = "BeiZiSInterstitial_getECPM";
   static const String interstitialNotifyRtbWin =
       "BeiZiInterstitial_notifyRTBWin";
@@ -46,7 +47,8 @@ class BeiZiSdkMethodNames {
       "BeiZiInterstitial_setBidResponse";
   static const String interstitialSetSpaceParam =
       "BeiZiInterstitial_setSpaceParam";
-  static const String interstitialGetCustomParam = 'BeiZiInterstitial_getCustomParam';
+  static const String interstitialGetCustomParam =
+      'BeiZiInterstitial_getCustomParam';
   static const String interstitialDestroy = "BeiZiInterstitial_Destroy";
 
   ///激励视频相关方法
@@ -57,14 +59,20 @@ class BeiZiSdkMethodNames {
   static const String rewardedVideoGetUserId = "BeiZiSRewardedVideo_getUserId";
   static const String rewardedVideoSetUserId = "BeiZiSRewardedVideo_setUserId";
   static const String rewardedVideoGetEcpm = "BeiZiSRewardedVideo_getECPM";
-  static const String rewardedVideoNotifyRtbWin = "BeiZiRewardedVideo_notifyRTBWin";
-  static const String rewardedVideoNotifyRtbLoss = "BeiZiRewardedVideo_notifyRTBLoss";
+  static const String rewardedVideoNotifyRtbWin =
+      "BeiZiRewardedVideo_notifyRTBWin";
+  static const String rewardedVideoNotifyRtbLoss =
+      "BeiZiRewardedVideo_notifyRTBLoss";
   static const String rewardedVideoGetExtra = "BeiZiRewardedVideo_getExtra";
   static const String rewardedVideoSetExtra = "BeiZiRewardedVideo_setExtra";
-  static const String rewardedVideoGetCustomExtData = "BeiZiRewardedVideo_getCustomExtData";
-  static const String rewardedVideoGetCustomJsonData = "BeiZiRewardedVideo_getCustomJsonData";
-  static const String rewardedVideoSetBidResponse = "BeiZiRewardedVideo_setBidResponse";
-  static const String rewardedVideoSetSpaceParam = "BeiZiRewardedVideo_setSpaceParam";
+  static const String rewardedVideoGetCustomExtData =
+      "BeiZiRewardedVideo_getCustomExtData";
+  static const String rewardedVideoGetCustomJsonData =
+      "BeiZiRewardedVideo_getCustomJsonData";
+  static const String rewardedVideoSetBidResponse =
+      "BeiZiRewardedVideo_setBidResponse";
+  static const String rewardedVideoSetSpaceParam =
+      "BeiZiRewardedVideo_setSpaceParam";
   static const String rewardedVideoDestroy = "BeiZiRewardedVideo_Destroy";
 
   //原生相关方法
@@ -86,9 +94,11 @@ class BeiZiSdkMethodNames {
   static const String nativeUnifiedCreate = "BeiZiNativeUnified_create";
   static const String nativeUnifiedSetHide = "BeiZiNativeUnified_setHide";
   static const String nativeUnifiedLoad = "BeiZiNativeUnified_load";
-  static const String nativeUnifiedGetDownLoad = "BeiZiNativeUnified_getDownLoad";
+  static const String nativeUnifiedGetDownLoad =
+      "BeiZiNativeUnified_getDownLoad";
   static const String nativeUnifiedResume = "BeiZiNativeUnified_resume";
-  static const String nativeUnifiedMaterialType = "BeiZiNativeUnified_materialType";
+  static const String nativeUnifiedMaterialType =
+      "BeiZiNativeUnified_materialType";
   static const String nativeUnifiedGetEcpm = "BeiZiNativeUnified_getECPM";
   static const String nativeUnifiedDestroy = "BeiZiNativeUnified_destroy";
   static const String nativeUnifiedGetCustomExtData =
@@ -103,20 +113,26 @@ class BeiZiSdkMethodNames {
       "BeiZiNativeUnified_setBidResponse";
   static const String nativeUnifiedSetSpaceParam =
       "BeiZiNativeUnified_setSpaceParam";
-  static const String nativeUnifiedGetCustomParam = 'BeiZiNativeUnified_getCustomParam';
+  static const String nativeUnifiedGetCustomParam =
+      'BeiZiNativeUnified_getCustomParam';
 }
 
 class BeiZiAdCallBackChannelMethod {
   /// 广告加载成功
   static const String onAdLoaded = "onAdLoaded";
+
   /// 广告展示成功
   static const String onAdShown = "onAdShown";
+
   /// 广告加载失败
   static const String onAdFailedToLoad = "onAdFailedToLoad";
+
   /// 广告关闭 (开屏广告结束/用户跳过)
   static const String onAdClosed = "onAdClosed";
+
   /// 广告倒计时/进度更新
   static const String onAdTick = "onAdTick";
+
   /// 广告被点击
   static const String onAdClicked = "onAdClicked";
 }
@@ -125,12 +141,16 @@ class BeiZiAdCallBackChannelMethod {
 class BeiZiInterstitialAdChannelMethod {
   /// 广告加载成功
   static const String onAdLoaded = "Inter_onAdLoaded";
+
   /// 广告展示成功
   static const String onAdShown = "Inter_onAdShown";
+
   /// 广告加载失败
   static const String onAdFailed = "Inter_onAdFailed";
+
   /// 广告关闭 (例如：用户关闭插屏弹窗)
   static const String onAdClosed = "Inter_onAdClosed";
+
   /// 广告被点击
   static const String onAdClicked = "Inter_onAdClicked";
 }
@@ -139,20 +159,28 @@ class BeiZiInterstitialAdChannelMethod {
 class BeiZiRewardedVideoAdChannelMethod {
   /// 广告激励发放
   static const String onRewarded = "Reward_onRewarded";
+
   /// 广告加载失败
   static const String onRewardedVideoAdFailedToLoad = "Reward_onAdFailedToLoad";
+
   /// 广告加载成功
   static const String onRewardedVideoAdLoaded = "Reward_onAdLoaded";
+
   /// 广告缓存成功
   static const String onRewardedVideoCacheSuccess = "Reward_onCacheSuccess";
+
   /// 广告展示成功
   static const String onRewardedVideoAdShown = "Reward_onAdShown";
+
   /// 广告关闭
   static const String onRewardedVideoAdClosed = "Reward_onAdClosed";
+
   /// 广告被点击
   static const String onRewardedVideoClick = "Reward_onAdClicked";
+
   /// 广告播放完成
   static const String onRewardedVideoComplete = "Reward_onAdComplete";
+
   /// 广告播放错误
   static const String onRewardedVideoPlayError = "Reward_onPlayError";
 }
@@ -161,14 +189,19 @@ class BeiZiRewardedVideoAdChannelMethod {
 class BeiZiNativeAdChannelMethod {
   /// 广告加载失败
   static const String onAdFailed = "Native_onAdFailed";
+
   /// 广告加载成功
   static const String onAdLoaded = "Native_onAdLoaded";
+
   /// 广告展示成功
   static const String onAdShown = "Native_onAdShown";
+
   /// 广告关闭
   static const String onAdClosed = "Native_onAdClosed";
+
   /// 广告视图关闭
   static const String onAdClosedView = "Native_onAdClosedView";
+
   /// 广告被点击
   static const String onAdClicked = "Native_onAdClick";
 }
@@ -176,12 +209,16 @@ class BeiZiNativeAdChannelMethod {
 class BeiZiNativeUnifiedAdChannelMethod {
   /// 广告加载失败
   static const String onAdFailed = "Native_Unified_onAdFailed";
+
   /// 广告加载成功
   static const String onAdLoaded = "Native_Unified_onAdLoaded";
+
   /// 广告展示成功
   static const String onAdShown = "Native_Unified_onAdShown";
+
   /// 广告关闭
   static const String onAdClosed = "Native_Unified_onAdClosed";
+
   /// 广告被点击
   static const String onAdClick = "Native_Unified_onAdClick";
 }
