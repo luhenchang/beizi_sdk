@@ -1,4 +1,5 @@
 import 'package:beizi_sdk/beizi_sdk_export.dart';
+import 'package:beizi_sdk_example/data/common.dart';
 import 'package:beizi_sdk_example/reward_video_page.dart';
 import 'package:beizi_sdk_example/widgets/blurred_background.dart';
 import 'package:beizi_sdk_example/widgets/button_widget.dart';
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                 buttonText: getInitResult(initStatus),
                 backgroundColor: getInitColor(initStatus),
                 callBack: () {
-                  BeiZis.init("20826",
+                  BeiZis.init(appId,
                           BeiziCustomController(isPersonalRecommend: true))
                       .then((value) {
                     setState(() {

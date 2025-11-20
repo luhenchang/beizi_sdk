@@ -1,5 +1,6 @@
 import 'package:beizi_sdk/beizi_sdk_export.dart';
 import 'package:beizi_sdk/data/beizi_native_listener.dart';
+import 'package:beizi_sdk_example/data/common.dart';
 import 'package:flutter/material.dart';
 
 class NativePage extends StatefulWidget {
@@ -34,7 +35,7 @@ class _SplashPageState extends State<NativePage> with WidgetsBindingObserver{
       });
     });
     
-    _nativeAd = BeiZiNativeAd(adSpaceId: '106064', totalTime: 10000, listener: _adCallBack);
+    _nativeAd = BeiZiNativeAd(adSpaceId: nativeSpaceId, totalTime: 10000, listener: _adCallBack);
     _nativeAd?.loadAd(width: expressWidth, height: expressHeight);
   }
 

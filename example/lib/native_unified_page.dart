@@ -2,6 +2,7 @@ import 'package:beizi_sdk/beizi_sdk_export.dart';
 import 'package:beizi_sdk/data/beizi_unified_native_listener.dart';
 import 'package:flutter/material.dart';
 
+import 'data/common.dart';
 import 'union_download_app_info_page.dart';
 
 class NativeUnifiedPage extends StatefulWidget {
@@ -58,7 +59,7 @@ class _SplashPageState extends State<NativeUnifiedPage> {
         onAdFailed: (errorCode) {},
         onAdShown: () {});
     _nativeAd = BeiZiUnifiedNativeAd(
-        adSpaceId: '106064',
+        adSpaceId: unifiedSpaceId,
         totalTime: 15000,
         expressSize: [expressWidth, expressHeight],
         listener: _adCallBack);

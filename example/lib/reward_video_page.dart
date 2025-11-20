@@ -3,6 +3,8 @@ import 'package:beizi_sdk/controller/beizi_reward_video_ad.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'data/common.dart';
+
 class RewardedVideoPage extends StatefulWidget {
   const RewardedVideoPage({super.key, required this.title});
 
@@ -31,7 +33,7 @@ class _RewardedVideoPageState extends State<RewardedVideoPage> {
         }
       });
     });
-    _rewardedAd = RewardedVideoAd(listener: _adCallBack, adSpaceId: '111366', totalTime: 15000);
+    _rewardedAd = RewardedVideoAd(listener: _adCallBack, adSpaceId: rewardVideoSpaceId, totalTime: 15000);
   }
 
   @override

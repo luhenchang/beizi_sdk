@@ -1,4 +1,5 @@
 import 'package:beizi_sdk/beizi_sdk_export.dart';
+import 'package:beizi_sdk_example/data/common.dart';
 import 'package:flutter/material.dart';
 
 class InterstitialPage extends StatefulWidget {
@@ -55,7 +56,7 @@ class _InterstitialPageState extends State<InterstitialPage> {
                     onPressed: () {
                       _interAd = InterstitialAd(
                           listener: _adCallBack,
-                          adSpaceId: '106981',
+                          adSpaceId: interstitialSpaceId,
                           totalTime: 5000);
                       // 返回上一页
                       _interAd?.loadAd();
