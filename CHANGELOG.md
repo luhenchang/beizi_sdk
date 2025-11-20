@@ -1,3 +1,7 @@
+## 0.0.3
+
+* TODO:  beizi sdk 4.0 base version submit.
+
 ## 0.0.2
 
 * TODO: IOS beizi sdk 4.0 support submit.

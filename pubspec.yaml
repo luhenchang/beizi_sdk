@@ -1,6 +1,6 @@
 name: beizi_sdk
 description: "this plugin is beizi ad sdk by use to show ad"
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/luhenchang/beizi_sdk.git
 
 environment:
