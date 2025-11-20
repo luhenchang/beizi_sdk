@@ -12,19 +12,11 @@ import Flutter
 
 class BeiZiRewardVideoManager: NSObject {
     
-    private static var instance: BeiZiRewardVideoManager?
+    static let shared: BeiZiRewardVideoManager = .init()
+    private override init() {super.init()}
+    
     private var rewardVideoAd: BeiZiRewardedVideo?
     private var s2sToken : String?
-
-    
-    static func getInstance() -> BeiZiRewardVideoManager {
-        if instance == nil {
-            instance = BeiZiRewardVideoManager()
-        }
-        return instance!
-    }
-//
-    private override init() {}
     
     // MARK: - Public Methods
     func handleMethodCall(_ call: FlutterMethodCall, result: FlutterResult) {
@@ -54,8 +46,25 @@ class BeiZiRewardVideoManager: NSObject {
         case BeiZiSdkMethodNames.rewardedVideoDestroy:
             self.cleanup()
             result(true)
-        default:
+        case BeiZiSdkMethodNames.rewardedVideoSetSpaceParam,
+             BeiZiSdkMethodNames.rewardedVideoGetCustomJsonData:
             result(nil)
+        case BeiZiSdkMethodNames.rewardedVideoGetExtra:
+            result(rewardVideoAd?.extraInfo)
+        case BeiZiSdkMethodNames.rewardedVideoSetExtra:
+            if let arguments = call.arguments as? String{
+                rewardVideoAd?.extraInfo = arguments
+            }
+        case BeiZiSdkMethodNames.rewardedVideoGetUserId:
+            result(rewardVideoAd?.userID)
+        case BeiZiSdkMethodNames.rewardedVideoSetUserId:
+            if let id = call.arguments as? String {
+                rewardVideoAd?.userID = id
+            }
+        case BeiZiSdkMethodNames.rewardedVideoGetCustomExtData:
+            result(rewardVideoAd?.extInfo)
+        default:
+            result(FlutterMethodNotImplemented)
         }
     }
 //
@@ -65,7 +74,7 @@ class BeiZiRewardVideoManager: NSObject {
             result(false)
             return
         }
-        guard var spaceId = param[BeiZiSplashKeys.adSpaceId] as? String  else {
+        guard let spaceId = param[BeiZiSplashKeys.adSpaceId] as? String  else {
             result(false)
             return
         }
@@ -141,7 +150,7 @@ class BeiZiRewardVideoManager: NSObject {
     }
     
     private func sendMessage(_ method: String, _ args: Any? = nil) {
-        BZEventManager.getInstance().sendToFlutter(method, arg: args)
+        BZEventManager.shared.sendToFlutter(method, arg: args)
     }
     
 }

@@ -11,13 +11,7 @@ import Flutter
 
 class BZPlatformViewRegistry {
     
-    private static var instance: BZPlatformViewRegistry?
-    static func getInstance() -> BZPlatformViewRegistry{
-        if BZPlatformViewRegistry.instance == nil {
-            BZPlatformViewRegistry.instance = .init()
-        }
-        return BZPlatformViewRegistry.instance!
-    }
+    static let shared: BZPlatformViewRegistry = .init()
     private init() {}
     
     

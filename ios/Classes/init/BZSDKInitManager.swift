@@ -11,11 +11,7 @@ import BeiZiSDK
 
 
 class BZSDKInitManager {
-    static let shared: BZSDKInitManager = {
-        let instance = BZSDKInitManager()
-        return instance
-    }()
-    
+    static let shared: BZSDKInitManager = .init()
     private init() {}
     
     func handleMethodCall(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
@@ -65,7 +61,7 @@ class BZSDKInitManager {
     }
     
     func sendMessage(_ method: String, args: Any? = nil) {
-        BZEventManager.getInstance().sendToFlutter(method)
+        BZEventManager.shared.sendToFlutter(method)
     }
 }
 

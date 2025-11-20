@@ -11,11 +11,9 @@ import Flutter
 
 class BZEventManager : NSObject{
    
-    private static let instance = BZEventManager()
+    static let shared = BZEventManager()
     private override init(){ }
-    static func getInstance() -> BZEventManager{
-        return BZEventManager.instance
-    }
+    
     var channel: FlutterMethodChannel?
     var registrar: FlutterPluginRegistrar?
     func regist(_ registrar: FlutterPluginRegistrar) {
@@ -26,15 +24,15 @@ class BZEventManager : NSObject{
             case let name where  initMethodNames.contains(name):
                 BZSDKInitManager.shared.handleMethodCall(methodCall, result: result)
             case let name where splashMethodNames.contains(name):
-                BeiZiSplashManager.getInstance().handleMethodCall(methodCall, result:result)
+                BeiZiSplashManager.shared.handleMethodCall(methodCall, result:result)
             case let name where interstitialMethodNames.contains(name):
-                BeiziInterstitialManager.getInstance().handleMethodCall(methodCall, result: result)
+                BeiziInterstitialManager.shared.handleMethodCall(methodCall, result: result)
             case let name where rewardedVideoAdMethodNames.contains(name):
-                BeiZiRewardVideoManager.getInstance().handleMethodCall(methodCall, result: result)
+                BeiZiRewardVideoManager.shared.handleMethodCall(methodCall, result: result)
             case let name where  nativeMethodNames.contains(name):
-                BeiZiNativeManager.getInstance().handleMethodCall(methodCall, result: result)
+                BeiZiNativeManager.shared.handleMethodCall(methodCall, result: result)
             case let name where  unifiedNativeMethodNames.contains(name):
-                BeiZiUnifiedNativeManager.getInstance().handleMethodCall(methodCall, result: result)
+                BeiZiUnifiedNativeManager.shared.handleMethodCall(methodCall, result: result)
             default:
                 result(FlutterMethodNotImplemented)
             }

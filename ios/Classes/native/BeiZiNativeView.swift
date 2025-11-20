@@ -28,7 +28,7 @@ class BZNativeView : NSObject, FlutterPlatformView {
         
         if let param = args as? [String: Any?]{
            if let adId = param["native_adId"] as? String {
-               if let adView = BeiZiNativeManager.getInstance().getAdView(adId) {
+               if let adView = BeiZiNativeManager.shared.getAdView(adId) {
                    if let width = param["width"] as? CGFloat {
                        adView.bounds.size.width = width
                        self.iosView.frame.size.width = UIScreen.main.bounds.width

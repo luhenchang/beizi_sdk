@@ -24,27 +24,27 @@ class BeiZiUnifiedNAtiveViewFactory: NSObject, FlutterPlatformViewFactory {
       
 class BeiZiSelfRenderView : NSObject, FlutterPlatformView {
     
-    private var iosView: UIView
+    private var containerView: UIView
     init(frame: CGRect,viewId: Int64,args:Any?) {
-        self.iosView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300))
+        self.containerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300))
         super.init()
-        self.iosView.backgroundColor = UIColor.orange
+//        self.containerView.backgroundColor = UIColor.orange
         
         if let param = args as? [String: Any?]{
             let model: FlutterUnifiedParam? = Tools.convertToModel(from: param as [String : Any])
             if let adId = model?.adId {
-                if let ad = BeiZiUnifiedNativeManager.getInstance().getUnifiedAd(adId) {
+                if let ad = BeiZiUnifiedNativeManager.shared.getUnifiedAd(adId) {
                     let adView = ad.materialView
-                    self.iosView.frame.size.width =  model?.unifiedWidget?.width ?? UIScreen.main.bounds.width
-                    self.iosView.frame.size.height = model?.unifiedWidget?.height ?? 200
-                    adView.frame  =  CGRect(x:0, y: 0, width: self.iosView.frame.size.width, height: self.iosView.frame.size.height)
+                    self.containerView.frame.size.width =  model?.unifiedWidget?.width ?? UIScreen.main.bounds.width
+                    self.containerView.frame.size.height = model?.unifiedWidget?.height ?? 200
+                    adView.frame  =  CGRect(x:0, y: 0, width: self.containerView.frame.size.width, height: self.containerView.frame.size.height)
                     if let bgColor = model?.unifiedWidget?.backgroundColor {
                         
                         adView.backgroundColor = UIColor(hexString: bgColor)
                         
                     }
                     
-                    self.iosView.addSubview(adView)
+                    self.containerView.addSubview(adView)
                    
                     self.layoutItems(adView,ad,model!)
                     
@@ -53,7 +53,7 @@ class BeiZiSelfRenderView : NSObject, FlutterPlatformView {
         }
     }
     func view() -> UIView {
-        return iosView
+        return containerView
     }
     
     
@@ -75,8 +75,10 @@ class BeiZiSelfRenderView : NSObject, FlutterPlatformView {
                 imgView.contentMode = .scaleAspectFit
                 if let urlString = ad.imageUrls[i] as? String, let _ = URL(string: urlString) {
                     Tools.fetchImageData(from: urlString) { [weak imgView] result in
-                        if case let .success(data) = result {
-                            imgView?.image = UIImage(data: data)
+                        DispatchQueue.main.async {
+                            if case let .success(data) = result {
+                                imgView?.image = UIImage(data: data)
+                            }
                         }
                     }
                    
@@ -98,8 +100,10 @@ class BeiZiSelfRenderView : NSObject, FlutterPlatformView {
             imageView.contentMode = .scaleAspectFit
             if let _ = URL(string: imageUrl) {
                 Tools.fetchImageData(from: imageUrl) { [weak imageView] result in
-                    if case let .success(data) = result {
-                        imageView?.image = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        if case let .success(data) = result {
+                            imageView?.image = UIImage(data: data)
+                        }
                     }
                 }
             }
@@ -121,8 +125,10 @@ class BeiZiSelfRenderView : NSObject, FlutterPlatformView {
             if let _ = URL(string: adLogoUrl) {
                 adView.addSubview(adLogoImageView)
                 Tools.fetchImageData(from: adLogoUrl) { [weak adLogoImageView] result in
-                    if case let .success(data) = result {
-                        adLogoImageView?.image = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        if case let .success(data) = result, let image = UIImage(data: data) {
+                            adLogoImageView?.image = image
+                        }
                     }
                 }
             }
@@ -137,8 +143,10 @@ class BeiZiSelfRenderView : NSObject, FlutterPlatformView {
             if let _ = URL(string: iconUrl) {
                 adView.addSubview(iconImageView)
                 Tools.fetchImageData(from: iconUrl) { [weak iconImageView] result in
-                    if case let .success(data) = result {
-                        iconImageView?.image = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        if case let .success(data) = result, let image = UIImage(data: data) {
+                            iconImageView?.image = image
+                        }
                     }
                 }
             }
@@ -204,8 +212,8 @@ class BeiZiSelfRenderView : NSObject, FlutterPlatformView {
         adView.addSubview(titleLabel)
         adView.addSubview(descLabel)
         
-        unifiedAd.registerContainer(self.iosView, clickableViews: [adView])
-        adView.frame = self.iosView.frame
+        unifiedAd.registerContainer(self.containerView, clickableViews: [adView])
+        adView.frame = self.containerView.frame
         
     }
     

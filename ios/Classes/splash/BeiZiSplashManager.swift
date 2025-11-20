@@ -13,15 +13,8 @@ import BeiZiSDK
 
 class BeiZiSplashManager: NSObject {
     
-    private static var instance: BeiZiSplashManager?
-    // Singleton
-    static func getInstance() -> BeiZiSplashManager {
-        if instance == nil {
-            instance = BeiZiSplashManager()
-        }
-        return instance!
-    }
-    private override init() {}
+    static let shared: BeiZiSplashManager = .init()
+    private override init() {super.init()}
     
     private var splashAd: BeiZiSplash?
     private var s2sToken: String?
@@ -56,8 +49,13 @@ class BeiZiSplashManager: NSObject {
         case BeiZiSdkMethodNames.splashCancel:
             self.cleanUp()
             result(true)
+        case BeiZiSdkMethodNames.splashSetSpaceParam,
+             BeiZiSdkMethodNames.splashGetCustomJsonData:
+            result(nil)
+        case BeiZiSdkMethodNames.plashGetCustomExtData:
+            result(splashAd?.extInfo)
         default:
-            result(false)
+            result(FlutterMethodNotImplemented)
         }
     }
     
@@ -68,7 +66,7 @@ class BeiZiSplashManager: NSObject {
             result(false)
             return
         }
-        guard var spaceId = param[BeiZiSplashKeys.adSpaceId] as? String  else {
+        guard let spaceId = param[BeiZiSplashKeys.adSpaceId] as? String  else {
             result(false)
             return
         }
@@ -82,7 +80,7 @@ class BeiZiSplashManager: NSObject {
     
     private func handleSplashLoad(arguments: [String: Any]?, result: FlutterResult) {
     
-        self.creatBottomView(arguments)
+        self.createBottomView(arguments)
         splashAd?.delegate = self
         
         if let token = self.s2sToken {
@@ -93,7 +91,7 @@ class BeiZiSplashManager: NSObject {
         result(true)
     }
     //创建底部自定义view
-    private func creatBottomView(_ arguments: [String: Any]?){
+    private func createBottomView(_ arguments: [String: Any]?){
         guard let arguments = arguments else {
             return
         }
@@ -125,7 +123,7 @@ class BeiZiSplashManager: NSObject {
                 if let imageModel = imageModel {
                     let imageView = UIImageView(frame: CGRect(x: imageModel.x ?? 0, y: imageModel.y ?? 0, width: imageModel.width ?? 100, height: imageModel.height ?? 100))
                     if let imageName =  imageModel.imagePath {
-                        imageView.image = BZEventManager.getInstance().getImage(imageName)
+                        imageView.image = BZEventManager.shared.getImage(imageName)
                     }
                     
                     bottomView.addSubview(imageView)
@@ -203,10 +201,11 @@ class BeiZiSplashManager: NSObject {
 
     
     private func sendMessage(_ method: String, _ args: Any? = nil) {
-        BZEventManager.getInstance().sendToFlutter(method, arg: args)
+        BZEventManager.shared.sendToFlutter(method, arg: args)
     }
     
     private func cleanUp(){
+        splashAd?.delegate = nil
         self.splashAd = nil
         self.bottomView = nil
         self.s2sToken = nil

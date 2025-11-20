@@ -12,14 +12,7 @@ import Flutter
 
 class BeiZiNativeManager: NSObject {
      
-    static private var instance: BeiZiNativeManager?
-   
-    static func getInstance() -> BeiZiNativeManager{
-        if (BeiZiNativeManager.instance == nil) {
-            BeiZiNativeManager.instance = BeiZiNativeManager()
-        }
-        return BeiZiNativeManager.instance!
-    }
+    static let shared: BeiZiNativeManager = .init()
     private override init() {super.init()}
     
     var nativeExpress: BeiZiNativeExpress?
@@ -45,12 +38,11 @@ class BeiZiNativeManager: NSObject {
                 s2sToken = tokon
             }
             result(true)
-        case BeiZiSdkMethodNames.nativePause:
-            result(true)
-        case BeiZiSdkMethodNames.nativeResume:
-            result(true)
-        case BeiZiSdkMethodNames.nativeSetSpaceParam:
-            result(true)
+        case BeiZiSdkMethodNames.nativePause,
+             BeiZiSdkMethodNames.nativeResume,
+             BeiZiSdkMethodNames.nativeSetSpaceParam,
+             BeiZiSdkMethodNames.nativeGetCustomJsonData:
+            result(nil)
         case BeiZiSdkMethodNames.nativeGetEcpm:
             result(nativeExpress?.eCPM ?? 0)
         case BeiZiSdkMethodNames.nativeNotifyRtbWin:
@@ -62,8 +54,10 @@ class BeiZiNativeManager: NSObject {
         case BeiZiSdkMethodNames.nativeDestroy:
             self.cleanup()
             result(true)
+        case BeiZiSdkMethodNames.nativeGetCustomExtData:
+            result(nativeExpress?.extInfo)
         default:
-            result(nil)
+            result(FlutterMethodNotImplemented)
         }
     }
 //
@@ -73,7 +67,7 @@ class BeiZiNativeManager: NSObject {
             result(false)
             return
         }
-        guard var spaceId = param[BeiZiSplashKeys.adSpaceId] as? String  else {
+        guard let spaceId = param[BeiZiSplashKeys.adSpaceId] as? String  else {
             result(false)
             return
         }
@@ -139,7 +133,7 @@ class BeiZiNativeManager: NSObject {
     }
     
     private func sendMessage(_ method: String, _ args: Any? = nil) {
-        BZEventManager.getInstance().sendToFlutter(method, arg: args)
+        BZEventManager.shared.sendToFlutter(method, arg: args)
     }
     
 }

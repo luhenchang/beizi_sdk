@@ -14,19 +14,12 @@ import Flutter
 
 class BeiziInterstitialManager: NSObject {
     
-    private static var instance: BeiziInterstitialManager?
+    static let shared: BeiziInterstitialManager = .init()
+    private override init() {}
+    
     private var interstitialAd: BeiZiInterstitial?
     private var s2sToken : String?
-
     
-    static func getInstance() -> BeiziInterstitialManager {
-        if instance == nil {
-            instance = BeiziInterstitialManager()
-        }
-        return instance!
-    }
-//
-    private override init() {}
     
     // MARK: - Public Methods
     func handleMethodCall(_ call: FlutterMethodCall, result: FlutterResult) {
@@ -63,8 +56,13 @@ class BeiziInterstitialManager: NSObject {
         case BeiZiSdkMethodNames.interstitialDestroy:
             self.cleanup()
             result(true)
-        default:
+        case BeiZiSdkMethodNames.interstitialGetCustomExtData:
+            result(interstitialAd?.extInfo)
+        case BeiZiSdkMethodNames.interstitialGetCustomJsonData,
+             BeiZiSdkMethodNames.interstitialSetSpaceParam:
             result(nil)
+        default:
+            result(FlutterMethodNotImplemented)
         }
     }
 //
@@ -149,7 +147,7 @@ class BeiziInterstitialManager: NSObject {
     }
     
     private func sendMessage(_ method: String, _ args: Any? = nil) {
-        BZEventManager.getInstance().sendToFlutter(method, arg: args)
+        BZEventManager.shared.sendToFlutter(method, arg: args)
     }
     
 }
