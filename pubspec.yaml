@@ -39,14 +39,6 @@ flutter:
         pluginClass: BeiziSdkPlugin
       ios:
         pluginClass: BeiziSdkPlugin
-      web:
-        supported: false
-      windows:
-        supported: false
-      macos:
-        supported: false
-      linux:
-        supported: false
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
