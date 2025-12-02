@@ -11,11 +11,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.text.TextUtils
 import android.util.LruCache
 import android.widget.ImageView
-import com.beizi.beizi_sdk.manager.BeiZiEventManager
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -38,7 +40,7 @@ object ImageManager : CoroutineScope {
 
     @JvmStatic
     fun with(context: Context): ImageManager {
-        mContext = BeiZiEventManager.getInstance().getContext() ?: context
+        mContext = FlutterPluginUtil.getActivity() ?: context
         return this
     }
 

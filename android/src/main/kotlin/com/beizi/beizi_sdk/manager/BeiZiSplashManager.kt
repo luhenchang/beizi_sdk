@@ -10,6 +10,7 @@ import com.beizi.beizi_sdk.data.BeiZiAdCallBackChannelMethod
 import com.beizi.beizi_sdk.data.BeiZiSdkMethodNames
 import com.beizi.beizi_sdk.data.BeiZiSplashKeys
 import com.beizi.beizi_sdk.data.SplashBottomModule
+import com.beizi.beizi_sdk.utils.FlutterPluginUtil
 import com.beizi.beizi_sdk.view.SplashBottomViewFactory
 import com.beizi.fusion.AdListener
 import com.beizi.fusion.SplashAd
@@ -21,8 +22,6 @@ import java.lang.ref.WeakReference
 
 class BeiZiSplashManager private constructor() {
     private var mSplashAd: SplashAd? = null
-    private var currentActivityRef: WeakReference<Activity>? =
-        WeakReference(BeiZiEventManager.getInstance().getContext())
     // --- 新增成员变量用于存储底部View及其数据 ---
     private var customBottomLayout: View? = null
     private var customBottomLayoutId: Int = View.NO_ID
@@ -38,8 +37,6 @@ class BeiZiSplashManager private constructor() {
             }
         }
     }
-
-    private fun getCurrentActivity(): Activity? = currentActivityRef?.get()
 
     private val adCallback = object : AdListener {
 
@@ -74,7 +71,7 @@ class BeiZiSplashManager private constructor() {
      * @param
      */
     private fun cleanupViewsAfterAdClosed() {
-        val activity = getCurrentActivity()
+        val activity = FlutterPluginUtil.getActivity()
         val decorView = activity?.window?.decorView as? ViewGroup
         decorView?.findViewWithTag<View>("splash_main_container_tag")?.let { viewToRemove ->
             decorView.removeView(viewToRemove)
@@ -138,7 +135,7 @@ class BeiZiSplashManager private constructor() {
 
 
     private fun createSplash(call: MethodCall, result: Result) {
-        val activity = getCurrentActivity()
+        val activity = FlutterPluginUtil.getActivity()
         if (activity == null) {
             result.error("LOAD_FAILED", "Activity not available for loading splash ad.", null)
             return
@@ -152,7 +149,7 @@ class BeiZiSplashManager private constructor() {
     }
 
     private fun cancel(result: Result) {
-        val activity = getCurrentActivity()
+        val activity = FlutterPluginUtil.getActivity()
         if (activity == null) {
             result.error("LOAD_FAILED", "Activity not available for loading splash ad.", null)
             return
@@ -166,7 +163,7 @@ class BeiZiSplashManager private constructor() {
 
     private fun handleSplashLoad(call: MethodCall, result: Result) {
         try {
-            val activity = getCurrentActivity()
+            val activity = FlutterPluginUtil.getActivity()
             if (activity == null) {
                 result.error("LOAD_FAILED", "Activity not available for loading splash ad.", null)
                 return
@@ -218,7 +215,7 @@ class BeiZiSplashManager private constructor() {
     }
 
     private fun handleSplashShowAd(call: MethodCall, result: Result) {
-        val activity = getCurrentActivity()
+        val activity = FlutterPluginUtil.getActivity()
         if (mSplashAd == null) {
             result.error("SHOW_FAILED", "Splash ad not loaded.", null)
             return

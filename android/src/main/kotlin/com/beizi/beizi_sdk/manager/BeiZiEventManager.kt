@@ -28,14 +28,6 @@ class BeiZiEventManager private constructor() : MethodCallHandler {
         }
     }
 
-    fun setContext(context: Activity) {
-        this.mContext = WeakReference(context) // 存储 application context 避免内存泄漏
-    }
-
-    fun getContext(): Activity? {
-        return this.mContext?.get()
-    }
-
     /**
      * 初始化 MethodChannel 并设置回调处理器
      * @param binaryMessenger Flutter引擎的BinaryMessenger
@@ -53,7 +45,7 @@ class BeiZiEventManager private constructor() : MethodCallHandler {
     override fun onMethodCall(call: MethodCall, result: Result) {
         when {
             InitMethodNames.contains(call.method) -> {
-                BeiZiSDKInitManager.Companion.getInstance().handleMethodCall(call, result)
+                BeiZiSDKInitManager.getInstance().handleMethodCall(call, result)
             }
             SplashMethodNames.contains(call.method) -> {
                 BeiZiSplashManager.getInstance().handleMethodCall(call, result)

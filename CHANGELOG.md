@@ -1,3 +1,7 @@
+## version: 0.0.7
+
+* TODO:  beizi sdk 4.0 base version 0.0.7 submit. resole activity reset questions
+
 ## version: 0.0.6
 
 * TODO:  beizi sdk 4.0 base version 0.0.6 submit.

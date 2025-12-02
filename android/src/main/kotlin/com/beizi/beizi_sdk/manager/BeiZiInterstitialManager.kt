@@ -4,6 +4,7 @@ import android.app.Activity
 import com.beizi.beizi_sdk.data.BeiZiInterAdCallBackMethod
 import com.beizi.beizi_sdk.data.BeiZiInterKeys
 import com.beizi.beizi_sdk.data.BeiZiSdkMethodNames
+import com.beizi.beizi_sdk.utils.FlutterPluginUtil
 import com.beizi.fusion.InterstitialAd
 import com.beizi.fusion.InterstitialAdListener
 import io.flutter.plugin.common.MethodCall
@@ -16,8 +17,6 @@ import java.lang.ref.WeakReference
  */
 class BeiZiInterstitialManager private constructor() {
     private var interstitialAd: InterstitialAd? = null
-    private var currentActivityRef: WeakReference<Activity>? =
-        WeakReference(BeiZiEventManager.getInstance().getContext())
 
     companion object {
         @Volatile
@@ -30,7 +29,6 @@ class BeiZiInterstitialManager private constructor() {
         }
     }
 
-    private fun getCurrentActivity(): Activity? = currentActivityRef?.get()
 
     private val adCallback = object : InterstitialAdListener {
 
@@ -122,7 +120,7 @@ class BeiZiInterstitialManager private constructor() {
         call: MethodCall,
         result: Result
     ) {
-        val activity = getCurrentActivity()
+        val activity = FlutterPluginUtil.getActivity()
         if (activity == null) {
             result.error("LOAD_FAILED", "Activity not available for loading splash ad.", null)
             return
@@ -149,7 +147,7 @@ class BeiZiInterstitialManager private constructor() {
     }
 
     private fun handleSplashShowAd(call: MethodCall, result: Result) {
-        val activity = getCurrentActivity()
+        val activity = FlutterPluginUtil.getActivity()
         if (interstitialAd == null) {
             result.error("SHOW_FAILED", "InterstitiaAd ad not loaded.", null)
             return

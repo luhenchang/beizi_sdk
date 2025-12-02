@@ -1,24 +1,18 @@
 package com.beizi.beizi_sdk.manager
 
-import android.app.Activity
 import com.beizi.beizi_sdk.data.BeiZiNativeUnifiedAdChannelMethod
 import com.beizi.beizi_sdk.data.BeiZiNativeUnifiedKeys
 import com.beizi.beizi_sdk.data.BeiZiSdkMethodNames
+import com.beizi.beizi_sdk.utils.FlutterPluginUtil
 import com.beizi.fusion.NativeUnifiedAd
 import com.beizi.fusion.NativeUnifiedAdListener
 import com.beizi.fusion.NativeUnifiedAdResponse
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import java.lang.ref.WeakReference
 import java.util.UUID
-import kotlin.collections.mapOf
 
 class BeiZiNativeUnifiedManager {
     private var mNativeUnifiedAd: NativeUnifiedAd? = null
-    private var currentActivityRef: WeakReference<Activity>? =
-        WeakReference(BeiZiEventManager.getInstance().getContext())
-
-    private fun getCurrentActivity(): Activity? = currentActivityRef?.get()
 
     private val nativeAdListener = object : NativeUnifiedAdListener {
 
@@ -163,7 +157,7 @@ class BeiZiNativeUnifiedManager {
         call: MethodCall,
         result: MethodChannel.Result
     ) {
-        val activity = getCurrentActivity()
+        val activity = FlutterPluginUtil.getActivity()
         if (activity == null) {
             result.error("LOAD_FAILED", "Activity not available for loading splash ad.", null)
             return

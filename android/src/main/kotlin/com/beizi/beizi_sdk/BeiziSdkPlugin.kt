@@ -2,6 +2,7 @@ package com.beizi.beizi_sdk
 
 import com.beizi.beizi_sdk.manager.BeiZiEventManager
 import com.beizi.beizi_sdk.manager.BeiZiPlatformViewManager
+import com.beizi.beizi_sdk.utils.FlutterPluginUtil
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -15,10 +16,11 @@ class BeiziSdkPlugin :
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        BeiZiEventManager.getInstance().release()
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        BeiZiEventManager.getInstance().setContext(binding.activity)
+        FlutterPluginUtil.setActivity(binding.activity)
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
@@ -28,6 +30,6 @@ class BeiziSdkPlugin :
     }
 
     override fun onDetachedFromActivity() {
-        BeiZiEventManager.getInstance().release()
+
     }
 }

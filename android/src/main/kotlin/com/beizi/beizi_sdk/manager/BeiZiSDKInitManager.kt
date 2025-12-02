@@ -4,6 +4,7 @@ import com.beizi.beizi_sdk.data.BeiZiSdkMethodNames
 import com.beizi.beizi_sdk.data.BeiziInitKeys
 import com.beizi.fusion.BeiZis
 import com.beizi.beizi_sdk.utils.BeiZiCustomControllerUtil
+import com.beizi.beizi_sdk.utils.FlutterPluginUtil
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel.Result
 
@@ -26,7 +27,7 @@ class BeiZiSDKInitManager private constructor() {
             result.notImplemented()
             return
         }
-        val context = BeiZiEventManager.getInstance().getContext()
+        val context = FlutterPluginUtil.getActivity()
         val flutterParams = call.arguments as? Map<*, *>
         if (context == null || flutterParams == null) {
             result.error("INITIALIZATION_FAILED", "Context or arguments are missing.", null)
