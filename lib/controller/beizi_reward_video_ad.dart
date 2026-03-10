@@ -71,7 +71,7 @@ class RewardedVideoAd {
   Future<bool> isLoaded() async {
     try {
       return await BeiziSdk.channel
-          .invokeMethod(BeiZiSdkMethodNames.rewardedVideoLoad);
+          .invokeMethod(BeiZiSdkMethodNames.rewardedVideoIsLoaded);
     } on PlatformException catch (e) {
       debugPrint('调用isLoaded失败: ${e.message}');
       return false;

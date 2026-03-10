@@ -224,7 +224,7 @@ extension BeiZiSplashManager: BeiZiSplashDelegate {
     }
     
     func beiZi_splash(_ beiziSplash: BeiZiSplash, didFailToLoadAdWithError error: BeiZiRequestError) {
-        sendMessage(BeiZiAdCallBackChannelMethod.onAdFailedToLoad,["code": error.code,"message":error.localizedDescription])
+        sendMessage(BeiZiAdCallBackChannelMethod.onAdFailedToLoad,error.code)
     }
     
     func beiZi_splashAdLifeTime(_ lifeTime: Int32) {

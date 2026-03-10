@@ -144,7 +144,7 @@ extension BeiZiNativeManager : BeiZiNativeExpressDelegate {
         sendMessage(BeiZiNativeAdChannelMethod.onAdLoaded,UUID().uuidString)
     }
     func beiZi_nativeExpress(_ beiziNativeExpress: BeiZiNativeExpress, didFailToLoadAdWithError error: BeiZiRequestError) {
-        sendMessage(BeiZiNativeAdChannelMethod.onAdFailed, ["code": error.code,"message":error.localizedDescription])
+        sendMessage(BeiZiNativeAdChannelMethod.onAdFailed, error.code)
     }
     func beiZi_nativeExpressDidShow(_ beiziNativeExpress: BeiZiNativeExpress) {
         sendMessage(BeiZiNativeAdChannelMethod.onAdShown)

@@ -178,7 +178,7 @@ extension BeiZiRewardVideoManager : BeiZiRewardedVideoDelegate {
         sendMessage(BeiZiRewardedVideoAdChannelMethod.onRewarded)
     }
     func beiZi_rewardedVideo(_ beiziRewardedVideo: BeiZiRewardedVideo, didFailToLoadAdWithError error: BeiZiRequestError) {
-        sendMessage(BeiZiRewardedVideoAdChannelMethod.onRewardedVideoAdFailedToLoad,["code": error.code,"message":error.localizedDescription])
+        sendMessage(BeiZiRewardedVideoAdChannelMethod.onRewardedVideoAdFailedToLoad,error.code)
     }
     
 }

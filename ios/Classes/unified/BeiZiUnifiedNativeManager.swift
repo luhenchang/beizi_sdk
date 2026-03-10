@@ -195,10 +195,7 @@ extension BeiZiUnifiedNativeManager: BeiZiUnifiedNativeDelegate {
     
     func beiZi_unifiedNative(_ unifiedNative: BeiZiUnifiedNative,
                            didFailToLoadAdWithError error: BeiZiRequestError) {
-        let errorInfo = [
-            "code": error.code,
-            "message": error.localizedDescription
-        ] as [String : Any]
-        sendMessage(BeiZiNativeUnifiedAdChannelMethod.onAdFailed, errorInfo)
+    
+        sendMessage(BeiZiNativeUnifiedAdChannelMethod.onAdFailed, error.code)
     }
 }

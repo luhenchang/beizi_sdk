@@ -167,7 +167,7 @@ extension BeiziInterstitialManager : BeiZiInterstitialDelegate {
         sendMessage(BeiZiInterAdCallBackMethod.onAdClosed)
     }
     func beiZi_interstitial(_ beiziInterstitial: BeiZiInterstitial, didFailToLoadAdWithError error: BeiZiRequestError) {
-        sendMessage(BeiZiInterAdCallBackMethod.onAdFailed, ["code": error.code,"message":error.localizedDescription])
+        sendMessage(BeiZiInterAdCallBackMethod.onAdFailed, error.code)
 
     }
 
