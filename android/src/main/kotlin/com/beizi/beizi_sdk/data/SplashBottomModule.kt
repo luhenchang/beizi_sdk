@@ -8,7 +8,7 @@ enum class ChildType(val typeName: String) {
 
     companion object {
         fun fromTypeName(name: String?): ChildType? {
-            return entries.find { it.typeName == name }
+            return values().find { it.typeName == name }
         }
     }
 }

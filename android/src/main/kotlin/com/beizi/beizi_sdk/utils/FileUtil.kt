@@ -147,7 +147,8 @@ object FileUtil {
                 appCacheDir = File(cacheDirPath)
             }
         }
-        return appCacheDir
+        // Ensure a non-null File is always returned (Flutter 3.38.9 / Kotlin compatibility)
+        return appCacheDir ?: context.cacheDir
     }
 
     @JvmStatic
@@ -171,7 +172,8 @@ object FileUtil {
                 }
             }
         }
-        return appCacheDir
+        // Ensure a non-null File is always returned (Flutter 3.38.9 / Kotlin compatibility)
+        return appCacheDir ?: context.cacheDir
     }
 
     /**
